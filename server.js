@@ -20,6 +20,15 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
+// Routes for login and registration pages
+app.get('/login', (req, res) => {
+  res.render('login');
+});
+
+app.get('/registration', (req, res) => {
+  res.render('registration');
+});
+
 // Error handling
 app.use((req, res) => {
   res.status(404).render('404');
