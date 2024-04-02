@@ -9,9 +9,11 @@
   "author": "Malerie Earle & Janeil Carroll",
   "license": "ISC",
   "dependencies": {
+    "colors": "^1.4.0",
     "express": "^4.19.2",
     "nodemon": "^3.1.0",
     "pg": "^8.11.4",
-    "winston": "^3.13.0"
+    "winston": "^3.13.0",
+    "winston-daily-rotate-file": "^5.0.0"
   }
 }
