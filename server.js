@@ -1,6 +1,11 @@
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
 // Imports
 const express = require('express');
 const logger = require('./logEvents');
+const methodOverride = require('method-override');
 const path = require('path');
 
 // App setup
@@ -8,15 +13,16 @@ const app = express();
 const PORT = process.env.PORT || 5051; 
 
 // Middleware
-app.set('views', path.join(__dirname, 'src/views'));
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'src/views'));
 app.use(express.static('public'));  
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride('_method'));
+
 
 // Routes
-app.get('/', (req, res) => {
-  // res.send('hello world!');
+app.use('/', (req, res) => {
   res.render('index');
 });
 
