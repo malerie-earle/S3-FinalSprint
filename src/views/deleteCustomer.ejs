@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delete Customer</title>
+</head>
+<body>
+  <div class = "home">
+  <h2>Delete Customer:</h2>
+  <form id="delete-customer-form" action="/customer/delete" method="POST">
+    <label for="delete-id">Enter Customer ID:</label>
+    <input type="text" id="delete-id" name="customer_id" required>
+    <input type="submit" value="Delete Customer">
+  </form>
+  <script>
+    document.getElementById('delete-customer-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const id = document.getElementById('delete-id').value;
+      fetch('/customer/delete/' + id, {
+        method: 'POST',
+        credentials: 'same-origin'
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        window.location.href = '/customers/';
+      })
+      .catch(error => {
+        console.error('There has been a problem with your fetch operation:', error);
+      });
+    });
+  </script>
+</body>
+</html>

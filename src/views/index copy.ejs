@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QAP3</title>
+  <link rel="stylesheet" href="/styles/index.css">
+</head>
+<body>
+  <div class="home">
+    <h1>Welcome to the <%= title %> <%= name %>!</h1>
+    <a href="/customers/">All Customers</a>
+
+    <a href="/customer/add/">Add Customer</a>
+    
+    <h3>Edit Customer:</h3>
+    <form id="edit-customer-form" action="/customer/edit/" method="POST">
+      <label for="edit-id">Enter Customer ID:</label>
+      <input type="text" id="edit-id" name="id" required>
+      <input type="submit" value="Edit Customer">
+    </form>
+
+  <h3>Delete Customer:</h3>
+  <form id="delete-customer-form" action="/customer/delete/" method="POST">
+    <label for="delete-id">Enter Customer ID:</label>
+    <input type="text" id="delete-id" name="customer_id" required>
+    <input type="submit" value="Delete Customer">
+  </form>
+  <script>
+    console.log('Script is running');
+    document.getElementById('delete-customer-form').addEventListener('submit', function(event) {
+      console.log('Form submitted');
+      event.preventDefault();
+      const id = document.getElementById('delete-id').value; // Changed variable name to 'id'
+      fetch('/customer/delete/' + id, {
+        method: 'POST',
+        credentials: 'same-origin'
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        console.log('Redirecting to /customers/');
+        window.location.href = '/customers/';
+      })
+      .catch(error => {
+        console.error('There has been a problem with your fetch operation:', error);
+      });
+    });
+    document.getElementById('edit-customer-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const id = document.getElementById('edit-id').value;
+    window.location.href = '/customer/edit/' + id;
+  });
+  </script>
+</body>
+</html>
