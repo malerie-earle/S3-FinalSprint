@@ -2,10 +2,27 @@
 const express = require('express');
 const logger = require('./logEvents');
 const path = require('path');
+const session = require('express-session');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const bcrypt = require('bcrypt');
+
 
 // App setup
 const app = express();
 const PORT = process.env.PORT || 5051; 
+
+
+// Configure session middleware
+app.use(session({
+  secret: 'your_secret_key', // Replace with a random secret key
+  resave: false,
+  saveUninitialized: false
+}));
+
+// Initialize Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Middleware
 app.set('views', path.join(__dirname, 'src/views'));
