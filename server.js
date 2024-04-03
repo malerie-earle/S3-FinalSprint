@@ -4,9 +4,11 @@ if (process.env.NODE_ENV !== 'production') {
 
 // Imports
 const express = require('express');
-const logger = require('./logEvents');
+const logger = require('./src/logEvents');
 const methodOverride = require('method-override');
 const path = require('path');
+const pool = require('./src/services/pg.auth_db');
+const router = require('./src/routes/customerRouter');
 
 // App setup
 const app = express();
@@ -22,9 +24,7 @@ app.use(methodOverride('_method'));
 
 
 // Routes
-app.use('/', (req, res) => {
-  res.render('index');
-});
+app.use('/', require('./src/routes/customerRouter'));
 
 // Error handling
 app.use((req, res) => {

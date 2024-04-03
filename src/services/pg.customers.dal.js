@@ -1,134 +1,150 @@
 const dal = require('./pg.auth_db');
 const logger = require('../logEvents');
+const { log } = require('winston');
 
 
 // Get all Customers
-const getAllCustomers = async (req, res) => {
+async function getAllCustomers() {  
   try {
-    logger.info('pg.DAL: Getting all customers from the database.');
-    const sql = 'SELECT * FROM public.customer ORDER BY customer_id DESC;';
-    const sql2 = 'SELECT username FROM public.customer_account ORDER BY username ASC;';
-    const result1 = await dal.query(sql);
-    const result2 = await dal.query(sql2);
-    const customers = [...result1.rows, ...result2.rows];
-    res.status(200).json(customers);
+    logger.info('pg.DAL: Getting all customers.');
+    const sql = `
+      SELECT c.*, ca.username, caa.*
+      FROM public.customer c
+      LEFT JOIN public.customer_account ca ON c.customer_id = ca.customer_id
+      LEFT JOIN public.customer_address caa ON c.customer_id = caa.customer_id
+      ORDER BY c.customer_id DESC;
+    `;
+    const result = await dal.query(sql);
+    return result.rows;
   } catch (error) {
     logger.error('Error in getAllCustomers():', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    throw error; 
   }
 };
-
-
 // Get a Customer by customer_id
-const getCustomerByCustomerId = async (req, res) => {
-  const { customer_id } = req.params;
+async function getCustomerByCustomerId(customer_id) {
   try {
     logger.info('pg.DAL: Getting a customer by customer_id.');
-    const sql = `SELECT * FROM public.customer WHERE customer_id = $1;`;
+    const sql = `SELECT * FROM customer WHERE customer_id = $1;`;
     const results = await dal.query(sql, [customer_id]);
-    if (results.rows.length === 0) {
-      return res.status(404).json({ error: 'Customer not found' });
-    }
-    res.status(200).json(results.rows);
+    return results.rows[0];
   } catch (error) {
     logger.error('Error in getCustomerByCustomerId():', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    throw error;
   }
 };
 
+// Get a Customer Account by customer_id
+async function getCustomerAccountByCustomerId(customer_id) {
+  try {
+    logger.info('pg.DAL: Getting a customer account by customer_id.');
+    const sql = `SELECT * FROM public.customer_account WHERE customer_id = $1;`;
+    const results = await dal.query(sql, [customer_id]);
+    return results.rows[0];
+  } catch (error) {
+    logger.error('Error in getCustomerAccountByCustomerId():', error);
+    throw error;
+  }
+}
+
+// Get a Customer Address by customer_id
+async function getCustomerAddressByCustomerId(customer_id) {
+  try {
+    logger.info('pg.DAL: Getting a customer address by customer_id.');
+    const sql = `SELECT * FROM public.customer_address WHERE customer_id = $1;`;
+    const results = await dal.query(sql, [customer_id]);
+    return results.rows[0];
+  } catch (error) {
+    logger.error('Error in getCustomerAddressByCustomerId():', error);
+    throw error;
+  }
+}
 
 // Get a Customer by first_name
-const getCustomersByFirstName = async (req, res) => {
-  const { first_name } = req.params;
+async function getCustomersByFirstName(first_name) {
   try {
     logger.info('pg.DAL: Getting customers by first_name.');
     const sql = `SELECT * FROM public.customer WHERE first_name = $1;`;
     const results = await dal.query(sql, [first_name]);
-    res.status(200).json(results.rows);
+    return results.rows;
   } catch (error) {
     logger.error('Error in getCustomerByFirstName():', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    throw error;
   }
 };
 
 
 // Get a Customer by last_name
-const getCustomersByLastName = async (req, res) => {
-  const { last_name } = req.params;
+async function getCustomersByLastName(last_name) {
   try {
     logger.info('pg.DAL: Getting customers by last_name.');
     const sql = `SELECT * FROM public.customer WHERE last_name = $1;`;
     const results = await dal.query(sql, [last_name]);
-    res.status(200).json(results.rows);
+    return results.rows;
   } catch (error) {
     logger.error('Error in getCustomerByLastName():', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    throw error;
   }
 };
 
 
 // Get a Customer by email
-const getCustomerByEmail = async (req, res) => {
-  const { email } = req.params;
+async function getCustomerByEmail(email) {
   try {
     logger.info('pg.DAL: Getting a customer by email.');
     const sql = `SELECT * FROM public.customer WHERE email = $1;`;
     const results = await dal.query(sql, [email]);
-    res.status(200).json(results.rows);
+    return results.rows;
   } catch (error) {
     logger.error('Error in getCustomerByEmail():', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    throw error;
   }
 };
 
 
 // Get a Customer by phone number
-const getCustomerByPhoneNum = async (req, res) => {
-  const { ph_num } = req.params;
+async function getCustomerByPhoneNum(ph_num) {
   try {
     logger.info('pg.DAL: Getting a customer by phone number.');
     const sql = `SELECT * FROM public.customer WHERE ph_num = $1;`;
     const results = await dal.query(sql, [ph_num]);
-    res.status(200).json(results.rows);
+    return results.rows;
   } catch (error) {
     logger.error('Error in getCustomerByPhoneNum():', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    throw error;
   }
 };
 
 
 // Get a Customer by gender
-const getCustomersByGender = async (req, res) => {
-  const { gender } = req.params;
+async function getCustomersByGender(gender) {
   try {
     logger.info('pg.DAL: Getting customers by gender.');
     const sql = `SELECT * FROM public.customer WHERE gender = $1;`;
     const results = await dal.query(sql, [gender]);
-    res.status(200).json(results.rows);
+    return results.rows;
   } catch (error) {
     logger.error('Error in getCustomerByGender():', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    throw error;
   }
 };
 
 // Get a Customer by pay_method
-const getCustomersByPayMethod = async (req, res) => {
-  const { pay_method } = req.params;
+async function getCustomersByPayMethod(pay_method) {
   try {
     logger.info('pg.DAL: Getting customers by pay_method.');
     const sql = `SELECT * FROM public.customer WHERE pay_method = $1;`;
     const results = await dal.query(sql, [pay_method]);
-    res.status(200).json(results.rows);
+    return results.rows;
   } catch (error) {
     logger.error('Error in getCustomerByPayMethod():', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    throw error;
   }
 }
 
 
 // Get a Customer by username
-const getCustomerByUsername = async (req, res) => {
-  const { username } = req.params;
+async function getCustomerByUsername(username) {
   try {
     logger.info('pg.DAL: Getting a customer by username.');
     const sql = `
@@ -139,42 +155,63 @@ const getCustomerByUsername = async (req, res) => {
       WHERE customer_account.username = $1;
     `;
     const results = await dal.query(sql, [username]);
-    res.status(200).json(results.rows);
+    return results.rows;
   } catch (error) {
     logger.error('Error in getCustomerByUsername():', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    throw error;
   }
 };
 
 
 // Add a new Customer
-const addCustomer = async (req, res) => {
+async function addCustomer({ first_name, last_name, email, ph_num, gender, pay_method }) {
   try {
     logger.info('pg.DAL: Adding a new customer.');
-    const { first_name, last_name, email, ph_num, gender, pay_method, username, password } = req.body;
-    const idQuery = 'SELECT MAX(customer_id) AS max_id FROM public.customer;';
     const sql = `INSERT INTO public.customer (customer_id, first_name, last_name, email, ph_num, gender, pay_method) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *;`;
-    const sql2 = `INSERT INTO public.customer_account (username, password) VALUES ($1, $2) RETURNING *;`;
     
+    const idQuery = 'SELECT MAX(customer_id) AS max_id FROM public.customer;';
     const lastIdResult = await dal.query(idQuery);
     const newCustomerId = lastIdResult.rows[0].max_id + 1;
-    
     const values = [newCustomerId, first_name, last_name, email, ph_num, gender, pay_method];
     const newCustomer = await dal.query(sql, values);
-
-    const values2 = [username, password];
-    const newCustomerAccount = await dal.query(sql2, values2);
-    
-    res.status(201).json({ newCustomer: newCustomer.rows, newCustomerAccount: newCustomerAccount.rows });
+    return newCustomer.rows[0];
   } catch (error) {
     logger.error('Error in addCustomer():', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    throw error;
+  }
+};
+
+// Add a new Customer Account
+async function addCustomerAccount({ customer_id, username, password }) {
+  try {
+    logger.info('pg.DAL: Adding a new customer account.');
+    const sql = `INSERT INTO public.customer_account (customer_id, username, password) VALUES ($1, $2, $3) RETURNING *;`;
+    const values = [customer_id, username, password];
+    const newCustomerAccount = await dal.query(sql, values);
+    return newCustomerAccount.rows[0];
+  } catch (error) {
+    logger.error('Error in addCustomerAccount():', error);
+    throw error;
+  }
+};
+
+// Add a new Customer Address
+async function addCustomerAddress({ customer_id, street_address, city, province, postal_code, country }) {
+  try {
+    logger.info('pg.DAL: Adding a new customer address.');
+    const sql = `INSERT INTO public.customer_address (customer_id, street_address, city, province, postal_code, country) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;`;
+    const values = [customer_id, street_address, city, province, postal_code, country];
+    const newCustomerAddress = await dal.query(sql, values);
+    return newCustomerAddress.rows[0];
+  } catch (error) {
+    logger.error('Error in addCustomerAddress():', error);
+    throw error;
   }
 };
 
 
 // Edit a Customer
-const editCustomer = async (req, res) => {
+async function editCustomer(req, res) {
   const { customer_id } = req.params;
   const { first_name, last_name, email, ph_num, gender, pay_method } = req.body;
   try {
@@ -186,27 +223,57 @@ const editCustomer = async (req, res) => {
     if (selectResult.rows.length === 0) {
       return res.status(404).json({ error: 'Customer not found' });
     }
-    
     const updateResult = await dal.query(updateSql, [customer_id, first_name, last_name, email, ph_num, gender, pay_method]);
-    res.status(200).json(updateResult.rows);
+    return updateResult.rows;
   } catch (error) {
     logger.error('Error in editCustomer():', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    throw error;
+  }
+}
+
+// Edit a Customer Account
+async function editCustomerAccount({ customer_id, username, password }) {
+  try {
+    logger.info('pg.DAL: Editing a customer account.');
+    const sql = 'UPDATE public.customer_account SET username = $2, password = $3 WHERE customer_id = $1 RETURNING *;';
+    const values = [customer_id, username, password];
+    const updatedCustomerAccount = await dal.query(sql, values);
+    return updatedCustomerAccount.rows[0];
+  } catch (error) {
+    logger.error('Error in editCustomerAccount():', error);
+    throw error;
+  }
+}
+
+// Edit a Customer Address
+async function editCustomerAddress({ customer_id, street_address, city, province, postal_code, country }) {
+  try {
+    logger.info('pg.DAL: Editing a customer address.');
+    const sql = 'UPDATE public.customer_address SET street_address = $2, city = $3, province = $4, postal_code = $5, country = $6 WHERE customer_id = $1 RETURNING *;';
+    const values = [customer_id, street_address, city, province, postal_code, country];
+    const updatedCustomerAddress = await dal.query(sql, values);
+    return updatedCustomerAddress.rows[0];
+  } catch (error) {
+    logger.error('Error in editCustomerAddress():', error);
+    throw error;
   }
 }
 
 
 // Delete a customer
-const deleteCustomer = async (req, res) => {
-  const { customer_id } = req.params;
+async function deleteCustomer(customer_id) {
   try {
     logger.info('pg.DAL: Deleting a customer.');
-    const sql = `DELETE FROM public.customer WHERE customer_id = $1;`;
-    await dal.query(sql, [customer_id]);
-    res.status(204).send(); // No content success response
+    const sqlAddress = 'DELETE FROM public.customer_address WHERE customer_id = $1;';
+    const sqlAccount = 'DELETE FROM public.customer_account WHERE customer_id = $1;';
+    const sqlCustomer = 'DELETE FROM public.customer WHERE customer_id = $1;';
+    await dal.query(sqlAddress, [customer_id]);
+    await dal.query(sqlAccount, [customer_id]);
+    await dal.query(sqlCustomer, [customer_id]);
+    logger.info('Customer deleted successfully.');
   } catch (error) {
     logger.error('Error in deleteCustomer():', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    throw error;
   }
 };
 
@@ -214,6 +281,8 @@ const deleteCustomer = async (req, res) => {
 module.exports = {
   getAllCustomers,
   getCustomerByCustomerId,
+  getCustomerAccountByCustomerId,
+  getCustomerAddressByCustomerId,
   getCustomersByFirstName,
   getCustomersByLastName,
   getCustomerByEmail,
@@ -222,6 +291,10 @@ module.exports = {
   getCustomersByPayMethod,
   getCustomerByUsername,
   addCustomer,
+  addCustomerAccount,
+  addCustomerAddress,
   editCustomer,
+  editCustomerAccount,
+  editCustomerAddress,
   deleteCustomer
 };

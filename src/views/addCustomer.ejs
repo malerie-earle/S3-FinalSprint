@@ -14,20 +14,63 @@
 <div class="add-content">
   <h1>Add Customer:</h1>
   <form action="/customer/add/" method="POST">
-    <label>New Customer:</br>
-      <% if (newCustomerId) { %>
-        <p>New Customer ID: <%= newCustomerId %></p>
-      <% } %> <br />
-      <input class = "addForm" type="text" name="first_name" placeholder="First Name" required>
-      <input class = "addForm"  type="text" name="last_name"  placeholder="Last Name" required>
-      <input class = "addForm"  type="text" name="email"  placeholder="Email" required>
-      <input class = "addForm"  type="text" name="username"  placeholder="Username" required>
-      <input class = "addForm"  type="text" name="password"  placeholder="Password" required>
-      <input class = "addForm"  type="text" name="address"  placeholder="Address" required>
-      <input class = "addForm"  type="text" name="payment_method" placeholder="Payment Method" required>
-    </label></br><br />
-      <button>ADD CUSTOMER</button>
-    </div>
+    <h2>New Customer:</h2>
+    <% if (newCustomerId) { %>
+      <p>New Customer ID: <%= newCustomerId %></p>
+    <% } %>
+    <label>
+      First Name:
+      <input class="addForm" type="text" name="newCustomer[first_name]" placeholder="First Name" required>
+    </label>
+    <label>
+      Last Name:
+      <input class="addForm" type="text" name="newCustomer[last_name]" placeholder="Last Name" required>
+    </label>
+    <label>
+      Gender:
+      <input class="addForm" type="text" name="newCustomer[gender]" placeholder="Gender" required>
+    </label>
+    <label>
+      Email:
+      <input class="addForm" type="text" name="newCustomer[email]" placeholder="Email" required>
+    </label>
+    <label>
+      Phone Number:
+      <input class="addForm" type="text" name="newCustomer[ph_num]" placeholder="Phone Number" required>
+    </label>
+    <label>
+      Payment Method:
+      <input class="addForm" type="text" name="newCustomer[pay_method]" placeholder="Payment Method" required>
+    </label>
+    <label>
+      Street Address:
+      <input class="addForm" type="text" name="newCustomerAddress[street_address]" placeholder="Street Address" required>
+    </label>
+    <label>
+      City:
+      <input class="addForm" type="text" name="newCustomerAddress[city]" placeholder="City" required>
+    </label>
+    <label>
+      Province:
+      <input class="addForm" type="text" name="newCustomerAddress[province]" placeholder="Province" required>
+    </label>
+    <label>
+      Postal Code:
+      <input class="addForm" type="text" name="newCustomerAddress[postal_code]" placeholder="Postal Code" required>
+    </label>
+    <label>
+      Country:
+      <input class="addForm" type="text" name="newCustomerAddress[country]" placeholder="Country" required>
+    <label>
+      Username:
+      <input class="addForm" type="text" name="newCustomerAccount[username]" placeholder="Username" required>
+    </label>
+    <label>
+      Password:
+      <input class="addForm" type="password" name="newCustomerAccount[password]" placeholder="Password" required>
+    </label>
+    <br />
+    <button>ADD CUSTOMER</button>
   </form>
 </div>
 </div>
