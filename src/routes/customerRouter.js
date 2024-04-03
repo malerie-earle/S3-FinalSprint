@@ -168,7 +168,6 @@ router.get('/customer/edit/:customer_id', async (req, res) => {
     const customer = await getCustomerByCustomerId(customer_id);
     const customer_account = await getCustomerAccountByCustomerId(customer_id);
     const customer_address = await getCustomerAddressByCustomerId(customer_id);
-    // If the data is an array, take the first element
     if (Array.isArray(customer)) customer = customer[0];
     if (Array.isArray(customer_account)) customer_account = customer_account[0];
     if (Array.isArray(customer_address)) customer_address = customer_address[0];
@@ -192,7 +191,7 @@ router.post('/customer/edit/:customer_id', async (req, res) => {
     const { street_address, city, province, postal_code, country } = req.body;
     const customerAddress = await editCustomerAddress({ customer_id, street_address, city, province, postal_code, country });
     logger.info('Customer Address edited successfully.');
-    res.redirect(`/customer/${customer_id}`);
+    res.redirect(`/customers/`);
     logger.info('Customer edited successfully.');
   } catch (error) {
     logger.error('Error editing a customer:', error);
