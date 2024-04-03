@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 5051;
 
 // Configure session middleware
 app.use(session({
-  secret: 'your_secret_key', // Replace with a random secret key
+  secret: 'Z90yLqzmjVAWJ8xC5Sj3EWGjFnpvE1KVmLAoepdk0UM=',
   resave: false,
   saveUninitialized: false
 }));
