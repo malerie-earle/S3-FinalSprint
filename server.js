@@ -20,9 +20,40 @@ app.use(session({
   saveUninitialized: false
 }));
 
-// Initialize Passport middleware
+// Initialize Passport middleware *Change dummy data when connected to db*
 app.use(passport.initialize());
 app.use(passport.session());
+
+passport.use(new LocalStrategy(
+  (username, password, done) => {
+    // Dummy user data (replace with actual database queries)
+    const dummyUser = { id: 1, username: 'user', password: '$2b$10$VMMdP/7UetE/xkOQ77XeP.gdo4wQtwex2QteD.v.u1SxlYsdn7T8S' }; // Password: "password"
+    
+    // Check if username exists
+    if (username !== dummyUser.username) {
+      return done(null, false, { message: 'Incorrect username.' });
+    }
+    
+    // Check if password is correct
+    bcrypt.compare(password, dummyUser.password, (err, result) => {
+      if (err) return done(err);
+      if (!result) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, dummyUser);
+    });
+  }
+));
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+  // Dummy user data (replace with actual database queries)
+  const dummyUser = { id: 1, username: 'user' }; // Assume user is already authenticated
+  done(null, dummyUser);
+});
 
 // Middleware
 app.set('views', path.join(__dirname, 'src/views'));
