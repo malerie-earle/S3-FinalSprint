@@ -1,12 +1,19 @@
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
 // Imports
 const express = require('express');
-const logger = require('./logEvents');
+const logger = require('./src/logEvents');
+const methodOverride = require('method-override');
 const path = require('path');
 const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 
+const pool = require('./src/services/pg.auth_db');
+const router = require('./src/routes/customerRouter');
 
 // App setup
 const app = express();
@@ -56,17 +63,16 @@ passport.deserializeUser((id, done) => {
 });
 
 // Middleware
-app.set('views', path.join(__dirname, 'src/views'));
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'src/views'));
 app.use(express.static('public'));  
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride('_method'));
+
 
 // Routes
-app.get('/', (req, res) => {
-  // res.send('hello world!');
-  res.render('index');
-});
+app.use('/', require('./src/routes/customerRouter'));
 
 // Routes for login and registration pages
 app.get('/login', (req, res) => {

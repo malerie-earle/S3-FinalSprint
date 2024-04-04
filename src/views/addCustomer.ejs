@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Customer</title>
+  <link rel="stylesheet" href="/styles/index.css">
+</head>
+<body>
+  
+</body>
+</html>
+<div class = "home">
+<div class="add-content">
+  <h1>Add Customer:</h1>
+  <form action="/customer/add/" method="POST">
+    <h2>New Customer:</h2>
+    <% if (newCustomerId) { %>
+      <p>New Customer ID: <%= newCustomerId %></p>
+    <% } %>
+    <label>
+      First Name:
+      <input class="addForm" type="text" name="newCustomer[first_name]" placeholder="First Name" required>
+    </label>
+    <label>
+      Last Name:
+      <input class="addForm" type="text" name="newCustomer[last_name]" placeholder="Last Name" required>
+    </label>
+    <label>
+      Gender:
+      <input class="addForm" type="text" name="newCustomer[gender]" placeholder="Gender" required>
+    </label>
+    <label>
+      Email:
+      <input class="addForm" type="text" name="newCustomer[email]" placeholder="Email" required>
+    </label>
+    <label>
+      Phone Number:
+      <input class="addForm" type="text" name="newCustomer[ph_num]" placeholder="Phone Number" required>
+    </label>
+    <label>
+      Payment Method:
+      <input class="addForm" type="text" name="newCustomer[pay_method]" placeholder="Payment Method" required>
+    </label>
+    <label>
+      Street Address:
+      <input class="addForm" type="text" name="newCustomerAddress[street_address]" placeholder="Street Address" required>
+    </label>
+    <label>
+      City:
+      <input class="addForm" type="text" name="newCustomerAddress[city]" placeholder="City" required>
+    </label>
+    <label>
+      Province:
+      <input class="addForm" type="text" name="newCustomerAddress[province]" placeholder="Province" required>
+    </label>
+    <label>
+      Postal Code:
+      <input class="addForm" type="text" name="newCustomerAddress[postal_code]" placeholder="Postal Code" required>
+    </label>
+    <label>
+      Country:
+      <input class="addForm" type="text" name="newCustomerAddress[country]" placeholder="Country" required>
+    <label>
+      Username:
+      <input class="addForm" type="text" name="newCustomerAccount[username]" placeholder="Username" required>
+    </label>
+    <label>
+      Password:
+      <input class="addForm" type="password" name="newCustomerAccount[password]" placeholder="Password" required>
+    </label>
+    <br />
+    <button>ADD CUSTOMER</button>
+  </form>
+</div>
+</div>
+</body>
+</html>
