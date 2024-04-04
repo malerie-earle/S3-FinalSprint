@@ -211,19 +211,17 @@ async function addCustomerAddress({ customer_id, street_address, city, province,
 
 
 // Edit a Customer
-async function editCustomer(req, res) {
-  const { customer_id } = req.params;
-  const { first_name, last_name, email, ph_num, gender, pay_method } = req.body;
+async function editCustomer({customer_id, first_name, last_name, email, ph_num, gender, pay_method}) {
   try {
     logger.info('pg.DAL: Editing a customer.');
     const selectSql = 'SELECT * FROM public.customer WHERE customer_id = $1';
     const updateSql = 'UPDATE public.customer SET first_name = $2, last_name = $3, email = $4, ph_num = $5, gender = $6, pay_method = $7 WHERE customer_id = $1 RETURNING *';
-    
     const selectResult = await dal.query(selectSql, [customer_id]);
     if (selectResult.rows.length === 0) {
       return res.status(404).json({ error: 'Customer not found' });
     }
-    const updateResult = await dal.query(updateSql, [customer_id, first_name, last_name, email, ph_num, gender, pay_method]);
+    const values = [customer_id, first_name, last_name, email, ph_num, gender, pay_method];
+    const updateResult = await dal.query(updateSql, values);
     return updateResult.rows;
   } catch (error) {
     logger.error('Error in editCustomer():', error);
