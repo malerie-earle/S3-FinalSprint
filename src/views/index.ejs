@@ -6,6 +6,9 @@
   <title>QAP3</title>
   <link rel="stylesheet" href="/styles/index.css">
 </head>
+
+<%- include('./partials/header.ejs') %>
+
 <body>
   <div class="home">
     <h1>Welcome to the <%= title %> <%= name %>!</h1>
@@ -20,6 +23,8 @@
     <a href="/search/">Search</a>
 
     <a href="/product/all/">Products</a>
+
+    <a href="recipe/all/">Recipes</a>
         
     <h3>A Customer:</h3>
     <form id="customer-form" action="/customer/:customer_id/" method="POST">

@@ -26,4 +26,10 @@ router.get('/all/', async (req, res) => {
   }
 });
 
+// Search Products
+router.get('/search/', (req, res) => {
+  logger.info('Rendering the Search Products Page.');
+  res.render('searchProducts.ejs');
+});
+
 module.exports = router;

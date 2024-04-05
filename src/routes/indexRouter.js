@@ -30,9 +30,23 @@ router.get('/registration/', (req, res) => {
 });
 
 // GET - Search Customer Page
-router.get('/search/', (req, res) => {
+router.get('/customer/search/', (req, res) => {
   logger.info('Rendering the Search Customer Page.');
   res.render('searchCustomers.ejs');
 });
+
+// GET - Search Product Page
+router.get('/product/search/', (req, res) => {
+  logger.info('Rendering the Search Product Page.');
+  res.render('searchProducts.ejs');
+});
+
+// GET - Search Engine Page
+router.get('/search-engine/', (req, res) => {
+  logger.info('Rendering the Search Engine Page.');
+  res.render('searchEngine.ejs');
+});
+
+
 
 module.exports = router;
