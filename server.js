@@ -8,7 +8,9 @@ const logger = require('./src/logEvents');
 const methodOverride = require('method-override');
 const path = require('path');
 const pool = require('./src/services/pg.auth_db');
-const router = require('./src/routes/customerRouter');
+const customerRouter = require('./src/routes/customerRouter');
+const productRouter = require('./src/routes/productRouter');
+const indexRouter = require('./src/routes/indexRouter');
 
 // App setup
 const app = express();
@@ -24,7 +26,10 @@ app.use(methodOverride('_method'));
 
 
 // Routes
-app.use('/', require('./src/routes/customerRouter'));
+app.use('/', require('./src/routes/indexRouter'));
+app.use('/customer/', require('./src/routes/customerRouter'));
+app.use('/product/', require('./src/routes/productRouter'));
+
 
 // Error handling
 app.use((req, res) => {

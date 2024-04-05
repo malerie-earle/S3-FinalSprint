@@ -9,10 +9,25 @@
 <body>
   <div class="home">
     <h1>Welcome to the <%= title %> <%= name %>!</h1>
-    <a href="/customers/">All Customers</a>
+    <a href="/customer/all/">All Customers</a>
 
     <a href="/customer/add/">Add Customer</a>
-    
+
+    <a href="/registration/">Registration</a>
+
+    <a href="/login/">Login</a>
+
+    <a href="/search/">Search</a>
+
+    <a href="/product/all/">Products</a>
+        
+    <h3>A Customer:</h3>
+    <form id="customer-form" action="/customer/:customer_id/" method="POST">
+      <label for="customer-id">Enter Customer ID:</label>
+      <input type="text" id="customer-id" name="id" required>
+      <input type="submit" value="Get Customer">
+    </form>
+
     <h3>Edit Customer:</h3>
     <form id="edit-customer-form" action="/customer/edit/:customer_id/" method="POST">
       <label for="edit-id">Enter Customer ID:</label>
