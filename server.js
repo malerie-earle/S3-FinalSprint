@@ -11,9 +11,19 @@ const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
+const { Pool } = require('pg');
+require('dotenv').config();
 
 const pool = require('./src/services/pg.auth_db');
 const router = require('./src/routes/customerRouter');
+
+const pool = new Pool({
+  user: process.env.PGUSER,
+  password: process.env.PGPASSWORD,
+  host: process.env.PGHOST,
+  port: process.env.PGPORT,
+  database: process.env.PGDATABASE
+});
 
 // App setup
 const app = express();
@@ -27,30 +37,31 @@ app.use(session({
   saveUninitialized: false
 }));
 
-// Initialize Passport middleware *Change dummy data when connected to db*
+// Initialize Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use(new LocalStrategy(
-  (username, password, done) => {
-    // Dummy user data (replace with actual database queries)
-    const dummyUser = { id: 1, username: 'user', password: '$2b$10$VMMdP/7UetE/xkOQ77XeP.gdo4wQtwex2QteD.v.u1SxlYsdn7T8S' }; // Password: "password"
-    
-    // Check if username exists
-    if (username !== dummyUser.username) {
+passport.use(new LocalStrategy((username, password, done) => {
+  pool.query('SELECT * FROM customer_account WHERE username = $1', [username], (err, result) => {
+    if (err) {
+      return done(err);
+    }
+    const customer = result.rows[0];
+    if (!customer) {
       return done(null, false, { message: 'Incorrect username.' });
     }
-    
-    // Check if password is correct
-    bcrypt.compare(password, dummyUser.password, (err, result) => {
-      if (err) return done(err);
-      if (!result) {
+    bcrypt.compare(password, customer.password, (err, isValid) => {
+      if (err) {
+        return done(err);
+      }
+      if (!isValid) {
         return done(null, false, { message: 'Incorrect password.' });
       }
-      return done(null, dummyUser);
+      return done(null, customer);
     });
-  }
-));
+  });
+}));
+
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
