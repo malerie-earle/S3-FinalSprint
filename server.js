@@ -95,9 +95,26 @@ app.get('/login', (req, res) => {
   res.render('login');
 });
 
+app.post('/login', passport.authenticate('local', {
+  successRedirect: '/home',
+  failureRedirect: '/login',
+  failureFlash: true
+}));
+
 app.get('/registration', (req, res) => {
   res.render('registration');
 });
+
+// Home page route
+app.get('/home', (req, res) => {
+  // Check if user is authenticated
+  if (req.isAuthenticated()) {
+    res.render('index', { user: req.user });
+  } else {
+    res.redirect('/login');
+  }
+});
+
 
 // Error handling
 app.use((req, res) => {
