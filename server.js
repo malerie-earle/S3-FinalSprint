@@ -64,14 +64,19 @@ passport.use(new LocalStrategy((username, password, done) => {
 
 
 passport.serializeUser((user, done) => {
-  done(null, user.id);
+  done(null, user.customer_id); // Assuming your primary key column is 'customer_id'
 });
 
 passport.deserializeUser((id, done) => {
-  // Dummy user data (replace with actual database queries)
-  const dummyUser = { id: 1, username: 'user' }; // Assume user is already authenticated
-  done(null, dummyUser);
+  pool.query('SELECT * FROM customer_account WHERE customer_id = $1', [id], (err, result) => {
+    if (err) {
+      return done(err);
+    }
+    const customer = result.rows[0];
+    done(null, customer);
+  });
 });
+
 
 // Middleware
 app.set('view engine', 'ejs');
