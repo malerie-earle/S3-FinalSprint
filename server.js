@@ -64,7 +64,7 @@ passport.use(new LocalStrategy((username, password, done) => {
 
 
 passport.serializeUser((user, done) => {
-  done(null, user.customer_id); // Assuming your primary key column is 'customer_id'
+  done(null, user.customer_id);
 });
 
 passport.deserializeUser((id, done) => {
