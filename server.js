@@ -13,7 +13,10 @@ const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 
 const pool = require('./src/services/pg.auth_db');
-const router = require('./src/routes/customerRouter');
+const customerRouter = require('./src/routes/customerRouter');
+const productRouter = require('./src/routes/productRouter');
+const indexRouter = require('./src/routes/indexRouter');
+const recipeRouter = require('./src/routes/recipeRouter');
 
 // App setup
 const app = express();
@@ -72,7 +75,11 @@ app.use(methodOverride('_method'));
 
 
 // Routes
-app.use('/', require('./src/routes/customerRouter'));
+app.use('/', require('./src/routes/indexRouter'));
+app.use('/customer/', require('./src/routes/customerRouter'));
+app.use('/product/', require('./src/routes/productRouter'));
+app.use('/recipe/', require('./src/routes/recipeRouter'));
+
 
 // Routes for login and registration pages
 app.get('/login', (req, res) => {
