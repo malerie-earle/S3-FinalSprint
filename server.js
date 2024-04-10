@@ -17,6 +17,7 @@ const flash = require('connect-flash');
 const { authenticateUser } = require('./src/services/pg.customers.dal');
 
 
+// Database Connection & routers
 const pool = require('./src/services/pg.auth_db');
 const customerRouter = require('./src/routes/customerRouter');
 const productRouter = require('./src/routes/productRouter');
@@ -29,7 +30,7 @@ const PORT = process.env.PORT || 5051;
 
 // Configure session middleware
 app.use(session({
-  secret: 'Z90yLqzmjVAWJ8xC5Sj3EWGjFnpvE1KVmLAoepdk0UM=',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false
 }));
@@ -37,6 +38,21 @@ app.use(session({
 // Initialize Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Serialize and Deserialize User
+passport.serializeUser((user, done) => {
+  const customer_id = user.rows[0].customer_id;
+  done(null, customer_id);
+});
+
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await pool.query('SELECT * FROM customers WHERE customer_id = $1', [id]);
+    done(null, user.rows[0]);
+  } catch (error) {
+    done(error);
+  }
+});
 
 // Middleware
 app.use(flash()); // Add connect-flash middleware here
@@ -47,10 +63,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 
-// Routes
-
-app.use('/', router);
-
 // Passport Configuration
 passport.use(new LocalStrategy(async (username, password, done) => {
   try {
@@ -58,58 +70,32 @@ passport.use(new LocalStrategy(async (username, password, done) => {
     if (!user) {
       return done(null, false, { message: 'Incorrect username.' });
     }
-
     // Compare hashed passwords
     const passwordMatch = await bcrypt.compare(password, user.password);
     if (!passwordMatch) {
       return done(null, false, { message: 'Incorrect password.' });
     }
-
     return done(null, user);
   } catch (error) {
     return done(error);
   }
 }));
 
+// Routers
 app.use('/', require('./src/routes/indexRouter'));
 app.use('/customer/', require('./src/routes/customerRouter'));
 app.use('/product/', require('./src/routes/productRouter'));
 app.use('/recipe/', require('./src/routes/recipeRouter'));
 
 
-
-// Routes for login and registration pages
-app.get('/login', (req, res) => {
-  res.render('login', { messages: req.flash('error') });
-});
-
-app.post('/login', passport.authenticate('local', {
-  successRedirect: '/home',
-  failureRedirect: '/login',
-  failureFlash: true
-}));
-
-app.get('/registration', (req, res) => {
-  res.render('registration', { messages: req.flash('error') });
-});
-
-// Home page route
-app.get('/home', (req, res) => {
-  // Check if user is authenticated
-  if (req.isAuthenticated()) {
-    res.render('index', { user: req.user });
-  } else {
-    res.redirect('/login');
-  }
-});
-
 // Error handling
+app.use((err, req, res, next) => {
+  logger.error(err.stack);
+  res.status(500).render('503');
+});
+
 app.use((req, res) => {
   res.status(404).render('404');
-});
-
-app.use((req, res) => {
-  res.status(500).render('503');
 });
 
 // Start the server
