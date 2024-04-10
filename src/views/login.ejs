@@ -9,6 +9,13 @@
 <body>
     <div class="container">
         <h2>Login</h2>
+
+        <% if (messages.error) { %>
+            <div class="alert alert-danger" role="alert">
+                <%= messages.error %>
+            </div>
+        <% } %>
+
         <form action="/login" method="POST">
             <div class="form-group">
                 <input type="text" name="username" placeholder="Username" required>

@@ -3,6 +3,8 @@ const router = express.Router();
 const { getAllCustomers, getCustomerByCustomerId, getCustomerAccountByCustomerId, getCustomerAddressByCustomerId, getCustomerByFirstName, getCustomerByLastName, getCustomerByEmail, getCustomerByPhoneNum, getCustomerByGender, getCustomerByUsername, addCustomer, addCustomerAccount, addCustomerAddress, editCustomer, editCustomerAccount, editCustomerAddress, deleteCustomer } = require('../services/pg.customers.dal.js');
 const logger = require('../logEvents.js');
 const dal = require('../services/pg.auth_db.js');
+const passport = require('passport');
+
 
 // List of All Available Routes
 logger.info('Customer Router - API Endpoints:');
@@ -19,6 +21,13 @@ logger.info('Route: POST/CREATE - Add Customer - /customer/add');
 logger.info('Route: PUT/UPDATE - Edit Customer - /customer/edit');
 logger.info('Route: DELETE - Delete Customer - /customer/delete');
 
+
+// Route handler for processing login form submission
+router.post('/login', passport.authenticate('local', {
+  successRedirect: '/home',
+  failureRedirect: '/login',
+  failureFlash: true
+}));
 
 // GET All Customers
 router.get('/all/', async (req, res) => {
