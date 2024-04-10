@@ -1,9 +1,9 @@
 const { MongoClient } = require('mongodb');
 const logger = require('../logEvents.js');
 
-class pool {
+class Pool {
   constructor() {
-    this.client = new MongoClient(process.env.MDBATLAS, { useUnifiedTopology: true });
+    this.client = new MongoClient(process.env.MDBATLAS);
     this.db = null;
   }
 
@@ -23,6 +23,15 @@ class pool {
   }
 }
 
+const pool = new Pool();
+
+// Connect to the pool
+pool.connect((error) => {
+  if (error) {
+    logger.error('Error connecting to the database', error);
+  } else {
+    logger.info('Connected to the PostgreSQL Database newfieNook!');
+  }
+});
 
 module.exports = pool;
-

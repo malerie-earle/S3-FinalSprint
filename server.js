@@ -39,20 +39,18 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Serialize and Deserialize User
-passport.serializeUser((user, done) => {
-  const customer_id = user.rows[0].customer_id;
-  done(null, customer_id);
-});
 
-passport.deserializeUser(async (id, done) => {
-  try {
-    const user = await pool.query('SELECT * FROM customers WHERE customer_id = $1', [id]);
-    done(null, user.rows[0]);
-  } catch (error) {
-    done(error);
-  }
-});
+// // Serialize and Deserialize User
+// passport.serializeUser((user, done) => {
+//   done(null, user.id);
+// });
+
+// passport.deserializeUser((id, done) => {
+//   // Replace 'User' with your user model
+//   User.findById(id, (err, []) => {
+//     done(err, user);
+//   });
+// });
 
 // Middleware
 app.use(flash()); // Add connect-flash middleware here
@@ -70,12 +68,7 @@ passport.use(new LocalStrategy(async (username, password, done) => {
     if (!user) {
       return done(null, false, { message: 'Incorrect username.' });
     }
-    // Compare hashed passwords
-    const passwordMatch = await bcrypt.compare(password, user.password);
-    if (!passwordMatch) {
-      return done(null, false, { message: 'Incorrect password.' });
-    }
-    return done(null, user);
+
   } catch (error) {
     return done(error);
   }
@@ -86,6 +79,9 @@ app.use('/', require('./src/routes/indexRouter'));
 app.use('/customer/', require('./src/routes/customerRouter'));
 app.use('/product/', require('./src/routes/productRouter'));
 app.use('/recipe/', require('./src/routes/recipeRouter'));
+
+
+
 
 
 // Error handling

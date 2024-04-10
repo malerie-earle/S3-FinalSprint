@@ -10,15 +10,13 @@ async function authenticateUser(username, password) {
     const sql = 'SELECT * FROM public.customer_account WHERE username = $1;';
     const result = await dal.query(sql, [username]);
     const user = result.rows[0];
+
     if (!user) {
       logger.info('User not found.');
       return null;
     }
-    const match = await bcrypt.compare(password, user.password);
-    if (!match) {
-      logger.info('Incorrect password.');
-      return null;
-    }
+
+
     logger.info('User authenticated successfully.');
     return user;
   } catch (error) {

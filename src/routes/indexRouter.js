@@ -10,7 +10,6 @@ logger.info('Route: GET/READ - Home Page - /');
 logger.info('Route: GET/READ - Login Page - /login/');
 logger.info('Route: GET/READ - Registration Page - /registration/');
 
-
 // Home Page
 router.get('/', (req, res) => {
   logger.info('Checking if user is authenticated.')
