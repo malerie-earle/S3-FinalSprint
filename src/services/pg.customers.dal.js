@@ -1,6 +1,31 @@
 const dal = require('./pg.auth_db');
 const logger = require('../logEvents');
 const { log } = require('winston');
+const bcrypt = require('bcrypt');
+
+
+/// Function to authenticate user
+async function authenticateUser(username, password) {
+  try {
+    logger.info('pg.DAL: Authenticating user.');
+    const sql = 'SELECT * FROM public.customer_account WHERE username = $1;';
+    const result = await dal.query(sql, [username]);
+    const user = result.rows[0];
+
+    if (!user) {
+      logger.info('User not found.');
+      return null;
+    }
+
+
+    logger.info('User authenticated successfully.');
+    return user;
+  } catch (error) {
+    logger.error('Error in authenticateUser():', error);
+    throw error;
+  }
+}
+
 
 
 // Get all Customers
@@ -294,5 +319,6 @@ module.exports = {
   editCustomer,
   editCustomerAccount,
   editCustomerAddress,
-  deleteCustomer
+  deleteCustomer,
+  authenticateUser 
 };
