@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search for a Product</title>
+  <link rel="stylesheet" href="/styles/index.css">
+</head>
+
+<%- include('./partials/header.ejs') %>
+
+<body>
+  <div class = "home">
+  <h2>Search for a Product:</h2>
+
+  <div class = "searchDiv">
+  <h3>Search By:</h3>
+  
+  // Search by Product ID
+  <div class = "search-type">
+    <label for="product_id">Product ID:</label>
+    <input type="radio" id="product_id" name="search" value="product_id">
+  </div>
+    <form class="search-form" action="/product/id/" method="GET">
+      <h3>Search By ID:</h3>
+      <label for="product_id">Search By Product ID:</label>
+      <input type="text" id="productID" name="search" required>
+      <button>Search</button>
+      <br>
+    </form>
+
+    // Search by Product Name
+  <div class = "search-type">
+    <label for="product_name">Product Name:</label>
+    <input type="radio" id="product_name" name="search" value="product_name">
+  </div>
+  <form class="search-form" action="/product/first_name/" method="GET">
+    <h3>Search By Product Name:</h3>
+    <label for="product_name">Search By Product Name:</label>
+    <input type="text" id="productName" name="search" required>
+    <button>Search</button>
+    <br>
+  </form>
+  
+  // Search by Product Price
+  <div class = "search-type">
+    <label for="price">Price:</label>
+    <input type="radio" id="price" name="search" value="price">
+  </div>
+  <form class="search-form" action="/product/price/" method="GET">
+    <h3>Search By Price:</h3>
+    <label for="email">Search By Price:</label>
+    <input type="text" id="price" name="search" required>
+    <button>Search</button>
+    <br>
+  </form>
+
+  // Search by Product Category
+  <div class = "search-type">
+    <label for="category">Category:</label>
+    <input type="radio" id="category" name="search" value="category">
+  </div>
+  <form class="search-form" action="/product/username/" method="GET">
+    <h3>Search By Category:</h3>
+    <label for="category">Search By Category:</label>
+    <!-- <input type="text" id="category" name="search" required> -->
+    // Dropdown menu for category
+    <button>Search</button>
+    <br>
+  </form>
+
+  // Search by Product Vendor
+  <div class = "search-type">
+    <label for="price">Vendor:</label>
+    <input type="radio" id="vendor" name="search" value="vendor">
+  </div>
+  <form class="search-form" action="/product/customer_id/" method="GET">
+    <h3>Search By Vendor:</h3>
+    <label for="vendor">Search By Vendor:</label>
+    <input type="text" id="vendor" name="vendor" required>
+    <button>Search</button>
+    <br>
+  </form>
+
+  <br><br>
+  <a href="/products/" class="button">All Products</a>
+  </div>  
+ </div>
+</div>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const radioButtons = document.querySelectorAll('input[type="radio"]');
+      const searchForms = document.querySelectorAll('.search-form');
+
+      radioButtons.forEach(function(radioButton, index) {
+        radioButton.addEventListener('click', function() {
+          // Hide all search forms
+          searchForms.forEach(function(form) {
+            form.style.display = 'none';
+          });
+          if (radioButton.checked) {
+            searchForms[index].style.display = 'block';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

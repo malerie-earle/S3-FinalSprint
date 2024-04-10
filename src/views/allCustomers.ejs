@@ -6,11 +6,13 @@
   <title>View All Customers</title>
   <link rel="stylesheet" href="/styles/index.css">
 </head>
+
+<%- include('./partials/header.ejs') %>
+
 <body>
 <div class = "home">
   <div class="customers-content"> 
     <h1>All Customers:</h1>
-    <!-- Display existing customers -->
     <% if (theCustomers.length > 0) { %>
         <% theCustomers.forEach(customer => { %>
             <div class="customerDiv">

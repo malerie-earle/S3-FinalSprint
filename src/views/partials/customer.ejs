@@ -1,4 +1,5 @@
-<% if (theCustomers.length > 0) { %>
+<% if (aCustomer && aCustomer.length > 0) { %>
+    <% aCustomer.forEach(function(customer) { %>
   <div class="customerDiv">
     <div class="label-data-pair">
         <b>Customer ID:</b> <%= customer.customer_id %>

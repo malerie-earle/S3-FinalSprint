@@ -8,8 +8,7 @@ const passport = require('passport');
 
 // List of All Available Routes
 logger.info('Customer Router - API Endpoints:');
-logger.info('Route: GET/READ - Home Page - /');
-logger.info('Route: GET/READ - All Customers - /customers/');
+logger.info('Route: GET/READ - All Customers - /customer/all/');
 logger.info('Route: GET/READ - Single Customer by ID - /customer/id/:id');
 logger.info('Route: GET/READ - Customers by First Name - /customer/first/:firstName');
 logger.info('Route: GET/READ - Customers by Last Name - /customer/last/:lastName');
@@ -22,11 +21,6 @@ logger.info('Route: POST/CREATE - Add Customer - /customer/add');
 logger.info('Route: PUT/UPDATE - Edit Customer - /customer/edit');
 logger.info('Route: DELETE - Delete Customer - /customer/delete');
 
-// Home Page
-router.get('/', (req, res) => {
-  logger.info('Rendering the Home Page.');
-  res.render('index.ejs', { title: 'Home Page', name: 'Malerie'});
-});
 
 // Route handler for processing login form submission
 router.post('/login', passport.authenticate('local', {
@@ -36,7 +30,7 @@ router.post('/login', passport.authenticate('local', {
 }));
 
 // GET All Customers
-router.get('/customers/', async (req, res) => {
+router.get('/all/', async (req, res) => {
   logger.info('Getting all customers from the database.');
   try {
     const theCustomers = await getAllCustomers();
@@ -48,8 +42,14 @@ router.get('/customers/', async (req, res) => {
   }
 });
 
+// GET - A Customer
+router.get('/', async (req, res) => {
+  res.render('aCustomer.ejs', { aCustomer: null });
+});
+
+
 // GET - Customer by ID - /customer/id/:id
-router.get('/customer/id/:id', async (req, res) => {
+router.get('/id/:id', async (req, res) => {
   const id = req.params.id;
   logger.info(`Getting the customer by ID: ${id}`);
   try {
@@ -63,7 +63,7 @@ router.get('/customer/id/:id', async (req, res) => {
 });
 
 // GET - Read Customer by first_name - /customer/first/:first_name/
-router.get('/customer/first/:first_name/', async (req, res) => {
+router.get('/first/:first_name/', async (req, res) => {
   const first_name = req.params.first_name;
   logger.info(`Getting the customer by first_name: ${first_name}`);
   try {
@@ -77,7 +77,7 @@ router.get('/customer/first/:first_name/', async (req, res) => {
 });
 
 // GET - Read Customer by last_name - /customer/last/:last_name/
-router.get('/customer/last/:last_name/', async (req, res) => {
+router.get('/last/:last_name/', async (req, res) => {
   const last_name = req.params.last_name;
   logger.info(`Getting the customer by last_name: ${last_name}`);
   try {
@@ -91,7 +91,7 @@ router.get('/customer/last/:last_name/', async (req, res) => {
 });
 
 // GET - Read Customer by email - /customer/email/:email/
-router.get('/customer/email/:email/', async (req, res) => {
+router.get('/email/:email/', async (req, res) => {
   const email = req.params.email;
   logger.info(`Getting the customer by email: ${email}`);
   try {
@@ -105,7 +105,7 @@ router.get('/customer/email/:email/', async (req, res) => {
 });
 
 // GET - Read Customer by phone number - /customer/phone/:ph_num/
-router.get('/customer/phone/:ph_num/', async (req, res) => {
+router.get('/phone/:ph_num/', async (req, res) => {
   const ph_num = req.params.ph_num;
   logger.info(`Getting the customer by phone number: ${ph_num}`);
   try {
@@ -119,7 +119,7 @@ router.get('/customer/phone/:ph_num/', async (req, res) => {
 });
 
 // GET - Read Customer by gender - /customer/gender/:gender/
-router.get('/customer/gender/:gender/', async (req, res) => {
+router.get('/gender/:gender/', async (req, res) => {
   const gender = req.params.gender;
   logger.info(`Getting the customer by gender: ${gender}`);
   try {
@@ -133,7 +133,7 @@ router.get('/customer/gender/:gender/', async (req, res) => {
 });
 
 // GET - Read Customer by username - /customer/username/:username/
-router.get('/customer/username/:username/', async (req, res) => {
+router.get('/username/:username/', async (req, res) => {
   const username = req.params.username;
   logger.info(`Getting the customer by username: ${username}`);
   try {
@@ -147,7 +147,7 @@ router.get('/customer/username/:username/', async (req, res) => {
 });
 
 // ADD a Customer
-router.get('/customer/add/', (req, res) => {
+router.get('/add/', (req, res) => {
   logger.info('Rendering the Add Customer Page.');
   res.render('addCustomer', { newCustomerId: null });
 });
@@ -170,7 +170,7 @@ router.post('/customer/add/', async (req, res) => {
 
 
 // Edit Customer Page
-router.get('/customer/edit/:customer_id', async (req, res) => {
+router.get('/edit/:customer_id', async (req, res) => {
   logger.info('Rendering the Edit Customer Page.');
   const customer_id = req.params.customer_id;
   try {
@@ -187,7 +187,7 @@ router.get('/customer/edit/:customer_id', async (req, res) => {
     res.status(500).render('503');
   }
 });
-router.post('/customer/edit/:customer_id', async (req, res) => {
+router.post('/edit/:customer_id', async (req, res) => {
   logger.info('Editing a customer.');
   try {
     const customer_id = req.params.customer_id;
@@ -210,7 +210,7 @@ router.post('/customer/edit/:customer_id', async (req, res) => {
 
 
 // Delete Customer Page
-router.post('/customer/delete/:id', async (req, res) => {
+router.post('/delete/:id', async (req, res) => {
   const id = req.params.id;
   try {
     await deleteCustomer(id);
