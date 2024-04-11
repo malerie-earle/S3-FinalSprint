@@ -77,14 +77,16 @@ router.get('/', async (req, res) => {
 });
 
 
-// GET - Customer by ID - /customer/id/:id
-router.get('/id/:id', async (req, res) => {
+// GET - Customer by ID - /customer/:id
+router.get('/:id', async (req, res) => {
   const id = req.params.id;
   logger.info(`Getting the customer by ID: ${id}`);
   try {
     const aCustomer = await getCustomerByCustomerId(id);
-    logger.info(`Customer: ${JSON.stringify(aCustomer)}`);
-    res.render('customer.ejs', { aCustomer });
+    const aCustomerAccount = await getCustomerAccountByCustomerId(id);
+    const aCustomerAddress = await getCustomerAddressByCustomerId(id);
+    logger.info(`Customer: ${JSON.stringify(aCustomer, aCustomerAccount, aCustomerAddress)}`);
+    res.render('customer.ejs', { aCustomer, aCustomerAccount, aCustomerAddress });
   } catch (error) {
     logger.error('Error getting customer page', error);
     res.status(503).render('503');

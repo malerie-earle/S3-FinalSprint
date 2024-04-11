@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Recipe</title>
+  <link rel="stylesheet" href="/styles/index.css">
+</head>
+
+<%- include('./partials/header.ejs') %>
+
+<body>
+<div>
+  <div class="home">  
+    <div class="recipe-content">
+      <h2>Recipe:</h2>
+      <% if (aRecipe && aRecipe.length > 0) { %>
+          <% aRecipe.forEach(function(recipe) { %>
+            <% include('./partials/recipe.ejs', { recipe }) %>
+          <% }) %>
+      <% } else { %>
+          <p>No recipes found</p>
+      <% } %>
+    </div>
+  </div>
+</div>
+</body>
+</html>
