@@ -3,6 +3,7 @@ const router = express.Router();
 const logger = require('../logEvents.js');
 const dal = require('../services/pg.auth_db.js');
 const passport = require('passport');
+const { search, searchResults } = require('../services/searchLogic.js');
 
 // List of All Available Routes
 logger.info('Index Router - API Endpoints:');
@@ -16,7 +17,6 @@ router.get('/', (req, res) => {
   if (req.isAuthenticated()) {
     logger.info('Rendering the Home Page.');
     res.render('index', { user: req.user });
-    // { title: 'Home Page', name: 'Malerie'}
   } else {
     logger.info('User is not authenticated. Redirecting to Login Page.');
     res.redirect('/customer/login/');
@@ -36,27 +36,29 @@ router.get('/product/search/', (req, res) => {
   res.render('searchProducts.ejs');
 });
 
+
 // GET - Search Engine Page
 router.get('/search/', (req, res) => {
   try {
     logger.info('Rendering the Search Engine Page.');
-    res.render('searchEngine.ejs');
+    res.render('searchEngine.ejs', { search, searchResults });
   } catch (error) {
     logger.error('Error rendering the Search Engine Page:', error);
     res.status(500).render('503');
   }
 });
+
+// POST - Search Engine
 router.post('/search/', async (req, res) => {
   try {
     const { query } = req.body; 
-    const results = await search(query); 
-    res.render('searchResults', { results }); 
+    const searchResults = await search(query);
+    logger.info('Displaying search results:', searchResults);
+    res.render('searchEngine.ejs', { searchResults: searchResults });
   } catch (error) {
-    console.error('Error occurred while handling search request:', error);
+    logger.error('Error occurred while handling search request:', error);
     res.status(500).send('Internal Server Error');
   }
 });
-
-
 
 module.exports = router;
