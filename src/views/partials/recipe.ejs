@@ -1,15 +1,17 @@
-<% if (theRecipes && theRecipes.length > 0) { %>
-  <% theRecipes.forEach(function(recipe) { %>
-    <div class="recipeDiv">
-      <div class="label-data-pair">
-          <b>Recipe ID:</b> <%= recipe._id %>
-      </div>
-      <div class="label-data-pair">
-          <b>Recipe Name:</b> <%= recipe.title %>
-      </div>
-      <br />
-    </div>
-  <% }) %>
-<% } else { %>
-  <p>No recipes found.</p>
-<% } %>
+<div class="recipeDiv">
+  <h1><%= recipe.title %></h1>
+  <h2>Ingredients:</h2>
+  <ul>
+    <% recipe.ingredients.forEach(function(ingredient, index) { %>
+      <li><%= `${index + 1}. ${ingredient}` %></li>
+    <% }); %>
+  </ul>
+  <h2>Directions:</h2>
+  <ol>
+    <% recipe.directions.forEach(function(direction, index) { %>
+      <li><%= `${index + 1}. ${direction}` %></li>
+    <% }); %>
+  </ol>
+  <p><strong>Link:</strong> <a href="<%= recipe.link %>"><%= recipe.link %></a></p>
+  <p><strong>Source:</strong> <%= recipe.source %></p>
+</div>
