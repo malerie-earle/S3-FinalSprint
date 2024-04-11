@@ -574,3 +574,52 @@ transform: scale(1.5);
 .productDiv h2 {
   color: black;
 }
+.allRecipes {
+  display: flex;
+  width: 95%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #ff0080b4;
+  background: linear-gradient(180deg, hsla(0, 0%, 12%, 1) 0%, hsla(330, 100%, 50%, 1) 50%, hsla(0, 0%, 12%, 1) 100%);
+  background: -moz-linear-gradient(180deg, hsla(0, 0%, 12%, 1) 0%, hsla(330, 100%, 50%, 1) 50%, hsla(0, 0%, 12%, 1) 100%);
+  background: -webkit-linear-gradient(180deg, hsla(0, 0%, 12%, 1) 0%, hsla(330, 100%, 50%, 1) 50%, hsla(0, 0%, 12%, 1) 100%);
+  border-radius: 10px;
+  border: 1px solid #57ff5db1;
+  margin: 5vh 5vw;
+  color: white;
+}
+
+.recipeGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  align-items: stretch; /* Make all items have the same height */
+  justify-content: center;
+  color: white;
+}
+
+.recipeDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2vh 2vw;
+  margin: 1vh 3vw;
+  background: 
+  linear-gradient(90deg, 
+    hsla(147, 100%, 30%, 1) 0%, 
+    hsla(0, 0%, 100%, 1) 32%, 
+    hsla(0, 0%, 100%, 1) 68%, 
+    hsla(330, 100%, 80%, 1) 100%
+  );
+  border-radius: 10px;
+  border: 2px solid black;
+  color: black;
+}
+
+.recipeDiv a {
+  text-decoration: none;
+  color: black;
+}
+
