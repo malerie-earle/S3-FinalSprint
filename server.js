@@ -79,10 +79,7 @@ app.use('/', require('./src/routes/indexRouter'));
 app.use('/customer/', require('./src/routes/customerRouter'));
 app.use('/product/', require('./src/routes/productRouter'));
 app.use('/recipe/', require('./src/routes/recipeRouter'));
-
-
-
-
+app.use('/vendor/', require('./src/routes/vendorRouter'));
 
 // Error handling
 app.use((err, req, res, next) => {

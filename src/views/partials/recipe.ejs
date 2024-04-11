@@ -1,17 +1,18 @@
 <div class="recipeDiv">
-  <h1><%= recipe.title %></h1>
-  <h2>Ingredients:</h2>
+  <h2><%= recipe.title %></h2>
+  <h3>Ingredients:</h3>
   <ul>
     <% recipe.ingredients.forEach(function(ingredient, index) { %>
-      <li><%= `${index + 1}. ${ingredient}` %></li>
+      <li><%= `${ingredient}` %></li>
     <% }); %>
   </ul>
-  <h2>Directions:</h2>
+  <h3>Directions:</h3>
   <ol>
     <% recipe.directions.forEach(function(direction, index) { %>
-      <li><%= `${index + 1}. ${direction}` %></li>
+      <li><%= `${direction}` %></li>
     <% }); %>
   </ol>
   <p><strong>Link:</strong> <a href="<%= recipe.link %>"><%= recipe.link %></a></p>
-  <p><strong>Source:</strong> <%= recipe.source %></p>
+</div>
+<% }); %>
 </div>

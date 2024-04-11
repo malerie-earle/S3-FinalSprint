@@ -37,9 +37,24 @@ router.get('/product/search/', (req, res) => {
 });
 
 // GET - Search Engine Page
-router.get('/search-engine/', (req, res) => {
-  logger.info('Rendering the Search Engine Page.');
-  res.render('searchEngine.ejs');
+router.get('/search/', (req, res) => {
+  try {
+    logger.info('Rendering the Search Engine Page.');
+    res.render('searchEngine.ejs');
+  } catch (error) {
+    logger.error('Error rendering the Search Engine Page:', error);
+    res.status(500).render('503');
+  }
+});
+router.post('/search/', async (req, res) => {
+  try {
+    const { query } = req.body; 
+    const results = await search(query); 
+    res.render('searchResults', { results }); 
+  } catch (error) {
+    console.error('Error occurred while handling search request:', error);
+    res.status(500).send('Internal Server Error');
+  }
 });
 
 
