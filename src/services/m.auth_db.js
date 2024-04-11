@@ -26,12 +26,13 @@ class Pool {
 const pool = new Pool();
 
 // Connect to the pool
-pool.connect((error) => {
-  if (error) {
+(async () => {
+  try {
+    await pool.connect();
+    logger.info('Connected to the MongoDB Database!');
+  } catch (error) {
     logger.error('Error connecting to the database', error);
-  } else {
-    logger.info('Connected to the PostgreSQL Database newfieNook!');
   }
-});
+})();
 
 module.exports = pool;

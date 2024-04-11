@@ -8,10 +8,14 @@ const { getAllRecipes } = require('../services/m.recipes.dal.js');
 router.get('/all/', async (req, res) => {
   try {
     logger.info('Getting all recipes from the database.');
-    const theRecipes = await getAllRecipes();
+    
+    // Call getAllRecipes function with pagination parameters
+    const { page, pageSize, theRecipes } = await getAllRecipes();
+    
     logger.info('All recipes retrieved successfully.');
-    res.render('allRecipes.ejs', { theRecipes: theRecipes });
-    logger.info(`All recipes: ${JSON.stringify(theRecipes)}`);
+    
+    // Pass pagination information to the EJS template
+    res.render('allRecipes.ejs', { theRecipes, page, pageSize });
   } catch (error) {
     logger.error('Error getting all recipes:', error);
     res.status(500).render('503');
