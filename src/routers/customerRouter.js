@@ -47,14 +47,14 @@ router.post('/login/', async (req, res) => {
 // Routes for login pages
 router.get('/login/', (req, res) => {
   logger.info('Rendering the Login Page.');
-  res.render('login', { messages: req.flash('error') });
+  res.render('login');
 });
 
 
 // Routes for registration page
 router.get('/registration/', (req, res) => {
   logger.info('Rendering the Registration Page.');
-  res.render('registration', { messages: req.flash('error') });
+  res.render('registration');
 });
 
 

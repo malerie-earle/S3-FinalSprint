@@ -19,10 +19,10 @@ const { authenticateUser } = require('./src/services/pg.customers.dal');
 
 // Database Connection & routers
 const pool = require('./src/services/pg.auth_db');
-const customerRouter = require('./src/routes/customerRouter');
-const productRouter = require('./src/routes/productRouter');
-const indexRouter = require('./src/routes/indexRouter');
-const recipeRouter = require('./src/routes/recipeRouter');
+const customerRouter = require('./src/routers/customerRouter');
+const productRouter = require('./src/routers/productRouter');
+const indexRouter = require('./src/routers/indexRouter');
+const recipeRouter = require('./src/routers/recipeRouter');
 
 // App setup
 const app = express();
@@ -40,17 +40,24 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-// // Serialize and Deserialize User
-// passport.serializeUser((user, done) => {
-//   done(null, user.id);
-// });
+passport.serializeUser((user, done) => {
+  if (!user) {
+    return done(new Error('No user found'), null);
+  }
+  done(null, user.id);
+});
 
-// passport.deserializeUser((id, done) => {
-//   // Replace 'User' with your user model
-//   User.findById(id, (err, []) => {
-//     done(err, user);
-//   });
-// });
+passport.deserializeUser((id, done) => {
+  User.findById(id, (err, user) => {
+    if (err) {
+      return done(err, null);
+    }
+    if (!user) {
+      return done(new Error('No user found'), null);
+    }
+    done(null, user);
+  });
+});
 
 // Middleware
 app.use(flash()); // Add connect-flash middleware here
@@ -66,7 +73,7 @@ passport.use(new LocalStrategy(async (username, password, done) => {
   try {
     const user = await authenticateUser(username);
     if (!user) {
-      return done(null, false, { message: 'Incorrect username.' });
+      return done(null, false);
     }
 
   } catch (error) {
@@ -75,10 +82,10 @@ passport.use(new LocalStrategy(async (username, password, done) => {
 }));
 
 // Routers
-app.use('/', require('./src/routes/indexRouter'));
-app.use('/customer/', require('./src/routes/customerRouter'));
-app.use('/product/', require('./src/routes/productRouter'));
-app.use('/recipe/', require('./src/routes/recipeRouter'));
+app.use('/', require('./src/routers/indexRouter'));
+app.use('/customer/', require('./src/routers/customerRouter'));
+app.use('/product/', require('./src/routers/productRouter'));
+app.use('/recipe/', require('./src/routers/recipeRouter'));
 
 
 

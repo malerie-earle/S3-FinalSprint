@@ -16,7 +16,6 @@ router.get('/', (req, res) => {
   if (req.isAuthenticated()) {
     logger.info('Rendering the Home Page.');
     res.render('index', { user: req.user });
-    // { title: 'Home Page', name: 'Malerie'}
   } else {
     logger.info('User is not authenticated. Redirecting to Login Page.');
     res.redirect('/customer/login/');
