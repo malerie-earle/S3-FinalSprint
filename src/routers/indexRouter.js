@@ -4,7 +4,7 @@ const logger = require('../logEvents.js');
 const dal = require('../services/pg.auth_db.js');
 const passport = require('passport');
 const { search, searchResults } = require('../services/searchLogic.js');
-const { isAuthenticated } = require('../middleware/authMiddleware.js');
+const  isAuthenticated = require('../middleware/authMiddleware.js');
 const { authenticateUser } = require('../services/pg.customers.dal.js');
 
 
