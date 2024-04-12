@@ -1,5 +1,40 @@
-// home page for the search engine
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QAP3</title>
+  <link rel="stylesheet" href="/styles/index.css">
+</head>
 
-// have one form input and a dropdown to select the db. 
-// user id in the logic so it attaches to every logger to log every search query.
-// has to take in a string and full text search in the entire database. 
+<%- include('./partials/header.ejs') %>
+
+<body>
+  <div class="searchEngine">
+    <form id="search-form" action="/search/" method="POST">
+      <label for="search">Search:</label>
+      <input type="text" id="search" name="search" placeholder="Enter Your Search Query..." required>
+      <button type="submit">Search</button>
+    </form>
+  </div>
+  <div class="search-results">
+    <% if (searchResults && searchResults.length > 0) { %>
+      <% searchResults.forEach(function(result) { %>
+        <% if (isUser) { %> 
+          <% if (result.type === 'recipe') { %>
+            <% include('./partials/recipe.ejs', { recipe: result }) %>
+          <% } else if (result.type === 'product') { %> 
+            <% include('./partials/product.ejs', { product: result }) %>
+          <% } else if (result.type === 'vendor') { %> 
+            <% include('./partials/vendor.ejs', { vendor: result }) %>
+          <% } else if (result.type === 'customer' && isAdmin) { %> 
+            <% include('./partials/customer.ejs', { customer: result }) %>
+          <% } %>
+        <% } else { %> 
+          <p>Error - no results found.</p>
+        <% } %>
+      <% }); %>
+    <% } %>
+  </div>
+</body>
+</html>

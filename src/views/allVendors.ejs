@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View All Vendors</title>
+  <link rel="stylesheet" href="/styles/index.css">
+</head>
+<body>
+  <div class="home">
+    <div class="vendors-content"> 
+      <h1>All Vendors:</h1>
+      <% if (theVendors && theVendors.length > 0) { %>
+        <% theVendors.forEach(vendor => { %>
+          <%= include('./partials/vendor.ejs', { vendor: vendor }) %>
+        <% }); %>
+      <% } else { %>
+        <p>No vendors found.</p>
+      <% } %>
+    </div>
+  </div>
+</body>
+</html>

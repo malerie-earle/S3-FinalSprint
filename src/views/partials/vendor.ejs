@@ -1,0 +1,29 @@
+<div class="vendorDiv">
+  <div class="label-data-pair">
+    <b>Vendor ID:</b> <%= vendor.vendor_id %>
+  </div>
+  <div class="label-data-pair">
+    <b>Vendor Name:</b> <%= vendor.vendor_name %>
+  </div>
+  <div class="label-data-pair">
+    <b>Website:</b> <%= vendor.website %>
+  </div>
+  <div class="label-data-pair">
+    <b>Description:</b> <%= vendor.vendor_description %>
+  </div>
+  <div class="label-data-pair">
+    <b>Email:</b> <%= vendor.email %>
+  </div>
+  <div class="label-data-pair">
+    <b>Phone Number:</b> <%= vendor.ph_num %>
+  </div>
+  <div class="label-data-pair">
+    <b>Products:</b>
+    <% vendor.products.forEach(function(product) { %>
+      <div><%= product.product_name %></div>
+    <% }); %>
+  </div>
+  <div class="label-data-pair">
+    <b>Street Address:</b> <%= vendor_address.street_address %>, <%= vendor_address.city %>, <%= vendor_address.province %>, <%= vendor_address.country %>, <%= vendor_address.postal_code %>
+  </div>
+</div>

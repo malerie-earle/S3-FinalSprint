@@ -82,13 +82,11 @@ passport.use(new LocalStrategy(async (username, password, done) => {
 }));
 
 // Routers
-app.use('/', require('./src/routers/indexRouter'));
-app.use('/customer/', require('./src/routers/customerRouter'));
-app.use('/product/', require('./src/routers/productRouter'));
-app.use('/recipe/', require('./src/routers/recipeRouter'));
-
-
-
+app.use('/', require('./src/routes/indexRouter'));
+app.use('/customer/', require('./src/routes/customerRouter'));
+app.use('/product/', require('./src/routes/productRouter'));
+app.use('/recipe/', require('./src/routes/recipeRouter'));
+app.use('/vendor/', require('./src/routes/vendorRouter'));
 
 
 // Error handling
