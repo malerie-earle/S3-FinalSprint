@@ -32,6 +32,7 @@ router.get('/search/', (req, res) => {
   res.render('searchProducts.ejs');
 });
 
+
 // GET - A Product
 router.get('/:id/', async (req, res) => {
   const product_id = req.params.id; 
@@ -45,6 +46,5 @@ router.get('/:id/', async (req, res) => {
     res.status(500).render('503'); 
   }
 });
-
 
 module.exports = router;

@@ -47,6 +47,7 @@ router.post('/login/', async (req, res) => {
 // Routes for login pages
 router.get('/login/', (req, res) => {
   logger.info('Rendering the Login Page.');
+
   res.render('login', { messages: req.flash('error') });
 });
 
@@ -54,7 +55,9 @@ router.get('/login/', (req, res) => {
 // Routes for registration page
 router.get('/registration/', (req, res) => {
   logger.info('Rendering the Registration Page.');
+
   res.render('registration', { messages: req.flash('error') });
+
 });
 
 
@@ -77,8 +80,10 @@ router.get('/', async (req, res) => {
 });
 
 
+
 // GET - Customer by ID - /customer/:id
 router.get('/:id', async (req, res) => {
+
   const id = req.params.id;
   logger.info(`Getting the customer by ID: ${id}`);
   try {
@@ -87,6 +92,7 @@ router.get('/:id', async (req, res) => {
     const aCustomerAddress = await getCustomerAddressByCustomerId(id);
     logger.info(`Customer: ${JSON.stringify(aCustomer, aCustomerAccount, aCustomerAddress)}`);
     res.render('customer.ejs', { aCustomer, aCustomerAccount, aCustomerAddress });
+
   } catch (error) {
     logger.error('Error getting customer page', error);
     res.status(503).render('503');

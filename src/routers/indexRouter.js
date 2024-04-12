@@ -5,6 +5,7 @@ const dal = require('../services/pg.auth_db.js');
 const passport = require('passport');
 const { search, searchResults } = require('../services/searchLogic.js');
 
+
 // List of All Available Routes
 logger.info('Index Router - API Endpoints:');
 logger.info('Route: GET/READ - Home Page - /');
@@ -36,7 +37,6 @@ router.get('/product/search/', (req, res) => {
   res.render('searchProducts.ejs');
 });
 
-
 // GET - Search Engine Page
 router.get('/search/', (req, res) => {
   try {
@@ -47,7 +47,6 @@ router.get('/search/', (req, res) => {
     res.status(500).render('503');
   }
 });
-
 // POST - Search Engine
 router.post('/search/', async (req, res) => {
   try {
@@ -60,5 +59,6 @@ router.post('/search/', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+
 
 module.exports = router;

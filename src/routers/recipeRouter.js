@@ -4,10 +4,11 @@ const logger = require('../logEvents.js');
 const dal = require('../services/m.auth_db.js');
 const { getAllRecipes, getRecipeById } = require('../services/m.recipes.dal.js');
 
+
 // GET - All Recipes
 router.get('/all/', async (req, res) => {
   try {
-    logger.info('Getting all recipes from the database.');
+    logger.info('Getting all recipes from the database.');  
     // Call getAllRecipes function with pagination parameters
     const { page, pageSize, theRecipes } = await getAllRecipes();
     logger.info('All recipes retrieved successfully.');
