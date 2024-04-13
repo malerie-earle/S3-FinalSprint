@@ -1,0 +1,11 @@
+<div class="vendorResult">
+  <% searchResults.forEach(function(vendor) { %>
+    <h3><a href="/vendor/<%= vendor.vendor_id %>"><%= vendor.vendor_name %></a></h3>
+    <b>ID:</b><%= vendor.vendor_id %>   <b>Email:</b><%= vendor.email %> <b>Phone Number:</b><%= vendor.ph_num %> <br />
+    <b>Website:</b><%= vendor.website %> 
+    <% vendor.products.forEach(function(product) { %>
+      <p><%= product %></p>
+    <% }); %>
+    <a href="/vendor/<%= vendor.vendor_id %>">See More >></a>
+  <% }); %>
+</div>

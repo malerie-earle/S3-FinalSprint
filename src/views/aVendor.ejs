@@ -2,7 +2,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A Product</title>
+  <title>A Vendor</title>
   <link rel="stylesheet" href="/styles/index.css">
 </head>
 
@@ -11,14 +11,14 @@
 <body>
 <div>
   <div class="home">  
-    <div class="product-content">
-      <h2>Product:</h2>
-      <% if (aProduct && aProduct.length > 0) { %>
-          <% aProduct.forEach(function(product) { %>
-            <% include('./partials/product.ejs', { product }) %>
+    <div class="vendor-content">
+      <h2>vendor:</h2>
+      <% if (aVendor && aVendor.length > 0) { %>
+          <% aVendor.forEach(function(vendor) { %>
+            <% include('./partials/vendor.ejs', { vendor }) %>
           <% }) %>
       <% } else { %>
-          <p>No products found</p>
+          <p>No vendors found</p>
       <% } %>
     </div>
   </div>

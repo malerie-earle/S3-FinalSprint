@@ -2,7 +2,10 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const { authenticateUser, getCustomerByCustomerId } = require('../services/pg.customers.dal.js');
 
+
 const userCache = {}; // Initialize the cache
+
+
 
 passport.use(new LocalStrategy(
   async function(username, password, done) {
@@ -13,6 +16,8 @@ passport.use(new LocalStrategy(
         return done(null, false, { message: 'Incorrect username or password' });
       }
 
+
+     
       return done(null, user);
     } catch (error) {
       return done(error);
@@ -39,11 +44,7 @@ passport.deserializeUser(async function(customer_id, done) {
     } else {
       return done(null, false, { message: 'User not found' });
     }
-
-    done(null, user);
-  } catch (error) {
-    done(error, null);
-  }
 });
 
 module.exports = passport;
+

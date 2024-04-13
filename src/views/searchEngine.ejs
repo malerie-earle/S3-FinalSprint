@@ -1,1 +1,51 @@
-// home page for the search engine
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Page</title>
+  <link rel="stylesheet" href="/styles/index.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+  <h1>Search Page</h1>
+
+  <div class="searchEngine">
+    <form id="search-form" action="/search/" method="POST">
+      <label for="search">Search:</label>
+      <input type="text" id="search" name="search" placeholder="Enter Your Search Query..." required>
+      <button type="submit">Search</button>
+    </form>
+  </div>
+
+  <!-- Container for displaying search results -->
+  <div id="search-results-container">
+    <!-- Initially empty, will be populated with search results dynamically -->
+  </div>
+
+  <script>
+    // jQuery AJAX request to handle form submission
+    $('#search-form').submit(function(e) {
+      e.preventDefault(); // Prevent form submission
+      var query = $('#search').val(); // Get search query from input field
+
+      $.ajax({
+        type: 'POST',
+        url: '/search/',
+        data: { query: query },
+        success: function(response) {
+          // Display search results in the container
+          $('#search-results-container').html(response);
+        },
+        error: function(xhr, status, error) {
+          // Display error message
+          $('#search-results-container').html('<p>An error occurred. Please try again later.</p>');
+          console.error('Error:', error);
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

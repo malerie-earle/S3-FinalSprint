@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { getAllCustomers, getCustomerByCustomerId, getCustomerAccountByCustomerId, getCustomerAddressByCustomerId, getCustomerByFirstName, getCustomerByLastName, getCustomerByEmail, getCustomerByPhoneNum, getCustomerByGender, getCustomerByUsername, addCustomer, addCustomerAccount, addCustomerAddress, editCustomer, editCustomerAccount, editCustomerAddress, deleteCustomer } = require('../services/pg.customers.dal.js');
+const { getAllCustomers, getCustomerByCustomerId, getCustomerAccountByCustomerId, getCustomerAddressByCustomerId, getCustomerByFirstName, getCustomerByLastName, getCustomerByEmail, getCustomerByPhoneNum, getCustomerByGender, getCustomerByUsername, addCustomer, addCustomerAccount, addCustomerAddress, editCustomer, editCustomerAccount, editCustomerAddress, deleteCustomer, authenticateUser, registerCustomer } = require('../services/pg.customers.dal.js');
 const logger = require('../logEvents.js');
 const dal = require('../services/pg.auth_db.js');
 const passport = require('passport');
+const isAuthenticated = require('../config/passport-config.js');
+
 
 
 // List of All Available Routes
@@ -21,13 +23,6 @@ logger.info('Route: POST/CREATE - Add Customer - /customer/add');
 logger.info('Route: PUT/UPDATE - Edit Customer - /customer/edit');
 logger.info('Route: DELETE - Delete Customer - /customer/delete');
 
-
-// Route handler for processing login form submission
-router.post('/login', passport.authenticate('local', {
-  successRedirect: '/home',
-  failureRedirect: '/login',
-  failureFlash: true
-}));
 
 // GET All Customers
 router.get('/all/', async (req, res) => {
@@ -48,14 +43,19 @@ router.get('/', async (req, res) => {
 });
 
 
-// GET - Customer by ID - /customer/id/:id
-router.get('/id/:id', async (req, res) => {
+
+// GET - Customer by ID - /customer/:id
+router.get('/:id', async (req, res) => {
+
   const id = req.params.id;
   logger.info(`Getting the customer by ID: ${id}`);
   try {
     const aCustomer = await getCustomerByCustomerId(id);
-    logger.info(`Customer: ${JSON.stringify(aCustomer)}`);
-    res.render('customer.ejs', { aCustomer });
+    const aCustomerAccount = await getCustomerAccountByCustomerId(id);
+    const aCustomerAddress = await getCustomerAddressByCustomerId(id);
+    logger.info(`Customer: ${JSON.stringify(aCustomer, aCustomerAccount, aCustomerAddress)}`);
+    res.render('customer.ejs', { aCustomer, aCustomerAccount, aCustomerAddress });
+
   } catch (error) {
     logger.error('Error getting customer page', error);
     res.status(503).render('503');

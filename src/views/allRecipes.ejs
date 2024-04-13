@@ -10,22 +10,42 @@
 <%- include('./partials/header.ejs') %>
 
 <body>
-  <% if (theRecipes && theRecipes.length > 0) { %>
-    <% theRecipes.forEach(function(recipe) { %>
-      <div class="recipeDiv">
-        <div class="label-data-pair">
-            <b>Recipe ID:</b> <%= recipe._id %>
-        </div>
-        <div class="label-data-pair">
-            <b>Recipe Name:</b> <%= recipe.title %>
-        </div>
-        <br />
-      </div>
-    <% }) %>
-  <% } else { %>
-    <p>No recipes found.</p>
-  <% } %>
-<!-- <%- include('./partials/recipe.ejs') %> -->
-
+  <div class="allRecipes">
+    <h1>All Recipes</h1>
+    <div class="recipeGrid">
+      <% if (theRecipes && theRecipes.length > 0) { %>
+        <% theRecipes.forEach(function(recipe) { %>
+          <div class="recipeDiv">
+            <h2><%= recipe.title %></h2>
+            <h3>Ingredients:</h3>
+            <ul>
+              <% recipe.ingredients.forEach(function(ingredient, index) { %>
+                <li><%= `${ingredient}` %></li>
+              <% }); %>
+            </ul>
+            <h3>Directions:</h3>
+            <ol>
+              <% recipe.directions.forEach(function(direction, index) { %>
+                <li><%= `${direction}` %></li>
+              <% }); %>
+            </ol>
+            <p><strong>Link:</strong> <a href="<%= recipe.link %>"><%= recipe.link %></a></p>
+          </div>
+        <% }); %>
+    </div>
+    <!-- Pagination controls -->
+    <div class="pagination">
+      <% if (page > 1) { %>
+        <a href="/all/?page=<%= page - 1 %>&pageSize=<%= pageSize %>">Previous</a>
+      <% } %>
+      <span>Page <%= page %> of <%= Math.ceil(301000 / pageSize) %></span>
+      <% if ((page * pageSize) < 301000) { %>
+        <a href="/all/?page=<%= page + 1 %>&pageSize=<%= pageSize %>">Next</a>
+      <% } %>
+    </div>
+    <% } else { %>
+      <p>No recipes found.</p>
+    <% } %>
+  </div>
 </body>
 </html>

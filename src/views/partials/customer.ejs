@@ -1,6 +1,4 @@
-<% if (aCustomer && aCustomer.length > 0) { %>
-    <% aCustomer.forEach(function(customer) { %>
-  <div class="customerDiv">
+<div class="customerDiv">
     <div class="label-data-pair">
         <b>Customer ID:</b> <%= customer.customer_id %>
     </div>
@@ -25,8 +23,3 @@
     <div class="label-data-pair">
         <b>Street Address:</b> <%= customer.street_address %>, <%= customer.city %>, <%= customer.province %>, <%= customer.country %>, <%= customer.postal_code %>
     </div>
-    <br />
-  </div>
-<% } else { %>
-  <p>No customers found.</p>
-<% } %>

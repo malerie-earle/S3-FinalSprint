@@ -1,32 +1,59 @@
-const { ObjectId } = require("mongodb");
-// We need our mongodb connection pool
+const mongodb = require('mongodb');
+const ObjectId = mongodb.ObjectId;
 const dal = require("./m.auth_db.js");
 const logger = require("../logEvents.js");
 
-async function getAllRecipes() {
-  logger.info('mongo.dal.getRecipes()');
+async function getAllRecipes(page = 1, pageSize = 50) {
   try {
     await dal.connect();
     logger.info('Connected to MongoDB');
-    // fetch the data into a cursor
-    // strongly suggest you become the self-directed learner that 
-    // public school stole from you. You can learn all this on your own!
-    // search up "database cursor"
-    const cursor = dal.db("Auth").collection("Recipes").find();
-    // I need ALL the data into an array. Cursors exist for dealing with 
-    // a lot of data. And a few other things.
-    const results = await cursor.toArray();
-    return results;
+
+    // Parse page and pageSize to integers
+    page = !isNaN(Number(page)) ? Number(page) : 1;
+    pageSize = !isNaN(Number(pageSize)) ? Number(pageSize) : 50;
+
+    const recipes = dal.db.collection('Recipes');
+
+    // Calculate skip value based on page and pageSize
+    const skip = (page - 1) * pageSize;
+    const theRecipes = await recipes.find().skip(skip).limit(pageSize).toArray();
+
+    // logger.info(theRecipes);
+    return { page, pageSize, theRecipes };
+  } catch (error) {
+    logger.error('Error occurred while fetching data from MongoDB:', error);
+    throw error;
+  // } finally {
+  //   logger.info('Closing the connection to MongoDB');
+  //   dal.close();
+  }
+}
+
+module.exports = {
+  getAllRecipes
+};
+
+
+
+async function getRecipeById(_id) {
+  logger.info('mongo.dal.getRecipeById()');
+  try {
+    await dal.connect();
+    logger.info('Connected to MongoDB');
+    const recipes = dal.db.collection('Recipes');
+    const result = await recipes.findOne({ _id: ObjectId(_id) });
+    logger.info('Result:', result);
+    return result;
   } catch(error) {
     logger.error('Error occurred while fetching data from MongoDB:', error);
     throw error;
   } finally {
-    // release the database connection back into the pool
     logger.info('Closing the connection to MongoDB');
     dal.close();
   }
-};
+}
 
 module.exports = {
   getAllRecipes,
+  getRecipeById
 }

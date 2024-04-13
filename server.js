@@ -10,18 +10,18 @@ const path = require('path');
 const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const bcrypt = require('bcrypt');
 const { Pool } = require('pg');
-require('dotenv').config();
-const flash = require('connect-flash');
 const { authenticateUser } = require('./src/services/pg.customers.dal');
+const bodyParser = require('body-parser');
 
-
-const pool = require('./src/services/pg.auth_db');
-const customerRouter = require('./src/routes/customerRouter');
-const productRouter = require('./src/routes/productRouter');
-const indexRouter = require('./src/routes/indexRouter');
-const recipeRouter = require('./src/routes/recipeRouter');
+// Database Connection & routers
+const mPg = require('./src/services/pg.auth_db');
+const mDal = require('./src/services/m.auth_db.js');
+const customerRouter = require('./src/routers/customerRouter');
+const productRouter = require('./src/routers/productRouter');
+const indexRouter = require('./src/routers/indexRouter');
+const recipeRouter = require('./src/routers/recipeRouter');
+const vendorRouter = require('./src/routers/vendorRouter');
 
 // App setup
 const app = express();
@@ -29,87 +29,60 @@ const PORT = process.env.PORT || 5051;
 
 // Configure session middleware
 app.use(session({
-  secret: 'Z90yLqzmjVAWJ8xC5Sj3EWGjFnpvE1KVmLAoepdk0UM=',
+  secret: process.env.SESSION_SECRET,
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  cookie: { secure: false } // For development, set to true in production with HTTPS
 }));
+
 
 // Initialize Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
 
+
 // Middleware
-app.use(flash()); // Add connect-flash middleware here
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'src/views'));
 app.use(express.static('public'));  
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
+app.use(bodyParser.json());
 
-// Routes
 
-app.use('/', router);
+// Routers
+app.use('/', require('./src/routers/indexRouter'));
+app.use('/customer/', require('./src/routers/customerRouter'));
+app.use('/product/', require('./src/routers/productRouter'));
+app.use('/recipe/', require('./src/routers/recipeRouter'));
+app.use('/vendor/', require('./src/routers/vendorRouter'));
+app.use('/', require('./src/routers/searchRouter'));
 
-// Passport Configuration
-passport.use(new LocalStrategy(async (username, password, done) => {
+
+// Connect to the database
+(async () => {
   try {
-    const user = await authenticateUser(username);
-    if (!user) {
-      return done(null, false, { message: 'Incorrect username.' });
-    }
-
-    // Compare hashed passwords
-    const passwordMatch = await bcrypt.compare(password, user.password);
-    if (!passwordMatch) {
-      return done(null, false, { message: 'Incorrect password.' });
-    }
-
-    return done(null, user);
+    await mDal.connect();
+    logger.info('Connected to the MongoDB Database!');
+    await mPg.connect();
+    logger.info('Connected to the PostgreSQL Database!');
   } catch (error) {
-    return done(error);
+    logger.error('Error connecting to the database', error);
+    res.status(500).render('503');
   }
-}));
+})();
 
-app.use('/', require('./src/routes/indexRouter'));
-app.use('/customer/', require('./src/routes/customerRouter'));
-app.use('/product/', require('./src/routes/productRouter'));
-app.use('/recipe/', require('./src/routes/recipeRouter'));
-
-
-
-// Routes for login and registration pages
-app.get('/login', (req, res) => {
-  res.render('login', { messages: req.flash('error') });
-});
-
-app.post('/login', passport.authenticate('local', {
-  successRedirect: '/home',
-  failureRedirect: '/login',
-  failureFlash: true
-}));
-
-app.get('/registration', (req, res) => {
-  res.render('registration', { messages: req.flash('error') });
-});
-
-// Home page route
-app.get('/home', (req, res) => {
-  // Check if user is authenticated
-  if (req.isAuthenticated()) {
-    res.render('index', { user: req.user });
-  } else {
-    res.redirect('/login');
-  }
-});
 
 // Error handling
-app.use((req, res) => {
-  res.status(404).render('404');
+app.use((err, req, res, next) => {
+  logger.error(err.stack);
+  res.status(500).render('503');
 });
 
-app.use((req, res) => {
-  res.status(500).render('503');
+app.use((err, req, res, next) => {
+  logger.error(err.stack);
+  res.status(404).render('404');
 });
 
 // Start the server
