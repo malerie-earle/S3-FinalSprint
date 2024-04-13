@@ -38,11 +38,24 @@ router.get('/login/', isAuthenticated, (req, res) => {
   }
 });
 
-router.post('/login/', passport.authenticate('local', {
-  successRedirect: '/',
-  failureRedirect: '/login/',
-  failureFlash: true
-}));
+router.post('/login/', (req, res, next) => {
+  passport.authenticate('local', (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      req.flash('error', 'Invalid username or password');
+      return res.redirect('/login/');
+    }
+    req.logIn(user, (err) => {
+      if (err) {
+        return next(err);
+      }
+      return res.render('index');
+    });
+  })(req, res, next);
+});
+
 
 
 
