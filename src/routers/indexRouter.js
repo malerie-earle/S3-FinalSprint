@@ -17,48 +17,58 @@ router.get('/', (req, res) => {
   logger.info('Checking if user is authenticated.')
   if (req.isAuthenticated()) {
     logger.info('Rendering the Home Page.');
-    res.render('index', { user: req.user });
-  } else {
-    logger.info('User is not authenticated. Redirecting to Login Page.');
-    res.redirect('/customer/login/');
-  }
-});
-
-
-// GET - Search Customer Page
-router.get('/customer/search/', (req, res) => {
-  logger.info('Rendering the Search Customer Page.');
-  res.render('searchCustomers.ejs');
-});
-
-// GET - Search Product Page
-router.get('/product/search/', (req, res) => {
-  logger.info('Rendering the Search Product Page.');
-  res.render('searchProducts.ejs');
-});
-
-// GET - Search Engine Page
-router.get('/search/', (req, res) => {
-  try {
-    logger.info('Rendering the Search Engine Page.');
-    res.render('searchEngine.ejs', { search, searchResults });
+    res.render('index.ejs', { user: req.user });
   } catch (error) {
-    logger.error('Error rendering the Search Engine Page:', error);
+    logger.error('Error rendering the Home Page:', error);
+    res.status(500).render('503');
+  }
+  });
+
+
+// Login Page
+router.get('/login/', isAuthenticated, (req, res) => {
+  try {
+  logger.info('Rendering the Login Page.');
+  res.render('login');
+  } catch (error) {
+    logger.error('Error rendering the Login Page:', error);
     res.status(500).render('503');
   }
 });
-// POST - Search Engine
-router.post('/search/', async (req, res) => {
+
+router.post('/login/', async (req, res) => {
   try {
-    const { query } = req.body; 
-    const searchResults = await search(query);
-    logger.info('Displaying search results:', searchResults);
-    res.render('searchEngine.ejs', { searchResults: searchResults });
+    const user = await authenticateUser(req.body.username, req.body.password);
+    if (user) {
+      req.login(user, function(err) {
+        if (err) {
+          logger.error('Error in login:', err);
+          res.render('login', { error: 'An error occurred during login.' }); // Render login page with error
+        } else {
+          logger.info('User is authenticated. Redirecting to Home Page.');
+          res.redirect('/'); 
+        }
+      });
+    } else {
+      logger.info('Username or password is incorrect. Redirecting to Login Page.');
+      res.render('login', { error: 'Incorrect username or password.' }); 
+    }
   } catch (error) {
-    logger.error('Error occurred while handling search request:', error);
-    res.status(500).send('Internal Server Error');
+    logger.error('Error in login:', error);
+    res.render('login', { error: 'An error occurred during login.' });
   }
 });
 
+
+// Routes for registration page
+router.get('/registration/', (req, res) => {
+  try {
+  logger.info('Rendering the Registration Page.');
+  res.render('registration', { messages: req.flash('error') });
+  } catch (error) {
+    logger.error('Error rendering the Registration Page:', error);
+    res.status(500).render('503');
+  }
+});
 
 module.exports = router;

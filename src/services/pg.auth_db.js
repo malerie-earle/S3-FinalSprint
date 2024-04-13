@@ -11,13 +11,4 @@ const pool = new Pool({
   port: process.env.PGPORT,
 });
 
-// Connect to the pool
-pool.connect((error) => {
-  if (error) {
-    logger.error('Error connecting to the database', error);
-  } else {
-    logger.info('Connected to the PostgreSQL Database newfieNook!');
-  }
-});
-
 module.exports = pool;

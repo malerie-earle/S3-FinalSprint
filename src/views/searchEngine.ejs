@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>QAP3</title>
+  <title>Search Page</title>
   <link rel="stylesheet" href="/styles/index.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
-
-<%- include('./partials/header.ejs') %>
-
 <body>
+
+  <h1>Search Page</h1>
+
   <div class="searchEngine">
     <form id="search-form" action="/search/" method="POST">
       <label for="search">Search:</label>
@@ -17,24 +18,34 @@
       <button type="submit">Search</button>
     </form>
   </div>
-  <div class="search-results">
-    <% if (searchResults && searchResults.length > 0) { %>
-      <% searchResults.forEach(function(result) { %>
-        <% if (isUser) { %> 
-          <% if (result.type === 'recipe') { %>
-            <% include('./partials/recipe.ejs', { recipe: result }) %>
-          <% } else if (result.type === 'product') { %> 
-            <% include('./partials/product.ejs', { product: result }) %>
-          <% } else if (result.type === 'vendor') { %> 
-            <% include('./partials/vendor.ejs', { vendor: result }) %>
-          <% } else if (result.type === 'customer' && isAdmin) { %> 
-            <% include('./partials/customer.ejs', { customer: result }) %>
-          <% } %>
-        <% } else { %> 
-          <p>Error - no results found.</p>
-        <% } %>
-      <% }); %>
-    <% } %>
+
+  <!-- Container for displaying search results -->
+  <div id="search-results-container">
+    <!-- Initially empty, will be populated with search results dynamically -->
   </div>
+
+  <script>
+    // jQuery AJAX request to handle form submission
+    $('#search-form').submit(function(e) {
+      e.preventDefault(); // Prevent form submission
+      var query = $('#search').val(); // Get search query from input field
+
+      $.ajax({
+        type: 'POST',
+        url: '/search/',
+        data: { query: query },
+        success: function(response) {
+          // Display search results in the container
+          $('#search-results-container').html(response);
+        },
+        error: function(xhr, status, error) {
+          // Display error message
+          $('#search-results-container').html('<p>An error occurred. Please try again later.</p>');
+          console.error('Error:', error);
+        }
+      });
+    });
+  </script>
+
 </body>
 </html>
