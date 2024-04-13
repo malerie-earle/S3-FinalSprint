@@ -4,6 +4,8 @@ const { getAllCustomers, getCustomerByCustomerId, getCustomerAccountByCustomerId
 const logger = require('../logEvents.js');
 const dal = require('../services/pg.auth_db.js');
 const passport = require('passport');
+const isAuthenticated = require('../config/passport-config.js');
+
 
 
 // List of All Available Routes
@@ -20,45 +22,6 @@ logger.info('Route: GET/READ - Single Customer by Username - /customer/username/
 logger.info('Route: POST/CREATE - Add Customer - /customer/add');
 logger.info('Route: PUT/UPDATE - Edit Customer - /customer/edit');
 logger.info('Route: DELETE - Delete Customer - /customer/delete');
-
-// Login Page
-router.get('/login/', (req, res) => {
-  logger.info('Rendering the Login Page.');
-  res.render('login');
-});
-router.post('/login/', async (req, res) => {
-  const user = await authenticateUser(req.body.username, req.body.password);
-  if (user) {
-    req.login(user, function(err) {
-      if (err) {
-        logger.error('Error in login:', err);
-        res.redirect('/login/');
-      }
-      logger.info('User is authenticated. Redirecting to Home Page.');
-      res.redirect('/');
-    });
-  } else {
-    logger.info('Username or password is incorrect. Redirecting to Login Page.');
-    res.redirect('/login/');
-  }
-});
-
-
-// Routes for login pages
-router.get('/login/', (req, res) => {
-  logger.info('Rendering the Login Page.');
-
-  res.render('login', { messages: req.flash('error') });
-});
-
-
-// Routes for registration page
-router.get('/registration/', (req, res) => {
-  logger.info('Rendering the Registration Page.');
-
-  res.render('registration', { messages: req.flash('error') });
-
-});
 
 
 // GET All Customers

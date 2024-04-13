@@ -10,12 +10,8 @@ const path = require('path');
 const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const bcrypt = require('bcrypt');
 const { Pool } = require('pg');
-require('dotenv').config();
-const flash = require('connect-flash');
 const { authenticateUser } = require('./src/services/pg.customers.dal');
-
 const bodyParser = require('body-parser');
 
 // Database Connection & routers
@@ -25,6 +21,7 @@ const customerRouter = require('./src/routers/customerRouter');
 const productRouter = require('./src/routers/productRouter');
 const indexRouter = require('./src/routers/indexRouter');
 const recipeRouter = require('./src/routers/recipeRouter');
+const vendorRouter = require('./src/routers/vendorRouter');
 
 // App setup
 const app = express();
@@ -34,55 +31,25 @@ const PORT = process.env.PORT || 5051;
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  cookie: { secure: false } // For development, set to true in production with HTTPS
 }));
+
 
 // Initialize Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
 
 
-passport.serializeUser((user, done) => {
-  if (!user) {
-    return done(new Error('No user found'), null);
-  }
-  done(null, user.id);
-});
-
-passport.deserializeUser((id, done) => {
-  User.findById(id, (err, user) => {
-    if (err) {
-      return done(err, null);
-    }
-    if (!user) {
-      return done(new Error('No user found'), null);
-    }
-    done(null, user);
-  });
-});
-
 // Middleware
-app.use(flash()); // Add connect-flash middleware here
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'src/views'));
 app.use(express.static('public'));  
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 app.use(bodyParser.json());
 
-// Passport Configuration
-passport.use(new LocalStrategy(async (username, password, done) => {
-  try {
-    const user = await authenticateUser(username);
-    if (!user) {
-      return done(null, false);
-    }
-
-  } catch (error) {
-    return done(error);
-  }
-}));
 
 // Routers
 app.use('/', require('./src/routers/indexRouter'));
@@ -105,11 +72,6 @@ app.use('/', require('./src/routers/searchRouter'));
     res.status(500).render('503');
   }
 })();
-app.use('/', require('./src/routes/indexRouter'));
-app.use('/customer/', require('./src/routes/customerRouter'));
-app.use('/product/', require('./src/routes/productRouter'));
-app.use('/recipe/', require('./src/routes/recipeRouter'));
-app.use('/vendor/', require('./src/routes/vendorRouter'));
 
 
 // Error handling
@@ -118,7 +80,8 @@ app.use((err, req, res, next) => {
   res.status(500).render('503');
 });
 
-app.use((req, res) => {
+app.use((err, req, res, next) => {
+  logger.error(err.stack);
   res.status(404).render('404');
 });
 
