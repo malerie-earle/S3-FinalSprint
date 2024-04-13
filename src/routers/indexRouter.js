@@ -84,54 +84,30 @@ router.get('/registration/', (req, res) => {
     logger.error('Error rendering the Registration Page:', error);
     res.status(500).render('503');
   }
-});
+  });
 
 
-// GET - Search Customer Page
-router.get('/customer/search/', (req, res) => {
+// Login Page
+router.get('/login/', isAuthenticated, (req, res) => {
   try {
-  logger.info('Rendering the Search Customer Page.');
-  res.render('searchCustomers.ejs');
+  logger.info('Rendering the Login Page.');
+  res.render('login');
   } catch (error) {
-    logger.error('Error rendering the Search Customer Page:', error);
+    logger.error('Error rendering the Login Page:', error);
     res.status(500).render('503');
   }
 });
 
-// GET - Search Product Page
-router.get('/product/search/', (req, res) => {
+
+// Routes for registration page
+router.get('/registration/', (req, res) => {
   try {
-  logger.info('Rendering the Search Product Page.');
-  res.render('searchProducts.ejs');
+  logger.info('Rendering the Registration Page.');
+  res.render('registration', { messages: req.flash('error') });
   } catch (error) {
-    logger.error('Error rendering the Search Product Page:', error);
+    logger.error('Error rendering the Registration Page:', error);
     res.status(500).render('503');
   }
 });
-
-// GET - Search Engine Page
-router.get('/search/', (req, res) => {
-  try {
-    logger.info('Rendering the Search Engine Page.');
-    res.render('searchEngine.ejs', { search, searchResults });
-  } catch (error) {
-    logger.error('Error rendering the Search Engine Page:', error);
-    res.status(500).render('503');
-  }
-});
-
-// POST - Search Engine
-router.post('/search/', async (req, res) => {
-  try {
-    const { query } = req.body; 
-    const searchResults = await search(query);
-    logger.info('Displaying search results:', searchResults);
-    res.render('searchEngine.ejs', { searchResults: searchResults });
-  } catch (error) {
-    logger.error('Error occurred while handling search request:', error);
-    res.status(500).send('Internal Server Error');
-  }
-});
-
 
 module.exports = router;

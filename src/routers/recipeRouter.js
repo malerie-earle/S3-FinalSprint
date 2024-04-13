@@ -11,9 +11,13 @@ router.get('/all/', async (req, res) => {
     logger.info('Getting all recipes from the database.');  
     // Call getAllRecipes function with pagination parameters
     const { page, pageSize, theRecipes } = await getAllRecipes();
+    if (!Array.isArray(theRecipes)) {
+      console.error('theRecipes is not an array');
+      return;
+    }
     logger.info('All recipes retrieved successfully.');
-    // Pass pagination information to the EJS template
-    res.render('allRecipes.ejs', { theRecipes, page, pageSize });
+    // logger.info(theRecipes);
+    res.render('allRecipes.ejs', { page, pageSize, theRecipes, user: req.user});
   } catch (error) {
     logger.error('Error getting all recipes:', error);
     res.status(500).render('503');

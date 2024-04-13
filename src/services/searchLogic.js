@@ -1,73 +1,64 @@
-const { Index } = require('flexsearch');
 const logger = require('../logEvents.js');
+const pgDal = require('./pg.auth_db.js');
+const mDal = require('./m.auth_db.js');
 
-// Create a new instance of the Index class with options
-const index = new Index({
-  encode: query => query.toLowerCase().replace(/[^a-z0-9]/g, ''),
-  tokenize: query => query.split(/\s-\//g),
-  stemmer: {
-    "ational": "ate",
-    "tional": "tion",
-    "enci": "ence",
-    "anci": "ance",
-    "izer": "ize",
-    "bli": "ble",
-    "alli": "al",
-    "entli": "ent",
-    "eli": "e",
-    "ing": ""
-  },
-  filter: [
-    "a",
-    "and",
-    "the",
-    "to",
-    "in",
-    "into",
-    "on",
-    "at",
-    "for",
-    "is",
-    "are",
-    "was",
-    "it",
-    "of",
-    "its"
-  ]
-});
-
-// Define a search function
-async function search(query) {
+async function searchInPostgres(query) {
   try {
-    logger.info('Searching for:', query);
-    let results = await index.searchAsync(query);
-    
-    // Ensure results is an array
-    if (!Array.isArray(results)) {
-      results = [results];
+    const client = await pgDal.connect();
+
+    // Query the system catalogs to get all tables and columns
+    const tablesQuery = `
+      SELECT table_name, column_name
+      FROM information_schema.columns
+      WHERE table_schema = 'public' AND data_type IN ('character varying', 'text');
+    `;
+    const tablesResult = await client.query(tablesQuery);
+
+    // Construct SQL queries to search in all relevant columns of all tables
+    const searchQueries = tablesResult.rows.map(row => {
+      return `SELECT * FROM ${row.table_name} WHERE ${row.column_name} ILIKE $1`;
+    });
+
+    // Execute search queries and aggregate results
+    const searchResults = [];
+    for (const searchQuery of searchQueries) {
+      const result = await client.query(searchQuery, ['%' + query + '%']);
+      searchResults.push(...result.rows);
     }
 
-    logger.info('Search Results:', results);
-    return results;
+    // Release the client back to the pool
+    client.release();
+
+    return searchResults;
   } catch (error) {
-    logger.error('Error occurred while searching:', error);
+    logger.error('Error searching in PostgreSQL:', error);
     throw error;
   }
 }
 
-// Define a function to handle search results
-async function showResults(req, res) {
+async function searchInMongo(query) {
   try {
-    const query = req.body.query; 
-    const theResults = await search(query);
-    logger.info('Displaying search results:', theResults);
-    res.render('searchResults', { theResults });
+    // Connect to MongoDB
+    const client = await mDal.connect();
+
+    // Specify the database and collection
+    const db = client.db('NewfieNook'); 
+    const collection = db.collection('Recipes'); 
+
+    // Perform the search using safe query building techniques
+    const result = await collection.find({ $text: { $search: query } }).toArray();
+
+    // Close the connection
+    await client.close();
+
+    return result;
   } catch (error) {
-    logger.error('Error displaying search results:', error);
-    res.status(500).send('Internal Server Error');
+    logger.error('Error searching in MongoDB:', error);
+    throw error;
   }
 }
 
 module.exports = {
-  search, showResults
+  searchInPostgres,
+  searchInMongo
 };

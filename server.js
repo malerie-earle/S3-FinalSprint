@@ -11,9 +11,12 @@ const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const { Pool } = require('pg');
+const { authenticateUser } = require('./src/services/pg.customers.dal');
+const bodyParser = require('body-parser');
 
 // Database Connection & routers
-const pool = require('./src/services/pg.auth_db');
+const mPg = require('./src/services/pg.auth_db');
+const mDal = require('./src/services/m.auth_db.js');
 const customerRouter = require('./src/routers/customerRouter');
 const productRouter = require('./src/routers/productRouter');
 const indexRouter = require('./src/routers/indexRouter');
@@ -45,6 +48,7 @@ app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
+app.use(bodyParser.json());
 
 
 // Routers
@@ -53,6 +57,21 @@ app.use('/customer/', require('./src/routers/customerRouter'));
 app.use('/product/', require('./src/routers/productRouter'));
 app.use('/recipe/', require('./src/routers/recipeRouter'));
 app.use('/vendor/', require('./src/routers/vendorRouter'));
+app.use('/', require('./src/routers/searchRouter'));
+
+
+// Connect to the database
+(async () => {
+  try {
+    await mDal.connect();
+    logger.info('Connected to the MongoDB Database!');
+    await mPg.connect();
+    logger.info('Connected to the PostgreSQL Database!');
+  } catch (error) {
+    logger.error('Error connecting to the database', error);
+    res.status(500).render('503');
+  }
+})();
 
 
 // Error handling

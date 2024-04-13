@@ -1,18 +1,19 @@
-<div class="recipeDiv">
-  <h2><%= recipe.title %></h2>
-  <h3>Ingredients:</h3>
-  <ul>
-    <% recipe.ingredients.forEach(function(ingredient, index) { %>
-      <li><%= `${ingredient}` %></li>
-    <% }); %>
-  </ul>
-  <h3>Directions:</h3>
-  <ol>
-    <% recipe.directions.forEach(function(direction, index) { %>
-      <li><%= `${direction}` %></li>
-    <% }); %>
-  </ol>
-  <p><strong>Link:</strong> <a href="<%= recipe.link %>"><%= recipe.link %></a></p>
-</div>
-<% }); %>
-</div>
+ <% if (theRecipes && theRecipes.length > 0) { %>
+        <% theRecipes.forEach(function(recipe) { %>
+          <div class="recipeDiv">
+            <h2><%= recipe.title %></h2>
+            <h3>Ingredients:</h3>
+            <ul>
+              <% recipe.ingredients.forEach(function(ingredient, index) { %>
+                <li><%= `${ingredient}` %></li>
+              <% }); %>
+            </ul>
+            <h3>Directions:</h3>
+            <ol>
+              <% recipe.directions.forEach(function(direction, index) { %>
+                <li><%= `${direction}` %></li>
+              <% }); %>
+            </ol>
+            <p><strong>Link:</strong> <a href="<%= recipe.link %>"><%= recipe.link %></a></p>
+          </div>
+        <% }); %>
