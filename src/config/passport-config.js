@@ -44,6 +44,9 @@ passport.deserializeUser(async function(customer_id, done) {
     } else {
       return done(null, false, { message: 'User not found' });
     }
+  } catch (error) { 
+    return done(error);
+  }
 });
 
 module.exports = passport;
