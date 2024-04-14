@@ -14,12 +14,11 @@ logger.info('Route: GET/READ - Home Page - /');
 logger.info('Route: GET/READ - Login Page - /login/');
 logger.info('Route: GET/READ - Registration Page - /registration/');
 
-
 // Home Page
 router.get('/', isAuthenticated, (req, res) => {
   try {
     logger.info('Rendering the Home Page.');
-    res.render('index.ejs');
+    res.render('index.ejs', { user: req.user });
   } catch (error) {
     logger.error('Error rendering the Home Page:', error);
     res.status(500).render('503');
@@ -30,32 +29,49 @@ router.get('/', isAuthenticated, (req, res) => {
 // Login Page
 router.get('/login/', isAuthenticated, (req, res) => {
   try {
-    logger.info('Rendering the Login Page.');
-    res.render('login');
+  logger.info('Rendering the Login Page.');
+  res.render('login');
   } catch (error) {
     logger.error('Error rendering the Login Page:', error);
     res.status(500).render('503');
   }
 });
 
-router.post('/login/', (req, res, next) => {
-  passport.authenticate('local', (err, user, info) => {
-    if (err) {
-      return next(err);
+router.post('/login/', async (req, res) => {
+  try {
+    const user = await authenticateUser(req.body.username, req.body.password);
+    if (user) {
+      req.login(user, function(err) {
+        if (err) {
+          logger.error('Error in login:', err);
+          res.render('login', { error: 'An error occurred during login.' }); // Render login page with error
+        } else {
+          logger.info('User is authenticated. Redirecting to Home Page.');
+          res.redirect('/'); // Redirect to home page
+        }
+      });
+    } else {
+      logger.info('Username or password is incorrect. Redirecting to Login Page.');
+      res.render('login', { error: 'Incorrect username or password.' }); // Render login page with error
     }
-    if (!user) {
-      req.flash('error', 'Invalid username or password');
-      return res.redirect('/login/');
-    }
-    req.logIn(user, (err) => {
-      if (err) {
-        return next(err);
-      }
-      return res.render('index');
-    });
-  })(req, res, next);
+  } catch (error) {
+    logger.error('Error in login:', error);
+    res.render('login', { error: 'An error occurred during login.' }); // Render login page with error
+  }
 });
 
+
+
+// Routes for login pages
+router.get('/login/', (req, res) => {
+  try {
+  logger.info('Rendering the Login Page.');
+  res.render('login', { messages: req.flash('error') });
+  } catch (error) {
+    logger.error('Error rendering the Login Page:', error);
+    res.status(500).render('503');
+  }
+});
 
 
 
@@ -70,5 +86,28 @@ router.get('/registration/', (req, res) => {
   }
   });
 
+
+// Login Page
+router.get('/login/', isAuthenticated, (req, res) => {
+  try {
+  logger.info('Rendering the Login Page.');
+  res.render('login');
+  } catch (error) {
+    logger.error('Error rendering the Login Page:', error);
+    res.status(500).render('503');
+  }
+});
+
+
+// Routes for registration page
+router.get('/registration/', (req, res) => {
+  try {
+  logger.info('Rendering the Registration Page.');
+  res.render('registration', { messages: req.flash('error') });
+  } catch (error) {
+    logger.error('Error rendering the Registration Page:', error);
+    res.status(500).render('503');
+  }
+});
 
 module.exports = router;
