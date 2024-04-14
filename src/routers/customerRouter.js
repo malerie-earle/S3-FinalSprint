@@ -151,7 +151,7 @@ router.get('/add/', (req, res) => {
   logger.info('Rendering the Add Customer Page.');
   res.render('addCustomer', { newCustomerId: null });
 });
-router.post('/customer/add/', async (req, res) => {
+router.post('/add/', async (req, res) => {
   logger.info('Adding a new customer.');
   try {
     const {customer_id, first_name, last_name, email, ph_num, gender, pay_method} = req.body.newCustomer;

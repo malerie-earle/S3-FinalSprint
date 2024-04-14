@@ -16,14 +16,18 @@ async function searchInPostgres(query) {
 
     // Construct SQL queries to search in all relevant columns of all tables
     const searchQueries = tablesResult.rows.map(row => {
-      return `SELECT * FROM ${row.table_name} WHERE ${row.column_name} ILIKE $1`;
+      return `SELECT *, '${row.table_name}' as type FROM "${row.table_name}" WHERE "${row.column_name}" ILIKE $1`;
     });
 
     // Execute search queries and aggregate results
     const searchResults = [];
     for (const searchQuery of searchQueries) {
       const result = await client.query(searchQuery, ['%' + query + '%']);
-      searchResults.push(...result.rows);
+      result.rows.forEach(row => {
+        // Ensure row is an array
+        row = Array.isArray(row) ? row : [row];
+        searchResults.push(row);
+      });
     }
 
     // Release the client back to the pool
@@ -47,6 +51,13 @@ async function searchInMongo(query) {
 
     // Perform the search using safe query building techniques
     const result = await collection.find({ $text: { $search: query } }).toArray();
+
+    // Add a type property to each result object
+    result.forEach(item => {
+      // Ensure item is an array
+      item = Array.isArray(item) ? item : [item];
+      item.type = 'Recipes'; // Replace 'Recipes' with the appropriate collection name
+    });
 
     // Close the connection
     await client.close();

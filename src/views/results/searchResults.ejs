@@ -1,23 +1,30 @@
 <h1>Search Results</h1>
-    
+<p>Number of results: <%= searchResults.length %></p>
 <% if (searchResults.length === 0) { %>
     <p>No results found.</p>
 <% } else { %>
     <ul>
         <% searchResults.forEach(result => { %>
+            <% console.log(result); %>
             <li>
-                <% if (result.type === 'product') { %>
+                <% if (result.type === 'products') { %>
                     <!-- Include product result template -->
-                    <% include('./results/productResult.ejs', { product: result.data }) %> 
+                    <% include('productResult.ejs', { product: result }) %> 
                 <% } else if (result.type === 'customer') { %>
                     <!-- Include customer result template -->
-                    <% include('./results/customerResult.ejs', { customer: result.data }) %> 
+                    <% include('customerResult.ejs', { searchResults: result }) %> 
+                <% } else if (result.type === 'customer_account') { %>
+                    <!-- Include customer account result template -->
+                    <% include('customerAccountResult.ejs', { searchResults: result }) %> 
+                <% } else if (result.type === 'customer_address') { %>
+                    <!-- Include customer address result template -->
+                    <% include('customerAddressResult.ejs', { searchResults: result }) %> 
                 <% } else if (result.type === 'vendor') { %>
                     <!-- Include vendor result template -->
-                    <% include('./results/vendorResult.ejs', { vendor: result.data }) %> 
-                <% } else if (result.type === 'recipe') { %>
+                    <% include('vendorResult.ejs', { vendor: result }) %> 
+                <% } else if (result.type === 'recipes') { %>
                     <!-- Include recipe result template -->
-                    <% include('./results/recipeResult.ejs', { recipe: result.data }) %> 
+                    <% include('recipeResult.ejs', { recipe: result }) %> 
                 <% } else { %>
                     <p>Unknown result type.</p>
                 <% } %>

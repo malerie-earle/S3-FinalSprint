@@ -11,10 +11,23 @@
 
   <h1>Search Page</h1>
 
+  <!-- Form for search query, database selection, and user ID -->
   <div class="searchEngine">
     <form id="search-form" action="/search/" method="POST">
       <label for="search">Search:</label>
       <input type="text" id="search" name="search" placeholder="Enter Your Search Query..." required>
+      
+      <!-- Dropdown for selecting database -->
+      <label for="database">Select Database:</label>
+      <select id="database" name="database">
+        <option value="pg">PostgreSQL</option>
+        <option value="mongo">MongoDB</option>
+        <option value="both">Both</option>
+      </select>
+      
+      <!-- Hidden input field to capture user ID -->
+      <input type="hidden" id="user-id" name="user_id" value="">
+
       <button type="submit">Search</button>
     </form>
   </div>
@@ -29,11 +42,17 @@
     $('#search-form').submit(function(e) {
       e.preventDefault(); // Prevent form submission
       var query = $('#search').val(); // Get search query from input field
+      var database = $('#database').val(); // Get selected database from dropdown
+      var user_id = $('#user-id').val(); // Get user ID from hidden input
 
       $.ajax({
         type: 'POST',
         url: '/search/',
-        data: { query: query },
+        data: { 
+          query: query,
+          database: database,
+          user_id: user_id 
+        },
         success: function(response) {
           // Display search results in the container
           $('#search-results-container').html(response);
