@@ -1,7 +1,7 @@
 <div class="productResult">
-  <img src="<%= searchResults.image %>" alt="Product Image" class="productImage" height="20%" width="20%" />
-  <h3><a href="/product/<%= searchResults.product_id %>"><%= searchResults.product_name %></a></h3>
-  <b>ID:</b><%= searchResults.product_id %>  <b>Price:</b><%= searchResults.price %>  <b>Category:</b><%= searchResults.category %>
-  <b>Vendor:</b><%= searchResults.vendor %>
-  <a href="/product/<%= searchResults.product_id %>">See More >></a>
+  <img src="<%= product.image %>" alt="Product Image" class="productImage" height="20%" width="20%" />
+  <h3><a href="/product/<%= product.product_id %>"><%= product.product_name %></a></h3>
+  <b>ID:</b><%= product.product_id %>  <b>Price:</b><%= product.price %>  <b>Category:</b><%= product.category %>
+  <b>Vendor:</b><%= product.vendor %>
+  <a href="/product/<%= product.product_id %>">See More >></a>
 </div>

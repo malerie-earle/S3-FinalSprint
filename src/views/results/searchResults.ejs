@@ -10,24 +10,24 @@
                 <% if (result.type === 'products') { %>
                     <!-- Include product result template -->
                     <% include('productResult.ejs', { product: result }) %> 
-                <% } else if (result.type === 'customer') { %>
+                  <% } else if (result.type === 'customer') { %>
                     <!-- Include customer result template -->
-                    <% include('customerResult.ejs', { searchResults: result }) %> 
-                <% } else if (result.type === 'customer_account') { %>
+                    <% include('customerResult.ejs', { customer: result }) %> 
+                  <% } else if (result.type === 'customer_account') { %>
                     <!-- Include customer account result template -->
-                    <% include('customerAccountResult.ejs', { searchResults: result }) %> 
-                <% } else if (result.type === 'customer_address') { %>
+                    <% include('customerAccountResult.ejs', { customer_account: result }) %> 
+                  <% } else if (result.type === 'customer_address') { %>
                     <!-- Include customer address result template -->
-                    <% include('customerAddressResult.ejs', { searchResults: result }) %> 
-                <% } else if (result.type === 'vendor') { %>
+                    <% include('customerAddressResult.ejs', { customer_address: result }) %> 
+                  <% } else if (result.type === 'vendor') { %>
                     <!-- Include vendor result template -->
                     <% include('vendorResult.ejs', { vendor: result }) %> 
-                <% } else if (result.type === 'recipes') { %>
+                  <% } else if (result.type === 'recipes') { %>
                     <!-- Include recipe result template -->
                     <% include('recipeResult.ejs', { recipe: result }) %> 
-                <% } else { %>
+                  <% } else { %>
                     <p>Unknown result type.</p>
-                <% } %>
+                  <% } %>
             </li>
         <% }); %>
     </ul>

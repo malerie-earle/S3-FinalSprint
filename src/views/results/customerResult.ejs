@@ -1,7 +1,7 @@
 <div class="customerResult">
-  <h3><a href="/customer/<%= searchResults.customer_id %>"><%= searchResults.first_name %> <%= searchResults.last_name %></a></h3>
-  <b>ID:</b><%= searchResults.customer_id %>   <b>Gender:</b><%= searchResults.gender %> <br />
-  <b>Email:</b><%= searchResults.email %> <b>Phone Number:</b><%= searchResults.ph_num %> <br />
-  <b>Payment Method:</b> <%= searchResults.pay_method %> <br />
-  <a href="/customer/<%= searchResults.customer_id %>">See More >></a>
+  <h3><a href="/customer/<%= customer.customer_id %>"><%= customer.first_name %> <%= customer.last_name %></a></h3>
+  <b>ID:</b><%= customer.customer_id %>   <b>Gender:</b><%= customer.gender %> <br />
+  <b>Email:</b><%= customer.email %> <b>Phone Number:</b><%= customer.ph_num %> <br />
+  <b>Payment Method:</b> <%= customer.pay_method %> <br />
+  <a href="/customer/<%= customer.customer_id %>">See More >></a>
 </div>
