@@ -98,6 +98,14 @@ router.get('/login/', isAuthenticated, (req, res) => {
   }
 });
 
+// Logout Route
+router.get('/login/', (req, res) => {
+  req.logout(); // Passport method to remove the user from the session
+  req.flash('success_msg', 'You are logged out'); // Optional: Flash message for successful logout
+  res.redirect('/login'); // Redirect to the login page or any other page
+});
+
+
 
 // Routes for registration page
 router.get('/registration/', (req, res) => {
