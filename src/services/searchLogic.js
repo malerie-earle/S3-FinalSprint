@@ -3,8 +3,9 @@ const pgDal = require('./pg.auth_db.js');
 const mDal = require('./m.auth_db.js');
 
 async function searchInPostgres(query) {
+  let client;  // Declare client outside of try-catch to access it in finally block
   try {
-    const client = await pgDal.connect();
+    client = await pgDal.connect();
 
     // Query the system catalogs to get all tables and columns
     const tablesQuery = `
@@ -30,13 +31,19 @@ async function searchInPostgres(query) {
       });
     }
 
-    // Release the client back to the pool
-    client.release();
-
-    return searchResults;
+    return searchResults; // Return the search results
   } catch (error) {
     logger.error('Error searching in PostgreSQL:', error);
     throw error;
+  } finally {
+    // Release the client back to the pool
+    try {
+      if (client) {
+        await client.release();
+      }
+    } catch (error) {
+      logger.error('Error releasing PostgreSQL client:', error);
+    }
   }
 }
 
