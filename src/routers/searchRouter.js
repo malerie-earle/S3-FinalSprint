@@ -63,13 +63,13 @@ router.post('/search/', async (req, res) => {
     // Handle search based on database selection
     if (database === 'pg') {
       let pgResults = await searchInPostgres(query);
-      pgResults = pgResults.flat(); // Flatten the array
+      pgResults = pgResults.flat(); 
       logger.info(`Search results for '${query}' in PostgreSQL`, pgResults);
       res.render('results/searchResults', { searchResults: pgResults });
     
     } else if (database === 'mongo') {
       let mongoResults = await searchInMongo(query);
-      mongoResults = mongoResults.flat(); // Flatten the array
+      mongoResults = mongoResults.flat(); 
       logger.info(`Search results for '${query}' in MongoDB`, mongoResults);
       res.render('results/searchResults', { searchResults: mongoResults });
     
