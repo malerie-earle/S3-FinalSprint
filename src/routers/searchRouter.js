@@ -1,13 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const logger = require('../logEvents.js');
-const pgDal = require('../services/pg.auth_db.js');
-const mDal = require('../services/m.auth_db.js');
-const passport = require('passport');
-const { search, searchResults } = require('../services/searchLogic.js');
-const isAuthenticated = require('../middleware/authMiddleware.js');
-const { authenticateUser } = require('../services/pg.customers.dal.js');
-const { Pool } = require('pg');
 const { searchInPostgres, searchInMongo } = require('../services/searchLogic.js');
 
 // List of All Available Routes
@@ -60,32 +53,32 @@ router.post('/search/', async (req, res) => {
       return res.status(400).json({ error: 'No search query provided. Database selection required.' });
     }
     
+    let searchResults;
     // Handle search based on database selection
     if (database === 'pg') {
-      let pgResults = await searchInPostgres(query);
-      pgResults = pgResults.flat(); 
-      logger.info(`Search results for '${query}' in PostgreSQL`, pgResults);
-      res.render('results/searchResults', { searchResults: pgResults });
+      searchResults = await searchInPostgres(query);
+      searchResults = searchResults.flat(); 
+      logger.info(`Search results for '${query}' in PostgreSQL`);
     
     } else if (database === 'mongo') {
-      let mongoResults = await searchInMongo(query);
-      mongoResults = mongoResults.flat(); 
-      logger.info(`Search results for '${query}' in MongoDB`, mongoResults);
-      res.render('results/searchResults', { searchResults: mongoResults });
+      searchResults = await searchInMongo(query);
+      searchResults = searchResults.flat(); 
+      logger.info(`Search results for '${query}' in MongoDB`);
     
     } else if (database === 'both') {
       let [pgResults, mongoResults] = await Promise.all([
         searchInPostgres(query),
         searchInMongo(query)
       ]);
-      pgResults = pgResults.flat(); // Flatten the array
-      mongoResults = mongoResults.flat(); // Flatten the array
-      logger.info(`Search results for '${query}' in both databases`, { pgResults, mongoResults });
-      res.render('results/searchResults', { searchResults: [...pgResults, ...mongoResults] });
+      searchResults = [...pgResults.flat(), ...mongoResults.flat()];
+      logger.info(`Search results for '${query}' in both databases`);
     } else {
       logger.error('Invalid database selection.');
       return res.status(400).json({ error: 'Invalid database selection.' });
     }  
+
+    res.render('results/searchResults', { searchResults: searchResults });
+
   } catch (error) {
     logger.error('Error searching:', error);
     res.status(500).send('Internal Server Error');

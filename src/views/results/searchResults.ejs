@@ -3,25 +3,24 @@
 <% if (searchResults.length === 0) { %>
     <p>No results found.</p>
 <% } else { %>
-        <% searchResults.forEach(function(result) { %>
-            <%= console.log(result) %>
-            <% if (result.type === 'products') { %>
-              <% include('productResult.ejs', { products: result }) %> 
-            <% } else if (result.type === 'customer') { %>
-              <% include('customerResult.ejs', { customer: result }) %> 
-            <% } else if (result.type === 'customer_account') { %>
-                <% include('customerAccountResult.ejs', { customerAccount: result }) %>
-            <% } else if (result.type === 'customer_address') { %>
-                <% include('customerAddressResult.ejs', { customerAddress: result }) %>
-            <% } else if (result.type === 'vendor') { %>
-              <% include('vendorResult.ejs', { vendor: result }) %> 
-            <% } else if (result.type === 'vendor_address') { %>
-                <% include('vendorAddressResult.ejs', { vendor_address: result }) %> 
-            <% } else if (result.type === 'recipes') { %>
-              <% include('recipeResult.ejs', { recipes: result }) %> 
-            <% } else { %>
-              <p>Unknown result type: <%= result.type %>. Please check your data.</p>
-              <p><%= result %></p>
-            <% } %>
-          <% }) %>
+    <% searchResults.forEach(function(result) { %>
+        <% if (result.type === 'products') { %>
+            <%- include('productResult', { products: result }) %> 
+        <% } else if (result.type === 'customer') { %>
+            <%- include('customerResult', { customer: result }) %> 
+        <% } else if (result.type === 'customer_account') { %>
+            <%- include('customerAccountResult', { customerAccount: result }) %>
+        <% } else if (result.type === 'customer_address') { %>
+            <%- include('customerAddressResult', { customerAddress: result }) %>
+        <% } else if (result.type === 'vendor') { %>
+            <%- include('vendorResult', { vendor: result }) %> 
+        <% } else if (result.type === 'vendor_address') { %>
+            <%- include('vendorAddressResult', { vendor_address: result }) %> 
+        <% } else if (result.type === 'recipes') { %>
+            <%- include('recipeResult', { recipes: result }) %> 
+        <% } else { %>
+            <p>Unknown result type: <%= result.type %>. Please check your data.</p>
+            <p><%= JSON.stringify(result) %></p>
+        <% } %>
+    <% }) %>
 <% } %>
