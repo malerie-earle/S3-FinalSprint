@@ -36,74 +36,35 @@ async function authenticateUser(username, password) {
 
 
 // Register a new user
-async function registerCustomer({ first_name, last_name, email, ph_num, gender, pay_method, username, password, street_address, city, province, postal_code, country }) {
+async function signUpUser({ first_name, last_name, email, ph_num, gender, pay_method, username, password, street_address, city, province, postal_code, country }) {
+  const userDetails = { first_name, last_name, email, ph_num, gender, pay_method, username, password, street_address, city, province, postal_code, country };
+  console.log('pg.DAL: signUpUser() userDetails:', userDetails);
   try {
     // Add a new Customer
     logger.info('pg.DAL: Adding a new customer.');
-    const sqlCustomer = `INSERT INTO public.customer (first_name, last_name, email, ph_num, gender, pay_method) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;`;
-    const valuesCustomer = [first_name, last_name, email, ph_num, gender, pay_method];
-    const newCustomer = await dal.query(sqlCustomer, valuesCustomer);
-    const newCustomerId = newCustomer.rows[0].customer_id;
+    const newCustomer = await addCustomer({ first_name, last_name, email, ph_num, gender, pay_method });
+    const newCustomerId = newCustomer.customer_id;
+    logger.info('pg.DAL: New customer added successfully.');
 
-    // Register a new user
+    // Add a new Customer Account
     logger.info('pg.DAL: Registering a new user.');
-    const sqlUser = 'INSERT INTO public.customer_account (customer_id, username, password) VALUES ($1, $2, $3) RETURNING *;';
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const valuesUser = [newCustomerId, username, hashedPassword];
-    const newUser = await dal.query(sqlUser, valuesUser);
+    const newCustomerAccount = await addCustomerAccount({ customer_id: newCustomerId, username, password });
+    logger.info('pg.DAL: New user registered successfully.');
 
     // Add a new Customer Address
     logger.info('pg.DAL: Adding a new customer address.');
-    const sqlAddress = `INSERT INTO public.customer_address (customer_id, street_address, city, province, postal_code, country) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;`;
-    const valuesAddress = [newCustomerId, street_address, city, province, postal_code, country];
-    const newCustomerAddress = await dal.query(sqlAddress, valuesAddress);
+    const newCustomerAddress = await addCustomerAddress({ customer_id: newCustomerId, street_address, city, province, postal_code, country });
+    logger.info('pg.DAL: New customer address added successfully.');
 
-    return {
-      customer: newCustomer.rows[0],
-      user: newUser.rows[0],
-      address: newCustomerAddress.rows[0]
-    };
+    logger.info('pg.DAL: New customer registered successfully.');
+
+    return { newCustomerID, newCustomer, newCustomerAccount, newCustomerAddress };
+    
   } catch (error) {
-    logger.error('Error in registerAndAddCustomer():', error);
+    logger.error('Error in registerCustomer():', error);
     throw error;
   }
 }
-
-
-// Register a new user
-async function registerCustomer({ first_name, last_name, email, ph_num, gender, pay_method, username, password, street_address, city, province, postal_code, country }) {
-  try {
-    // Add a new Customer
-    logger.info('pg.DAL: Adding a new customer.');
-    const sqlCustomer = `INSERT INTO public.customer (first_name, last_name, email, ph_num, gender, pay_method) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;`;
-    const valuesCustomer = [first_name, last_name, email, ph_num, gender, pay_method];
-    const newCustomer = await dal.query(sqlCustomer, valuesCustomer);
-    const newCustomerId = newCustomer.rows[0].customer_id;
-
-    // Register a new user
-    logger.info('pg.DAL: Registering a new user.');
-    const sqlUser = 'INSERT INTO public.customer_account (customer_id, username, password) VALUES ($1, $2, $3) RETURNING *;';
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const valuesUser = [newCustomerId, username, hashedPassword];
-    const newUser = await dal.query(sqlUser, valuesUser);
-
-    // Add a new Customer Address
-    logger.info('pg.DAL: Adding a new customer address.');
-    const sqlAddress = `INSERT INTO public.customer_address (customer_id, street_address, city, province, postal_code, country) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;`;
-    const valuesAddress = [newCustomerId, street_address, city, province, postal_code, country];
-    const newCustomerAddress = await dal.query(sqlAddress, valuesAddress);
-
-    return {
-      customer: newCustomer.rows[0],
-      user: newUser.rows[0],
-      address: newCustomerAddress.rows[0]
-    };
-  } catch (error) {
-    logger.error('Error in registerAndAddCustomer():', error);
-    throw error;
-  }
-}
-
 
 // Get all Customers
 async function getAllCustomers() {  
@@ -288,7 +249,8 @@ async function addCustomerAccount({ customer_id, username, password }) {
   try {
     logger.info('pg.DAL: Adding a new customer account.');
     const sql = `INSERT INTO public.customer_account (customer_id, username, password) VALUES ($1, $2, $3) RETURNING *;`;
-    const values = [customer_id, username, password];
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const values = [customer_id, username, hashedPassword];
     const newCustomerAccount = await dal.query(sql, values);
     return newCustomerAccount.rows[0];
   } catch (error) {
@@ -320,7 +282,7 @@ async function editCustomer({customer_id, first_name, last_name, email, ph_num, 
     const updateSql = 'UPDATE public.customer SET first_name = $2, last_name = $3, email = $4, ph_num = $5, gender = $6, pay_method = $7 WHERE customer_id = $1 RETURNING *';
     const selectResult = await dal.query(selectSql, [customer_id]);
     if (selectResult.rows.length === 0) {
-      return res.status(404).json({ error: 'Customer not found' });
+      throw new Error('Customer not found');
     }
     const values = [customer_id, first_name, last_name, email, ph_num, gender, pay_method];
     const updateResult = await dal.query(updateSql, values);
@@ -398,5 +360,5 @@ module.exports = {
   editCustomerAddress,
   deleteCustomer,
   authenticateUser,
-  registerCustomer 
+  signUpUser
 };

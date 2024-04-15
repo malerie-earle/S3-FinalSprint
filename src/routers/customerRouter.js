@@ -37,15 +37,9 @@ router.get('/all/', async (req, res) => {
   }
 });
 
-// GET - A Customer
-router.get('/', async (req, res) => {
-  res.render('aCustomer.ejs', { aCustomer: null });
-});
-
-
 
 // GET - Customer by ID - /customer/:id
-router.get('/:id', async (req, res) => {
+router.get('/id/:id', async (req, res) => {
 
   const id = req.params.id;
   logger.info(`Getting the customer by ID: ${id}`);
@@ -149,7 +143,7 @@ router.get('/username/:username/', async (req, res) => {
 // ADD a Customer
 router.get('/add/', (req, res) => {
   logger.info('Rendering the Add Customer Page.');
-  res.render('addCustomer', { newCustomerId: null });
+  res.render('addCustomer');
 });
 router.post('/add/', async (req, res) => {
   logger.info('Adding a new customer.');
