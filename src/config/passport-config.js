@@ -41,7 +41,7 @@ passport.deserializeUser(async function(customer_id, done) {
     // Cache the user details
     if (user) {
       userCache[customer_id] = user;
-      return done(null, user);  // Return user details
+      return done(null, user);
     } else {
       return done(null, false, { message: 'User not found' });
     }

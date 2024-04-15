@@ -13,6 +13,8 @@ const LocalStrategy = require('passport-local').Strategy;
 const { Pool } = require('pg');
 const { authenticateUser } = require('./src/services/pg.customers.dal');
 const bodyParser = require('body-parser');
+const flash = require('connect-flash');
+
 
 // Database Connection & routers
 const mPg = require('./src/services/pg.auth_db');

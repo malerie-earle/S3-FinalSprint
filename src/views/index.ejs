@@ -18,7 +18,11 @@
 
     <a href="/registration/">Registration</a>
 
-    <a href="/login/">Login</a>
+    <% if (user) { %>
+      <a href="/login/">Logout</a>
+    <% } else { %>
+      <a href="/login/">Login</a>
+    <% } %>
 
     <a href="/search/">Search</a>
 
@@ -40,18 +44,20 @@
       <input type="submit" value="Edit Customer">
     </form>
 
-  <h3>Delete Customer:</h3>
-  <form id="delete-customer-form" action="/customer/delete/" method="POST">
-    <label for="delete-id">Enter Customer ID:</label>
-    <input type="text" id="delete-id" name="customer_id" required>
-    <input type="submit" value="Delete Customer">
-  </form>
+    <h3>Delete Customer:</h3>
+    <form id="delete-customer-form" action="/customer/delete/" method="POST">
+      <label for="delete-id">Enter Customer ID:</label>
+      <input type="text" id="delete-id" name="customer_id" required>
+      <input type="submit" value="Delete Customer">
+    </form>
+  </div>
+
   <script>
     console.log('Script is running');
     document.getElementById('delete-customer-form').addEventListener('submit', function(event) {
       console.log('Form submitted');
       event.preventDefault();
-      const id = document.getElementById('delete-id').value; // Changed variable name to 'id'
+      const id = document.getElementById('delete-id').value;
       fetch('/customer/delete/' + id, {
         method: 'POST',
         credentials: 'same-origin'
@@ -67,11 +73,12 @@
         console.error('There has been a problem with your fetch operation:', error);
       });
     });
+
     document.getElementById('edit-customer-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const id = document.getElementById('edit-id').value;
-    window.location.href = '/customer/edit/' + id;
-  });
+      event.preventDefault();
+      const id = document.getElementById('edit-id').value;
+      window.location.href = '/customer/edit/' + id;
+    });
   </script>
 </body>
 </html>
