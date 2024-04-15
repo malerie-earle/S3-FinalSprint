@@ -71,7 +71,7 @@ app.use('/', require('./src/routers/searchRouter'));
     logger.info('Connected to the PostgreSQL Database!');
   } catch (error) {
     logger.error('Error connecting to the database', error);
-    res.status(500).render('503');
+    process.exit(1); // Stop the server
   }
 })();
 

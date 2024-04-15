@@ -1,9 +1,7 @@
 <div class="productResult">
-  <% searchResults.forEach(function(product) { %>
-    <img src = "<%= product.image %>" alt = "Product Image" class = "productImage" height = "20%" width = "20%" />
-    <h3><a href="/product/<%= product.product_id %>"><%= product.product_name></a></h3>
-    <b>ID:</b><%= product.product_id %>  <b>Price:</b><%= product.price %>  <b>Category:</b><%= product.category %>
-    <b>Vendor:</b><%= product.vendor %>
-    <a href="/product/<%= product.product_id %>">See More >></a>
-  <% }); %>
+  <img src="<%= products.image %>" alt="Product Image" class="productImage" height="20%" width="20%" />
+  <h3><a href="/product/<%= products.product_id %>"><%= products.product_name %></a></h3>
+  <b>ID:</b><%= products.product_id %>  <b>Price:</b><%= products.price %>  <b>Category:</b><%= products.category %>
+  <b>Vendor:</b><%= products.vendor %>
+  <a href="/product/<%= products.product_id %>">See More >></a>
 </div>

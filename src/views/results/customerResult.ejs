@@ -1,11 +1,7 @@
 <div class="customerResult">
-  <% searchResults.forEach(function(customer) { %>
-    <h3><a href="/customer/<%= customer.customer_id %>"><%= customer.first_name %> <%= customer.last_name %></a></h3>
-    <b>ID:</b><%= customer.customer_id %>   <b>Gender:</b><%= customer.gender %> <br />
-    <b>Email:</b><%= customer.email %> <b>Phone Number:</b><%= customer.ph_num %> <br />
-    <b>Username:</b><%= customer_account.username %>  <b>Password:</b><%= customer_account.password %> <br />
-    <b>Payment Method:</b> <%= customer.pay_method %> <br />
-    <b>Street Address:</b> <%= customer_address.street_address %>, <%= customer_address.city %>, <%= customer_address.province %>, <%= customer_address.country %>, <%= customer_address.postal_code %>
-    <a href="/customer/<%= customer.customer_id %>">See More >></a>
-  <% }); %>
+  <h3><a href="/customer/<%= customer.customer_id %>"><%= customer.first_name %> <%= customer.last_name %></a></h3>
+  <b>ID:</b><%= customer.customer_id %>   <b>Gender:</b><%= customer.gender %> <br />
+  <b>Email:</b><%= customer.email %> <b>Phone Number:</b><%= customer.ph_num %> <br />
+  <b>Payment Method:</b> <%= customer.pay_method %> <br />
+  <a href="/customer/<%= customer.customer_id %>">See More >></a>
 </div>
