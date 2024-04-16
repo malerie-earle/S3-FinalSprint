@@ -1,3 +1,7 @@
+if (!process.env.MDBATLAS) {
+  throw new Error('The MDBATLAS environment variable is not set');
+}
+
 const { MongoClient } = require('mongodb');
 const logger = require('../logEvents.js');
 
@@ -11,10 +15,14 @@ class Pool {
     try {
       await this.client.connect();
       this.db = this.client.db(process.env.MDBNAME);
+      logger.info('MongoDB Atlas Connection Established.');
     } catch (error) {
       logger.error('Error connecting to MongoDB Atlas: ', error);
-      throw error; // Propagate the error
     }
+  }
+
+  isConnected() {
+    return this.client.isConnected();
   }
 
   async close() {

@@ -16,24 +16,21 @@ async function getAllRecipes(page = 1, pageSize = 50) {
 
     // Calculate skip value based on page and pageSize
     const skip = (page - 1) * pageSize;
+
+    // Find recipes with pagination
+    logger.info(page, pageSize, skip);
     const theRecipes = await recipes.find().skip(skip).limit(pageSize).toArray();
 
-    // logger.info(theRecipes);
+    // logger.info(result);
     return { page, pageSize, theRecipes };
   } catch (error) {
     logger.error('Error occurred while fetching data from MongoDB:', error);
     throw error;
-  // } finally {
-  //   logger.info('Closing the connection to MongoDB');
-  //   dal.close();
+  } finally {
+    logger.info('Closing the connection to MongoDB');
+    dal.close();
   }
 }
-
-module.exports = {
-  getAllRecipes
-};
-
-
 
 async function getRecipeById(_id) {
   logger.info('mongo.dal.getRecipeById()');
@@ -42,7 +39,6 @@ async function getRecipeById(_id) {
     logger.info('Connected to MongoDB');
     const recipes = dal.db.collection('Recipes');
     const result = await recipes.findOne({ _id: ObjectId(_id) });
-    logger.info('Result:', result);
     return result;
   } catch(error) {
     logger.error('Error occurred while fetching data from MongoDB:', error);
@@ -56,4 +52,4 @@ async function getRecipeById(_id) {
 module.exports = {
   getAllRecipes,
   getRecipeById
-}
+};
