@@ -1,3 +1,7 @@
+if (!process.env.MDBATLAS) {
+  throw new Error('The MDBATLAS environment variable is not set');
+}
+
 const { MongoClient } = require('mongodb');
 const logger = require('../logEvents.js');
 
@@ -17,6 +21,10 @@ class Pool {
     }
   }
 
+  isConnected() {
+    return this.client.isConnected();
+  }
+
   async close() {
     await this.client.close();
     logger.info('MongoDB Atlas Connection Closed.');
@@ -24,15 +32,5 @@ class Pool {
 }
 
 const pool = new Pool();
-
-// Connect to the pool
-(async () => {
-  try {
-    await pool.connect();
-    logger.info('Connected to the MongoDB Database!');
-  } catch (error) {
-    logger.error('Error connecting to the database', error);
-  }
-})();
 
 module.exports = pool;

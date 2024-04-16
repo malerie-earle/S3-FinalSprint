@@ -1,8 +1,13 @@
+if (!process.env.MDBATLAS) {
+  throw new Error('The MDBATLAS environment variable is not set');
+}
+
 const logger = require('../logEvents.js');
 const pgDal = require('./pg.auth_db.js');
 const mDal = require('./m.auth_db.js');
 const { MongoClient } = require('mongodb');
 const mongoose = require('mongoose');
+const checkIndexes = require('./searchIndexes');
 
 async function searchInPostgres(query) {
   let client; 
@@ -32,7 +37,7 @@ async function searchInPostgres(query) {
         searchResults.push(row);
       });
     }
-
+    logger.info(searchResults);
     return searchResults; // Return the search results
   } catch (error) {
     logger.error('Error searching in PostgreSQL:', error);
@@ -50,12 +55,22 @@ async function searchInPostgres(query) {
 }
 
 
+
+// Function to search in MongoDB
 async function searchInMongo(query) {
+  let Recipe;
+  let client;
+  let searchResults = [];
+
+  // Ensure MongoDB indexes before performing the search
+  await checkIndexes();
+
   try {
-    let Recipe;
-    if (mongoose.models.Recipes) {
-      Recipe = mongoose.model('Recipes');
+    // Check if the Recipe model is already defined
+    if (mongoose.models[process.env.MDBCOLLECTION]) { // Use environment variable
+      Recipe = mongoose.model(process.env.MDBCOLLECTION); // Use environment variable
     } else {
+      // Define the Recipe model schema if it's not already defined
       const RecipeSchema = new mongoose.Schema({
         title: String,
         ingredients: [String],
@@ -64,34 +79,43 @@ async function searchInMongo(query) {
         source: String,
         NER: [String],
       });
-      Recipe = mongoose.model('Recipes', RecipeSchema);
+      Recipe = mongoose.model(process.env.MDBCOLLECTION, RecipeSchema); // Use environment variable
     }
+
+    // Create a new MongoClient instance
+    client = new MongoClient(process.env.MDBATLAS);
 
     // Connect to MongoDB
-    const isConnected = await mDal.connect();
-    if (!isConnected) {
-      throw new Error('Unable to connect to MongoDB');
-    }
+    await client.connect();
 
-    // Perform the search using safe query building techniques
-    const result = await Recipe.find({ $text: { $search: query } }).exec();
+    const db = client.db(process.env.MDBNAME);
+    const collection = db.collection(process.env.MDBCOLLECTION); // Use environment variable
 
-    // Add a type property to each result object
-    result.forEach(item => {
-      // Ensure item is an array
-      item = Array.isArray(item) ? item : [item];
-      item.type = 'Recipes'; // Replace 'Recipes' with the appropriate collection name
+    // Perform the search using MongoDB's text search feature
+    const result = await collection.find({ $text: { $search: query } }).toArray();
+
+    // Add the search results to searchResults
+    searchResults = result.map(item => {
+      // Add a type property to each result object
+      item.type = process.env.MDBCOLLECTION;
+      return item;
     });
 
-    // Close the connection
-    await mDal.close();
-
-    return result || []; // Ensure the function always returns an array
+    
   } catch (error) {
     logger.error('Error searching in MongoDB:', error);
     throw error;
+  } finally {
+    // Close MongoDB connection if needed
+    if (client && client.topology.isConnected()) {
+      await client.close();
+    }
   }
+  logger.info(searchResults);
+  // Return searchResults
+  return searchResults;
 }
+
 
 module.exports = {
   searchInPostgres,

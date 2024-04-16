@@ -8,7 +8,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-<div class = "home">
+<div class="home">
   <h1>Newfie Nook Search:</h1>
 
   <!-- Form for search query, database selection, and user ID -->
@@ -28,45 +28,46 @@
       <!-- Hidden input field to capture user ID -->
       <input type="hidden" id="user-id" name="user_id" value="">
       <br />
-      <button class = "submitButton" type="submit">Search</button>
+      <button class="submitButton" type="submit">Search</button>
     </form>
   </div>
 
   <!-- Container for displaying search results -->
-  <div class="search-results-container">
+  <div id="search-results-container">
     <!-- Initially empty, will be populated with search results dynamically -->
   </div>
 </div>
-  <script>
-    // jQuery AJAX request to handle form submission
-    $('#search-form').submit(function(e) {
-      e.preventDefault(); // Prevent form submission
-      
-      var query = $('#search').val(); // Get search query from input field
-      var database = $('#database').val(); // Get selected database from dropdown
-      var user_id = $('#user-id').val(); // Get user ID from hidden input
 
-      $.ajax({
-        type: 'POST',
-        url: '/search/',
-        data: { 
-          query: query,
-          database: database,
-          user_id: user_id 
-        },
-        success: function(response) {
-          // Display search results in the container
-          $('#search-results-container').html(response);
-        },
-        error: function(xhr, status, error) {
-          // Display error message
-          $('#search-results-container').html('<p>An error occurred. Please try again later.</p>');
-          console.error('Error:', error);
-        }
-        
-      });
+<script>
+  // jQuery AJAX request to handle form submission
+  $('#search-form').submit(function(e) {
+    e.preventDefault(); // Prevent form submission
+    
+    var query = $('#search').val(); // Get search query from input field
+    var database = $('#database').val(); // Get selected database from dropdown
+    var user_id = $('#user-id').val(); // Get user ID from hidden input
+
+    $.ajax({
+      type: 'POST',
+      url: '/search/',
+      data: { 
+        query: query,
+        database: database,
+        user_id: user_id 
+      },
+      success: function(response) {
+        // Display search results in the container
+        $('#search-results-container').html(response);
+      },
+      error: function(xhr, status, error) {
+        // Display error message
+        $('#search-results-container').html('<p>An error occurred. Please try again later.</p>');
+        console.error('Error:', error);
+      }
+      
     });
-  </script>
+  });
+</script>
 
 </body>
 </html>

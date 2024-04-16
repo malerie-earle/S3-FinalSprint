@@ -1,5 +1,5 @@
 <h1>Search Results</h1>
-<p>Number of results: <%= searchResults.length %></p>
+<p>Number of results: <%= searchResults ? searchResults.length : 0 %></p>
 <% if (searchResults.length === 0) { %>
     <p>No results found.</p>
 <% } else { %>

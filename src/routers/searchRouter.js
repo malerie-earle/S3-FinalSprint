@@ -59,12 +59,12 @@ router.post('/search/', async (req, res) => {
       searchResults = await searchInPostgres(query);
       searchResults = searchResults.flat(); 
       logger.info(`Search results for '${query}' in PostgreSQL`);
-    
+      return res.render('results/searchResults', { searchResults: searchResults });
     } else if (database === 'mongo') {
       searchResults = await searchInMongo(query);
       searchResults = searchResults.flat(); 
       logger.info(`Search results for '${query}' in MongoDB`);
-    
+      return res.render('results/searchResults', { searchResults: searchResults });
     } else if (database === 'both') {
       let [pgResults, mongoResults] = await Promise.all([
         searchInPostgres(query),
@@ -72,13 +72,11 @@ router.post('/search/', async (req, res) => {
       ]);
       searchResults = [...pgResults.flat(), ...mongoResults.flat()];
       logger.info(`Search results for '${query}' in both databases`);
+      return res.render('results/searchResults', { searchResults: searchResults });
     } else {
       logger.error('Invalid database selection.');
       return res.status(400).json({ error: 'Invalid database selection.' });
     }  
-
-    res.render('results/searchResults', { searchResults: searchResults });
-
   } catch (error) {
     logger.error('Error searching:', error);
     res.status(500).send('Internal Server Error');
