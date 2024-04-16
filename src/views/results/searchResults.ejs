@@ -16,8 +16,8 @@
             <%- include('vendorResult', { vendor: result }) %> 
         <% } else if (result.type === 'vendor_address') { %>
             <%- include('vendorAddressResult', { vendor_address: result }) %> 
-        <% } else if (result.type === 'recipes') { %>
-            <%- include('recipeResult', { recipes: result }) %> 
+        <% } else if (result.type === 'Recipes') { %>
+            <%- include('recipeResult', { Recipes: result }) %> 
         <% } else { %>
             <p>Unknown result type: <%= result.type %>. Please check your data.</p>
             <p><%= JSON.stringify(result) %></p>

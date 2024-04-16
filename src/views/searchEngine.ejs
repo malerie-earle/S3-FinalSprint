@@ -8,39 +8,40 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-
+<div class = "home">
   <h1>Newfie Nook Search:</h1>
 
   <!-- Form for search query, database selection, and user ID -->
   <div class="searchEngine">
     <form id="search-form" action="/search/" method="POST">
       <label for="search">Search:</label>
-      <input type="text" id="search" name="search" placeholder="Enter your search for products, recipes and more..." required>
+      <input type="text" id="search" name="search" placeholder="Enter your search for products, vendors, recipes and more..." required>
       
       <!-- Dropdown for selecting database -->
       <label for="database">Select Database:</label>
       <select id="database" name="database">
-        <option value="pg">PostgreSQL - Products & User search</option>
-        <option value="mongo">MongoDB - Recipes </option>
+        <option value="pg">PostgreSQL - Products & Vendor Search</option>
+        <option value="mongo">MongoDB - Recipes Search </option>
         <option value="both">Both</option>
       </select>
       
       <!-- Hidden input field to capture user ID -->
       <input type="hidden" id="user-id" name="user_id" value="">
-
-      <button type="submit">Search</button>
+      <br />
+      <button class = "submitButton" type="submit">Search</button>
     </form>
   </div>
 
   <!-- Container for displaying search results -->
-  <div id="search-results-container">
+  <div class="search-results-container">
     <!-- Initially empty, will be populated with search results dynamically -->
   </div>
-
+</div>
   <script>
     // jQuery AJAX request to handle form submission
     $('#search-form').submit(function(e) {
       e.preventDefault(); // Prevent form submission
+      
       var query = $('#search').val(); // Get search query from input field
       var database = $('#database').val(); // Get selected database from dropdown
       var user_id = $('#user-id').val(); // Get user ID from hidden input
@@ -62,6 +63,7 @@
           $('#search-results-container').html('<p>An error occurred. Please try again later.</p>');
           console.error('Error:', error);
         }
+        
       });
     });
   </script>

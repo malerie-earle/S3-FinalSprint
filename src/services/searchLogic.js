@@ -2,10 +2,10 @@ const logger = require('../logEvents.js');
 const pgDal = require('./pg.auth_db.js');
 const mDal = require('./m.auth_db.js');
 const { MongoClient } = require('mongodb');
-
+const mongoose = require('mongoose');
 
 async function searchInPostgres(query) {
-  let client;  // Declare client outside of try-catch to access it in finally block
+  let client; 
   try {
     client = await pgDal.connect();
 
@@ -49,28 +49,32 @@ async function searchInPostgres(query) {
   }
 }
 
+
 async function searchInMongo(query) {
   try {
-    const uri = process.env.MDBATLAS;
-    const dbName = process.env.MDBNAME;
-
-    // Create a new MongoClient instance
-    const client = new MongoClient(uri);
-
-    // Connect to MongoDB
-    await client.connect();
-
-    // Check if the client is connected
-    if (!client.topology.isConnected()) {
-      throw new Error('MongoDB client is not connected');
+    let Recipe;
+    if (mongoose.models.Recipes) {
+      Recipe = mongoose.model('Recipes');
+    } else {
+      const RecipeSchema = new mongoose.Schema({
+        title: String,
+        ingredients: [String],
+        directions: [String],
+        link: String,
+        source: String,
+        NER: [String],
+      });
+      Recipe = mongoose.model('Recipes', RecipeSchema);
     }
 
-    // Specify the database and collection
-    const db = client.db(dbName);
-    const collection = db.collection('Recipes');
+    // Connect to MongoDB
+    const isConnected = await mDal.connect();
+    if (!isConnected) {
+      throw new Error('Unable to connect to MongoDB');
+    }
 
     // Perform the search using safe query building techniques
-    const result = await collection.find({ $text: { $search: query } }).toArray();
+    const result = await Recipe.find({ $text: { $search: query } }).exec();
 
     // Add a type property to each result object
     result.forEach(item => {
@@ -80,16 +84,14 @@ async function searchInMongo(query) {
     });
 
     // Close the connection
-    await client.close();
+    await mDal.close();
 
-    return result;
+    return result || []; // Ensure the function always returns an array
   } catch (error) {
     logger.error('Error searching in MongoDB:', error);
     throw error;
   }
 }
-
-
 
 module.exports = {
   searchInPostgres,
