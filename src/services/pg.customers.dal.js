@@ -1,3 +1,4 @@
+// Import the required modules
 const dal = require('./pg.auth_db');
 const logger = require('../logEvents');
 const { log } = require('winston');
@@ -6,28 +7,32 @@ const bcrypt = require('bcrypt');
 // Function to authenticate user
 async function authenticateUser(username, password) {
   try {
+    // Authenticate the user
     logger.info('pg.DAL: Authenticating user.');
     const sql = 'SELECT * FROM public.customer_account WHERE username = $1;';
     const result = await dal.query(sql, [username]);
     const user = result.rows[0];
 
+    // If the user is not found, return null
     if (!user) {
       logger.info('User not found.');
       return null;
     }
-
+    // If the user is found, compare the password
     logger.info(`Retrieved user: ${JSON.stringify(user)}`);
     logger.info(`Entered password: ${password}`);
     logger.info(`Stored hashed password: ${user.password}`); // add password hashing - password showing as entered.
 
+    // Compare the entered password with the stored hashed password
     if (password !== user.password) {
       logger.info('Incorrect password.');
-      logger.info('Username or password is incorrect. Redirecting to Login Page.');
       return null;
     }
 
+    // Return the user
     logger.info('User authenticated successfully.');
     return user;
+  // Handle errors
   } catch (error) {
     logger.error('Error in authenticateUser():', error);
     throw error;
@@ -38,7 +43,7 @@ async function authenticateUser(username, password) {
 // Register a new user
 async function signUpUser({ first_name, last_name, email, ph_num, gender, pay_method, username, password, street_address, city, province, postal_code, country }) {
   const userDetails = { first_name, last_name, email, ph_num, gender, pay_method, username, password, street_address, city, province, postal_code, country };
-  console.log('pg.DAL: signUpUser() userDetails:', userDetails);
+  logger.info('pg.DAL: signUpUser():', userDetails);
   try {
     // Add a new Customer
     logger.info('pg.DAL: Adding a new customer.');

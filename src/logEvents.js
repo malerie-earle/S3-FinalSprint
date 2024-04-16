@@ -3,6 +3,7 @@ require('winston-daily-rotate-file');
 const fs = require('fs');
 const path = require('path');
 const color = require('colors');
+const { log } = require('console');
 
 // Create a 'logs' directory if it doesn't exist
 const logsDir = './logs';
@@ -31,6 +32,13 @@ const errorFileRotateTransport = new winston.transports.DailyRotateFile({
   filename: `${logsDir}/%DATE%/error-%DATE%.log`,
   datePattern: 'YYYY-MM-DD',
   level: 'error',
+  maxFiles: '30d'
+});
+
+// Initiate daily log files inside the 'logs' directory for search queries
+const searchQueryFileRotateTransport = new winston.transports.DailyRotateFile({
+  filename: `${logsDir}/%DATE%/searchQueries-%DATE%.log`,
+  datePattern: 'YYYY-MM-DD',
   maxFiles: '30d'
 });
 
@@ -69,13 +77,13 @@ const logger = winston.createLogger({
   transports: [
     fileRotateTransport,
     errorFileRotateTransport,
+    searchQueryFileRotateTransport,
     new winston.transports.Console()
   ],
   exitOnError: false,
   handleExceptions: true, 
   handleRejections: true 
 });
-console.log(logger);
 
 // Modify your error handling to capture stack traces
 process.on('uncaughtException', (err) => {
@@ -100,6 +108,11 @@ fileRotateTransport.on('logRemoved', (removedFilename) => {
   logger.info(`A log file was removed: ${newFilename}`);
 });
 
+// Function to log search queries
+function logSearchQuery(userId, query, database) {
+  logger.info(`Search query: User ID: ${userId}, Query: ${query}, Database: ${database}`);
+}
+
 // Usage:
 logger.info('This is an information message.');
 logger.warn('This is a warning message.');
@@ -107,4 +120,6 @@ logger.error('This is an error message.');
 logger.debug('This is a debug message.');
 
 module.exports = 
-logger ;
+  logger, 
+  logSearchQuery
+;
