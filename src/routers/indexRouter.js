@@ -99,11 +99,15 @@ router.get('/login/', isAuthenticated, (req, res) => {
 });
 
 // Logout Route
-router.get('/login/', (req, res) => {
-  req.logout(); // Passport method to remove the user from the session
-  req.flash('success_msg', 'You are logged out'); // Optional: Flash message for successful logout
-  res.redirect('/login'); // Redirect to the login page or any other page
+router.get('/logout/', (req, res) => {
+  req.logout(() => { // Add the callback function here
+    req.flash('success_msg', 'You are logged out'); // Optional: Flash message for successful logout
+    logger.info('User logged out successfully. Redirecting to Login Page.');
+    res.redirect('/login'); // Redirect to the login page or any other page
+  });
 });
+
+
 
 
 
