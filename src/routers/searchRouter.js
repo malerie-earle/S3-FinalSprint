@@ -2,15 +2,20 @@ const express = require('express');
 const router = express.Router();
 const logger = require('../logEvents.js');
 const { searchInPostgres, searchInMongo } = require('../services/searchLogic.js');
+const isAuthenticated = require('../middleware/authMiddleware.js');  // Assuming you have the authMiddleware.js in the middleware directory
 
 // List of All Available Routes
 logger.info('Index Router - API Endpoints:');
 logger.info('Route: GET/READ - Home Page - /');
 logger.info('Route: GET/READ - Login Page - /login/');
 logger.info('Route: GET/READ - Registration Page - /registration/');
+logger.info('Route: GET/READ - Search Customer Page - /customer/search/');
+logger.info('Route: GET/READ - Search Product Page - /product/search/');
+logger.info('Route: GET/READ - Search Recipe Page - /search/');
+logger.info('Route: POST - Search Engine - /search/');
 
 // GET - Search Customer Page
-router.get('/customer/search/', (req, res) => {
+router.get('/customer/search/', isAuthenticated, (req, res) => {
   try {
     logger.info('Rendering the Search Customer Page.');
     res.render('searchCustomers.ejs');
@@ -21,7 +26,7 @@ router.get('/customer/search/', (req, res) => {
 });
 
 // GET - Search Product Page
-router.get('/product/search/', (req, res) => {
+router.get('/product/search/', isAuthenticated, (req, res) => {
   try {
     logger.info('Rendering the Search Product Page.');
     res.render('searchProducts.ejs');
@@ -32,7 +37,7 @@ router.get('/product/search/', (req, res) => {
 });
 
 // GET - Search Recipe Page
-router.get('/search/', (req, res) => {
+router.get('/search/', isAuthenticated, (req, res) => {
   try {
     logger.info('Rendering the Search Page.');
     res.render('searchEngine.ejs');
@@ -43,7 +48,7 @@ router.get('/search/', (req, res) => {
 });
 
 // POST - Search Engine
-router.post('/search/', async (req, res) => {
+router.post('/search/', isAuthenticated, async (req, res) => {
   try {
     const { query, database } = req.body; 
 

@@ -48,12 +48,16 @@ async function signUpUser({ first_name, last_name, email, ph_num, gender, pay_me
 
     // Add a new Customer Account
     logger.info('pg.DAL: Registering a new user.');
-    const newCustomerAccount = await addCustomerAccount({ customer_id: newCustomerId, username, password });
+    const newCustomerAccount = await addCustomerAccount({ customer_id: newCustomerId2, username, password });
+    const newCustomerId2 = newCustomer.customer_id;
+
     logger.info('pg.DAL: New user registered successfully.');
 
     // Add a new Customer Address
     logger.info('pg.DAL: Adding a new customer address.');
-    const newCustomerAddress = await addCustomerAddress({ customer_id: newCustomerId, street_address, city, province, postal_code, country });
+    const newCustomerAddress = await addCustomerAddress({ customer_id: newCustomerId3, street_address, city, province, postal_code, country });
+    const newCustomerId3 = newCustomer.customer_id;
+
     logger.info('pg.DAL: New customer address added successfully.');
 
     logger.info('pg.DAL: New customer registered successfully.');
