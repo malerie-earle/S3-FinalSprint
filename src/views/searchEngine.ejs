@@ -7,20 +7,26 @@
   <link rel="stylesheet" href="/styles/index.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
+<%- include('./partials/header.ejs') %>
 <body>
 <div class="home">
   <h1>Newfie Nook Search:</h1>
+
+  <a href="/customer/search/">Search Customers</a>
+  <a href="/product/search/">Search Products</a>
+  <a href="/vendor/search/">Search Vendors</a>
+  <a href="/recipe/search/">Search Recipes</a>
 
   <!-- Form for search query, database selection, and user ID -->
   <div class="searchEngine">
     <form id="search-form" action="/search/" method="POST">
       <label for="search">Search:</label>
-      <input type="text" id="search" name="search" placeholder="Enter your search for products, vendors, recipes and more..." required>
+      <input type="text" id="search" name="search" placeholder="Enter your search for customers, products, vendors, & recipes.." required>
       
       <!-- Dropdown for selecting database -->
       <label for="database">Select Database:</label>
       <select id="database" name="database">
-        <option value="pg">PostgreSQL - Products & Vendor Search</option>
+        <option value="pg">PostgreSQL - Customers, Products, & Vendor Search</option>
         <option value="mongo">MongoDB - Recipes Search </option>
         <option value="both">Both</option>
       </select>
