@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { getAllCustomers, getCustomerByCustomerId, getCustomerAccountByCustomerId, getCustomerAddressByCustomerId, getCustomerByFirstName, getCustomerByLastName, getCustomerByEmail, getCustomerByPhoneNum, getCustomerByGender, getCustomerByUsername, addCustomer, addCustomerAccount, addCustomerAddress, editCustomer, editCustomerAccount, editCustomerAddress, deleteCustomer, authenticateUser, registerCustomer } = require('../services/pg.customers.dal.js');
-const logger = require('../logEvents.js');
+const { logger } = require('../logEvents.js');
 const dal = require('../services/pg.auth_db.js');
 const passport = require('passport');
 const isAuthenticated = require('../config/passport-config.js');
@@ -9,19 +9,18 @@ const isAuthenticated = require('../config/passport-config.js');
 
 
 // List of All Available Routes
-logger.info('Customer Router - API Endpoints:');
-logger.info('Route: GET/READ - All Customers - /customer/all/');
-logger.info('Route: GET/READ - Single Customer by ID - /customer/id/:id');
-logger.info('Route: GET/READ - Customers by First Name - /customer/first/:firstName');
-logger.info('Route: GET/READ - Customers by Last Name - /customer/last/:lastName');
-logger.info('Route: GET/READ - Single Customer by Email - /customer/email/:email');
-logger.info('Route: GET/READ - Single Customer by Phone Number - /customer/phone/:ph_num');
-logger.info('Route: GET/READ - Customers by Gender - /customer/gender/:gender');
-logger.info('Route: GET/READ - Customers by Pay Method - /customer/payment/:pay_method');
-logger.info('Route: GET/READ - Single Customer by Username - /customer/username/:username');
-logger.info('Route: POST/CREATE - Add Customer - /customer/add');
-logger.info('Route: PUT/UPDATE - Edit Customer - /customer/edit');
-logger.info('Route: DELETE - Delete Customer - /customer/delete');
+logger.info('Route: /customer/all/ - GET/READ - All Customers');
+logger.info('Route: /customer/id/:id - GET/READ - Single Customer by ID');
+logger.info('Route: /customer/first/:firstName - GET/READ - Customers by First Name');
+logger.info('Route: /customer/last/:lastName - GET/READ - Customers by Last Name');
+logger.info('Route: /customer/email/:email - GET/READ - Single Customer by Email');
+logger.info('Route: /customer/phone/:ph_num - GET/READ - Single Customer by Phone Number');
+logger.info('Route: /customer/gender/:gender - GET/READ - Customers by Gender');
+logger.info('Route: /customer/payment/:pay_method - GET/READ - Customers by Pay Method');
+logger.info('Route: /customer/username/:username - GET/READ - Single Customer by Username');
+logger.info('Route: /customer/add/ - POST/CREATE - Add Customer');
+logger.info('Route: /customer/edit - PUT/UPDATE - Edit Customer');
+logger.info('Route: /customer/delete - DELETE - Delete Customer');
 
 
 // GET All Customers

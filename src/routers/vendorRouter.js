@@ -1,14 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const { getAllVendors, getVendorByVendorId, getVendorAddressByVendorId } = require('../services/pg.vendors.dal.js');
-const logger = require('../logEvents.js');
+const { logger } = require('../logEvents.js');
 const isAuthenticated = require('../middleware/authMiddleware.js');  // Assuming you have the authMiddleware.js in the middleware directory
 
 // List of All Available Routes
-logger.info('Vendor Router - API Endpoints:');
-logger.info('Route: GET/READ - All Vendors - /vendor/all/');
-logger.info('Route: GET/READ - Single Vendor by ID - /vendor/id/:id');
-logger.info('Route: GET/READ - Vendor Address by ID - /vendor/address/:id');
+logger.info('Route: /vendor/all/ - GET/READ - All Vendors');
+logger.info('Route: /vendor/id/:id/ - GET/READ - Single Vendor by ID');
+logger.info('Route: /vendor/address/:id/ - GET/READ - Vendor Address by ID');
 
 // GET All Vendors
 router.get('/all/', isAuthenticated, async (req, res) => {

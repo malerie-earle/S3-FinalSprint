@@ -1,14 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const logger = require('../logEvents.js');
+const { logger } = require('../logEvents.js');
 const dal = require('../services/m.auth_db.js');
 const { getAllRecipes, getRecipeById } = require('../services/m.recipes.dal.js');
 const isAuthenticated = require('../middleware/authMiddleware.js');  // Assuming you have the authMiddleware.js in the middleware directory
 
 // List of All Available Routes
-logger.info('Recipe Router - API Endpoints:');
-logger.info('Route: GET/READ - All Recipes - /recipe/all/');
-logger.info('Route: GET/READ - Single Recipe by ID - /recipe/:id/');
+logger.info('Route: /recipe/all/ - GET/READ - All Recipes');
+logger.info('Route: /recipe/id/:id/ - GET/READ - Single Recipe by ID');
 
 // GET - All Recipes
 router.get('/all/', isAuthenticated, async (req, res) => {

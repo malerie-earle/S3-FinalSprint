@@ -1,6 +1,6 @@
 // Import the required modules
 const { MongoClient } = require('mongodb');
-const logger = require('../logEvents.js');
+const { logger } = require('../logEvents.js');
 
 // Check if the desired indexes exist, if not, create them
 async function checkIndexes(req, res, next) {

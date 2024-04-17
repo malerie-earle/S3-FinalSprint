@@ -1,7 +1,6 @@
 // Import the required modules
 const dal = require('./pg.auth_db');
-const logger = require('../logEvents');
-const { log } = require('winston');
+const { logger } = require('../logEvents');
 const bcrypt = require('bcrypt');
 
 // Authenticate User
