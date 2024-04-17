@@ -25,6 +25,7 @@ router.get('/customer/search/', isAuthenticated, (req, res) => {
   }
 });
 
+
 // GET - Search Product Page
 router.get('/product/search/', isAuthenticated, (req, res) => {
   try {
@@ -36,6 +37,7 @@ router.get('/product/search/', isAuthenticated, (req, res) => {
   }
 });
 
+
 // GET - Search Recipe Page
 router.get('/search/', isAuthenticated, (req, res) => {
   try {
@@ -46,18 +48,18 @@ router.get('/search/', isAuthenticated, (req, res) => {
     res.status(500).render('503');
   }
 });
-
 // POST - Search Engine
 router.post('/search/', isAuthenticated, async (req, res) => {
   try {
-    const { query, database } = req.body; 
+    const { query, database, user_id } = req.body; 
+    logSearchQuery(user_id, query, database);
 
     // Error handling
     if (!query || !database) {
       logger.error('No search query provided.');
       return res.status(400).json({ error: 'No search query provided. Database selection required.' });
     }
-    
+    // Search results
     let searchResults;
     // Handle search based on database selection
     if (database === 'pg') {

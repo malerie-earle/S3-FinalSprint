@@ -1,7 +1,9 @@
+// Check if connection string is defined
 if (!process.env.MDBATLAS) {
   throw new Error('The MDBATLAS environment variable is not set');
 }
 
+// Import the required modules 
 const logger = require('../logEvents.js');
 const pgDal = require('./pg.auth_db.js');
 const mDal = require('./m.auth_db.js');
@@ -9,9 +11,12 @@ const { MongoClient } = require('mongodb');
 const mongoose = require('mongoose');
 const checkIndexes = require('./searchIndexes');
 
+// Function to search in PostgreSQL
 async function searchInPostgres(query) {
+  // Declare the client variable
   let client; 
   try {
+    // Connect to PostgreSQL
     client = await pgDal.connect();
 
     // Query the system catalogs to get all tables and columns
@@ -37,17 +42,22 @@ async function searchInPostgres(query) {
         searchResults.push(row);
       });
     }
+    // Return the search results
     logger.info(searchResults);
-    return searchResults; // Return the search results
+    return searchResults; 
+  
+  // Handle errors
   } catch (error) {
     logger.error('Error searching in PostgreSQL:', error);
     throw error;
+
+  // Ensure the client is released back to the pool
   } finally {
-    // Release the client back to the pool
     try {
       if (client) {
         await client.release();
       }
+    // Handle errors
     } catch (error) {
       logger.error('Error releasing PostgreSQL client:', error);
     }
@@ -58,6 +68,7 @@ async function searchInPostgres(query) {
 
 // Function to search in MongoDB
 async function searchInMongo(query) {
+  // Declare the Recipe model and client variables
   let Recipe;
   let client;
   let searchResults = [];
@@ -67,10 +78,11 @@ async function searchInMongo(query) {
 
   try {
     // Check if the Recipe model is already defined
-    if (mongoose.models[process.env.MDBCOLLECTION]) { // Use environment variable
-      Recipe = mongoose.model(process.env.MDBCOLLECTION); // Use environment variable
+    if (mongoose.models[process.env.MDBCOLLECTION]) { 
+      Recipe = mongoose.model(process.env.MDBCOLLECTION); 
+
+    // Define the Recipe model schema if it's not already defined
     } else {
-      // Define the Recipe model schema if it's not already defined
       const RecipeSchema = new mongoose.Schema({
         title: String,
         ingredients: [String],
@@ -79,7 +91,8 @@ async function searchInMongo(query) {
         source: String,
         NER: [String],
       });
-      Recipe = mongoose.model(process.env.MDBCOLLECTION, RecipeSchema); // Use environment variable
+      // Create the Recipe model
+      Recipe = mongoose.model(process.env.MDBCOLLECTION, RecipeSchema);
     }
 
     // Create a new MongoClient instance
@@ -88,6 +101,7 @@ async function searchInMongo(query) {
     // Connect to MongoDB
     await client.connect();
 
+    // Access the database and collection
     const db = client.db(process.env.MDBNAME);
     const collection = db.collection(process.env.MDBCOLLECTION); // Use environment variable
 
@@ -98,25 +112,27 @@ async function searchInMongo(query) {
     searchResults = result.map(item => {
       // Add a type property to each result object
       item.type = process.env.MDBCOLLECTION;
+      logger.info('Item: ', item);
       return item;
     });
 
-    
+  // Handle errors
   } catch (error) {
     logger.error('Error searching in MongoDB:', error);
     throw error;
+  
+  // Ensure the client is closed
   } finally {
-    // Close MongoDB connection if needed
     if (client && client.topology.isConnected()) {
       await client.close();
     }
   }
+  // Return the search results
   logger.info(searchResults);
-  // Return searchResults
   return searchResults;
 }
 
-
+// Export the functions
 module.exports = {
   searchInPostgres,
   searchInMongo
