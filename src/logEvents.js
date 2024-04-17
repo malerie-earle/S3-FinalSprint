@@ -109,8 +109,8 @@ fileRotateTransport.on('logRemoved', (removedFilename) => {
 });
 
 // Function to log search queries
-function logSearchQuery(userId, query, database) {
-  logger.info(`Search query: User ID: ${userId}, Query: ${query}, Database: ${database}`);
+function logSearchQuery(user_id, query, database) {
+  logger.info(`Search query: User ID: ${user_id}, Query: ${query}, Database: ${database}`);
 }
 
 // Usage:
