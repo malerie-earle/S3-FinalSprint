@@ -5,10 +5,9 @@ const { getAllProducts, getProductByProductId } = require('../services/pg.produc
 const isAuthenticated = require('../middleware/authMiddleware.js');  // Assuming you have a middleware for authentication
 
 // List of All Available Routes
-logger.info('Product Router - API Endpoints:');
-logger.info('Route: GET/READ - All Products - /product/all/');
-logger.info('Route: GET/READ - Single Product by ID - /product/:id/');
-logger.info('Route: GET/READ - Search Products - /product/search/');
+logger.info('Route: /product/all/ - GET/READ - All Products');
+logger.info('Route: /product/id/:id/ - GET/READ - Single Product by ID');
+logger.info('Route: /product/search/ - GET/READ - Search Products');
 
 // GET - All Products Page
 router.get('/', isAuthenticated, (req, res) => {

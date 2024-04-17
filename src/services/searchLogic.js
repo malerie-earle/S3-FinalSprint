@@ -43,7 +43,7 @@ async function searchInPostgres(query) {
       });
     }
     // Return the search results
-    logger.info(searchResults);
+    // logger.info(searchResults);
     return searchResults; 
   
   // Handle errors
@@ -112,7 +112,7 @@ async function searchInMongo(query) {
     searchResults = result.map(item => {
       // Add a type property to each result object
       item.type = process.env.MDBCOLLECTION;
-      logger.info('Item: ', item);
+      // logger.info('Item: ', item);
       return item;
     });
 
@@ -127,9 +127,17 @@ async function searchInMongo(query) {
       await client.close();
     }
   }
-  // Return the search results
-  logger.info(searchResults);
-  return searchResults;
+
+// Function to remove duplicate objects from an array
+function removeDuplicates(array) {
+  const jsonString = array.map(JSON.stringify);
+  const uniqueSet = new Set(jsonString);
+  return Array.from(uniqueSet).map(JSON.parse);
+}
+
+// Return the search results
+let uniqueSearchResults = removeDuplicates(searchResults);
+return uniqueSearchResults;
 }
 
 // Export the functions

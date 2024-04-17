@@ -19,11 +19,12 @@ const flash = require('connect-flash');
 // Database Connection & routers
 const mPg = require('./src/services/pg.auth_db');
 const mDal = require('./src/services/m.auth_db.js');
-const customerRouter = require('./src/routers/customerRouter');
-const productRouter = require('./src/routers/productRouter');
 const indexRouter = require('./src/routers/indexRouter');
-const recipeRouter = require('./src/routers/recipeRouter');
+const customerRouter = require('./src/routers/customerRouter');
 const vendorRouter = require('./src/routers/vendorRouter');
+const productRouter = require('./src/routers/productRouter');
+const recipeRouter = require('./src/routers/recipeRouter');
+
 
 // App setup
 const app = express();

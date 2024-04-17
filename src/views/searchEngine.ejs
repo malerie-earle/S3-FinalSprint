@@ -26,9 +26,9 @@
       </select>
       
       <!-- Hidden input field to capture user ID -->
-      <input type="hidden" id="user-id" name="user_id" value="">
+      <input type="hidden" id="customer-id" name="customer_id" value="<%= user.customer_id %>">
       <br />
-      <button class="submitButton" type="submit">Search</button>
+      <button class="submitButton" id="submit" type="submit">Search</button>
     </form>
   </div>
 
@@ -39,34 +39,34 @@
 </div>
 
 <script>
-  // jQuery AJAX request to handle form submission
-  $('#search-form').submit(function(e) {
-    e.preventDefault(); // Prevent form submission
-    
-    var query = $('#search').val(); // Get search query from input field
-    var database = $('#database').val(); // Get selected database from dropdown
-    var user_id = $('#user-id').val(); // Get user ID from hidden input
+  $('#search-form').on('submit', function(event) {
+  event.preventDefault();
 
-    $.ajax({
-      type: 'POST',
-      url: '/search/',
-      data: { 
-        query: query,
-        database: database,
-        user_id: user_id 
-      },
-      success: function(response) {
-        // Display search results in the container
-        $('#search-results-container').html(response);
-      },
-      error: function(xhr, status, error) {
-        // Display error message
-        $('#search-results-container').html('<p>An error occurred. Please try again later.</p>');
-        console.error('Error:', error);
-      }
-      
-    });
+  // Get the user_id, query, and database
+  var user_id = $('#customer-id').val();
+  var query = $('#search').val(); 
+  var database = $('#database').val();
+
+  // Send an AJAX request to the server
+  $.ajax({
+    url: '/search/', 
+    method: 'POST',
+    data: {
+      user_id: user_id,
+      query: query,
+      database: database
+    },
+    success: function(response) {
+      // Display search results in the container
+      $('#search-results-container').html(response);
+    },
+    error: function(xhr, status, error) {
+      // Display error message
+      $('#search-results-container').html('<p>An error occurred. Please try again later.</p>');
+      console.error('Error:', error);
+    }
   });
+});
 </script>
 
 </body>
