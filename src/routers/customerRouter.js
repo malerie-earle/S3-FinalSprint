@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { getAllCustomers, getCustomerByCustomerId, getCustomerAccountByCustomerId, getCustomerAddressByCustomerId, getCustomerByFirstName, getCustomerByLastName, getCustomerByEmail, getCustomerByPhoneNum, getCustomerByGender, getCustomerByUsername, addCustomer, addCustomerAccount, addCustomerAddress, editCustomer, editCustomerAccount, editCustomerAddress, deleteCustomer, authenticateUser, registerCustomer } = require('../services/pg.customers.dal.js');
-const logger = require('../logEvents.js');
+const { logger } = require('../logEvents.js');
 const dal = require('../services/pg.auth_db.js');
 const passport = require('passport');
 const isAuthenticated = require('../config/passport-config.js');

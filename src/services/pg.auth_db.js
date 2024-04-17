@@ -1,6 +1,6 @@
 // Import the required modules
 const { Pool } = require('pg');
-const logger  = require('../logEvents');
+const { logger } = require('../logEvents');
 require('dotenv').config();
 
 // Create a new pool with the connection details

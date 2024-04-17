@@ -5,7 +5,7 @@ if (!process.env.MDBATLAS) {
 
 // Import the required modules
 const { MongoClient } = require('mongodb');
-const logger = require('../logEvents.js');
+const { logger } = require('../logEvents.js');
 
 // Create a connection pool
 class Pool {

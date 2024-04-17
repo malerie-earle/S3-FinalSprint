@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const logger = require('../logEvents.js');
+const { logger, logSearchQuery } = require('../logEvents.js');
 const { searchInPostgres, searchInMongo } = require('../services/searchLogic.js');
-const isAuthenticated = require('../middleware/authMiddleware.js');  // Assuming you have the authMiddleware.js in the middleware directory
+const isAuthenticated = require('../middleware/authMiddleware.js');  
+
 
 // List of All Available Routes
 logger.info('Index Router - API Endpoints:');

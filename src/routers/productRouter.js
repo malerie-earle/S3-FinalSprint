@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const logger = require('../logEvents.js');
+const { logger } = require('../logEvents.js');
 const { getAllProducts, getProductByProductId } = require('../services/pg.products.dal.js');
 const isAuthenticated = require('../middleware/authMiddleware.js');  // Assuming you have a middleware for authentication
 

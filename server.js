@@ -4,7 +4,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 // Imports
 const express = require('express');
-const logger = require('./src/logEvents');
+const { logger } = require('./src/logEvents');
 const methodOverride = require('method-override');
 const path = require('path');
 const session = require('express-session');

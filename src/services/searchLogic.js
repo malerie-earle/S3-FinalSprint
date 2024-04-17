@@ -4,7 +4,7 @@ if (!process.env.MDBATLAS) {
 }
 
 // Import the required modules 
-const logger = require('../logEvents.js');
+const { logger } = require('../logEvents.js');
 const pgDal = require('./pg.auth_db.js');
 const mDal = require('./m.auth_db.js');
 const { MongoClient } = require('mongodb');

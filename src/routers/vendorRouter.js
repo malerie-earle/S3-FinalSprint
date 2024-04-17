@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { getAllVendors, getVendorByVendorId, getVendorAddressByVendorId } = require('../services/pg.vendors.dal.js');
-const logger = require('../logEvents.js');
+const { logger } = require('../logEvents.js');
 const isAuthenticated = require('../middleware/authMiddleware.js');  // Assuming you have the authMiddleware.js in the middleware directory
 
 // List of All Available Routes

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const logger = require('../logEvents.js');
+const { logger } = require('../logEvents.js');
 const dal = require('../services/m.auth_db.js');
 const { getAllRecipes, getRecipeById } = require('../services/m.recipes.dal.js');
 const isAuthenticated = require('../middleware/authMiddleware.js');  // Assuming you have the authMiddleware.js in the middleware directory
