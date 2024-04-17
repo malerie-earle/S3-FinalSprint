@@ -17,8 +17,8 @@ async function authenticateUser(username, password) {
     }
 
     logger.info(`Retrieved user: ${JSON.stringify(user)}`);
-    logger.info(`Entered password: ${password}`);
-    logger.info(`Stored hashed password: ${user.password}`); // add password hashing - password showing as entered.
+    // logger.info(`Entered password: ${password}`);
+    // logger.info(`Stored hashed password: ${user.password}`); // add password hashing - password showing as entered.
 
     if (password !== user.password) {
       logger.info('Incorrect password.');
@@ -30,41 +30,6 @@ async function authenticateUser(username, password) {
     return user;
   } catch (error) {
     logger.error('Error in authenticateUser():', error);
-    throw error;
-  }
-}
-
-
-// Register a new user
-async function registerCustomer({ first_name, last_name, email, ph_num, gender, pay_method, username, password, street_address, city, province, postal_code, country }) {
-  try {
-    // Add a new Customer
-    logger.info('pg.DAL: Adding a new customer.');
-    const sqlCustomer = `INSERT INTO public.customer (first_name, last_name, email, ph_num, gender, pay_method) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;`;
-    const valuesCustomer = [first_name, last_name, email, ph_num, gender, pay_method];
-    const newCustomer = await dal.query(sqlCustomer, valuesCustomer);
-    const newCustomerId = newCustomer.rows[0].customer_id;
-
-    // Register a new user
-    logger.info('pg.DAL: Registering a new user.');
-    const sqlUser = 'INSERT INTO public.customer_account (customer_id, username, password) VALUES ($1, $2, $3) RETURNING *;';
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const valuesUser = [newCustomerId, username, hashedPassword];
-    const newUser = await dal.query(sqlUser, valuesUser);
-
-    // Add a new Customer Address
-    logger.info('pg.DAL: Adding a new customer address.');
-    const sqlAddress = `INSERT INTO public.customer_address (customer_id, street_address, city, province, postal_code, country) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;`;
-    const valuesAddress = [newCustomerId, street_address, city, province, postal_code, country];
-    const newCustomerAddress = await dal.query(sqlAddress, valuesAddress);
-
-    return {
-      customer: newCustomer.rows[0],
-      user: newUser.rows[0],
-      address: newCustomerAddress.rows[0]
-    };
-  } catch (error) {
-    logger.error('Error in registerAndAddCustomer():', error);
     throw error;
   }
 }
