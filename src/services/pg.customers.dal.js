@@ -1,15 +1,16 @@
 // Import the required modules
 const dal = require('./pg.auth_db');
 const logger = require('../logEvents');
-const { log } = require('winston');
 const bcrypt = require('bcrypt');
 
 // Authenticate User
 async function authenticateUser(username, password) {
+  logger.info('pg.DAL: authenticateUser():');
   try {
     // Authenticate the user
     logger.info('pg.DAL: Authenticating user.');
     const sql = 'SELECT * FROM public.customer_account WHERE username = $1;';
+    // Execute the query
     const result = await dal.query(sql, [username]);
     const user = result.rows[0];
 
@@ -57,7 +58,6 @@ async function signUpUser({ first_name, last_name, email, ph_num, gender, pay_me
     logger.info('pg.DAL: Registering a new user.');
     const newCustomerAccount = await addCustomerAccount({ username, password });
     const newCustomerID = newCustomerAccount.customer_id;
-
     logger.info('pg.DAL: New user registered successfully.');
 
     // Add a new Customer Address
@@ -106,9 +106,7 @@ async function getAllCustomers() {
 async function getCustomerByCustomerId(customer_id) {
   logger.info('pg.DAL: getCustomerByCustomerId():');
   try {
-    logger.info('pg.DAL: Getting a customer by customer_id.');
     const sql = `SELECT * FROM customer WHERE customer_id = $1;`;
-    // Execute the query
     const results = await dal.query(sql, [customer_id]);
     logger.info('pg.DAL: Customer retrieved successfully.');
     return results.rows[0];

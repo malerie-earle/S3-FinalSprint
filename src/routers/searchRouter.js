@@ -1,24 +1,25 @@
+// Import the required modules
 const express = require('express');
 const router = express.Router();
 const logger = require('../logEvents.js');
 const { searchInPostgres, searchInMongo } = require('../services/searchLogic.js');
-const isAuthenticated = require('../middleware/authMiddleware.js');  // Assuming you have the authMiddleware.js in the middleware directory
+const isAuthentic = require('../middleware/authMiddleware.js');
 
 // List of All Available Routes
-logger.info('Index Router - API Endpoints:');
-logger.info('Route: GET/READ - Home Page - /');
-logger.info('Route: GET/READ - Login Page - /login/');
-logger.info('Route: GET/READ - Registration Page - /registration/');
-logger.info('Route: GET/READ - Search Customer Page - /customer/search/');
-logger.info('Route: GET/READ - Search Product Page - /product/search/');
-logger.info('Route: GET/READ - Search Recipe Page - /search/');
-logger.info('Route: POST - Search Engine - /search/');
+logger.info('Route: /customer/search/ - GET/READ - Search Customer Page');
+logger.info('Route: /product/search/ - GET/READ - Search Product Page');
+logger.info('Route: /search/ - GET/READ - Search Recipe Page');
+logger.info('Route: /search/ - POST - Search Engine');
 
 // GET - Search Customer Page
-router.get('/customer/search/', isAuthenticated, (req, res) => {
+router.get('/customer/search/', isAuthentic, (req, res) => {
+  logger.info('Rendering the Search Customer Page.');
   try {
+    // Render the Search Customer Page
     logger.info('Rendering the Search Customer Page.');
     res.render('searchCustomers.ejs');
+
+  // Handle errors  
   } catch (error) {
     logger.error('Error rendering the Search Customer Page:', error);
     res.status(500).render('503');
@@ -27,10 +28,14 @@ router.get('/customer/search/', isAuthenticated, (req, res) => {
 
 
 // GET - Search Product Page
-router.get('/product/search/', isAuthenticated, (req, res) => {
+router.get('/product/search/', isAuthentic, (req, res) => {
+  logger.info('Rendering the Search Product Page.');
   try {
+    // Render the Search Product Page
     logger.info('Rendering the Search Product Page.');
     res.render('searchProducts.ejs');
+
+  // Handle errors
   } catch (error) {
     logger.error('Error rendering the Search Product Page:', error);
     res.status(500).render('503');
@@ -39,18 +44,23 @@ router.get('/product/search/', isAuthenticated, (req, res) => {
 
 
 // GET - Search Recipe Page
-router.get('/search/', isAuthenticated, (req, res) => {
+router.get('/search/', isAuthentic, (req, res) => {
+  logger.info('Rendering the Search Page.');
   try {
+    // Render the Search Page
     logger.info('Rendering the Search Page.');
     res.render('searchEngine.ejs');
+
+  // Handle errors  
   } catch (error) {
     logger.error('Error rendering the Search Page:', error);
     res.status(500).render('503');
   }
 });
 // POST - Search Engine
-router.post('/search/', isAuthenticated, async (req, res) => {
+router.post('/search/', isAuthentic, async (req, res) => {
   try {
+    // Get the search query and database selection
     const { query, database, user_id } = req.body; 
     logSearchQuery(user_id, query, database);
 
@@ -61,17 +71,22 @@ router.post('/search/', isAuthenticated, async (req, res) => {
     }
     // Search results
     let searchResults;
-    // Handle search based on database selection
+
+    // If the database is PostgreSQL
     if (database === 'pg') {
       searchResults = await searchInPostgres(query);
       searchResults = searchResults.flat(); 
       logger.info(`Search results for '${query}' in PostgreSQL`);
       return res.render('results/searchResults', { searchResults: searchResults });
+
+    // If the database is MongoDB
     } else if (database === 'mongo') {
       searchResults = await searchInMongo(query);
       searchResults = searchResults.flat(); 
       logger.info(`Search results for '${query}' in MongoDB`);
       return res.render('results/searchResults', { searchResults: searchResults });
+
+    // If the database is both
     } else if (database === 'both') {
       let [pgResults, mongoResults] = await Promise.all([
         searchInPostgres(query),
@@ -80,14 +95,19 @@ router.post('/search/', isAuthenticated, async (req, res) => {
       searchResults = [...pgResults.flat(), ...mongoResults.flat()];
       logger.info(`Search results for '${query}' in both databases`);
       return res.render('results/searchResults', { searchResults: searchResults });
+
+    // If the database selection is invalid
     } else {
       logger.error('Invalid database selection.');
       return res.status(400).json({ error: 'Invalid database selection.' });
     }  
+
+  // Handle errors
   } catch (error) {
     logger.error('Error searching:', error);
     res.status(500).send('Internal Server Error');
   }
 });
 
+// Export the router
 module.exports = router;

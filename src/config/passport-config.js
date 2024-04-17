@@ -2,6 +2,8 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const { authenticateUser, getCustomerByCustomerId } = require('../services/pg.customers.dal.js');
+const isAuthentic = require('./middleware/authMiddleware.js');
+const { logger } = require('./logEvents.js');
 
 // Initialize the user cache
 const userCache = {}; 
@@ -18,15 +20,20 @@ passport.use(new LocalStrategy(
       }
       // If the user is found, return the user
       return done(null, user);
+
+    // If an error occurs, return the error
     } catch (error) {
       return done(error);
     }
   }
 ));
 
-// Serialize the user
-passport.serializeUser(function(user, done) {
-  // Serialize the user by their customer_id
+// Serialize the user by their customer_id
+passport.serializeUser((user, done) => {
+  logger.info(`Serializing the user: ${user.customer_id}`);
+  if (!user.customer_id) {
+    return done(null, false, { message: 'User not found' });
+  }
   done(null, user.customer_id); 
 });
 
@@ -35,6 +42,7 @@ passport.deserializeUser(async function(customer_id, done) {
   try {
     // Check if user details are in the cache
     if (userCache[customer_id]) {
+      logger.info(`User details found in cache: ${customer_id}`);
       return done(null, userCache[customer_id]);
     }
     // Get the user details by their customer_id
@@ -47,6 +55,7 @@ passport.deserializeUser(async function(customer_id, done) {
     } else {
       return done(null, false, { message: 'User not found' });
     }
+
   // If an error occurs, return the error
   } catch (error) { 
     return done(error);

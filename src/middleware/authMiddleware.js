@@ -2,9 +2,9 @@
 const logger = require('../logEvents.js');
 
 // Middleware to check if user is authenticated
-function isAuthenticated(req, res, next) {
+function isAuthentic(req, res, next) {
   // Check if the user is authenticated
-  if (req.isAuthenticated()) {
+  if (req.isAuthentic()) {
     // User is authenticated, proceed to the next middleware or route handler
     return next(); 
   }
@@ -15,4 +15,4 @@ function isAuthenticated(req, res, next) {
 }
 
 // Export the isAuthenticated middleware
-module.exports = isAuthenticated;
+module.exports = isAuthentic;

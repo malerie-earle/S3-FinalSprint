@@ -14,6 +14,7 @@ const { Pool } = require('pg');
 const { authenticateUser } = require('./src/services/pg.customers.dal');
 const bodyParser = require('body-parser');
 const flash = require('connect-flash');
+const isAuthentic = require('./src/middleware/authMiddleware');
 
 
 // Database Connection & routers

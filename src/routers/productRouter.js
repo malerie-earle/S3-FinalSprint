@@ -1,17 +1,17 @@
+// Import required modules
 const express = require('express');
 const router = express.Router();
 const logger = require('../logEvents.js');
 const { getAllProducts, getProductByProductId } = require('../services/pg.products.dal.js');
-const isAuthenticated = require('../middleware/authMiddleware.js');  // Assuming you have a middleware for authentication
+const isAuthentic = require('../middleware/authMiddleware.js');
 
 // List of All Available Routes
-logger.info('Product Router - API Endpoints:');
-logger.info('Route: GET/READ - All Products - /product/all/');
-logger.info('Route: GET/READ - Single Product by ID - /product/:id/');
-logger.info('Route: GET/READ - Search Products - /product/search/');
+logger.info('Route: /product/all/ - GET/READ - All Products');
+logger.info('Route: /product/id/:id/ - GET/READ - Single Product by ID');
+logger.info('Route: /product/search/ - GET/READ - Search Products');
 
 // GET - All Products Page
-router.get('/', isAuthenticated, (req, res) => {
+router.get('/', isAuthentic, (req, res) => {
   try {
     logger.info('Rendering the Products Page.');
     res.render('allProducts.ejs');
@@ -22,12 +22,15 @@ router.get('/', isAuthenticated, (req, res) => {
 });
 
 // GET - All Products
-router.get('/all/', isAuthenticated, async (req, res) => {
+router.get('/all/', isAuthentic, async (req, res) => {
   try {
+    // Get all products from the database
     logger.info('Getting all products from the database.');
     const theProducts = await getAllProducts();
     logger.info('All products retrieved successfully.');
     res.render('allProducts.ejs', { theProducts: theProducts });
+
+  // Handle errors  
   } catch (error) {
     logger.error('Error getting all products:', error);
     res.status(500).render('503');
@@ -35,10 +38,12 @@ router.get('/all/', isAuthenticated, async (req, res) => {
 });
 
 // Search Products
-router.get('/search/', isAuthenticated, (req, res) => {
+router.get('/search/', isAuthentic, (req, res) => {
   try {
     logger.info('Rendering the Search Products Page.');
     res.render('searchProducts.ejs');
+
+  // Handle errors
   } catch (error) {
     logger.error('Error rendering the Search Products Page:', error);
     res.status(500).render('503');
@@ -46,17 +51,21 @@ router.get('/search/', isAuthenticated, (req, res) => {
 });
 
 // GET - A Product
-router.get('/:id/', isAuthenticated, async (req, res) => {
+router.get('/id/:id/', isAuthentic, async (req, res) => {
   const product_id = req.params.id; 
   try {
+    // Get a product by product_id
     logger.info(`Getting the Product by ID: ${product_id}`);
     const aProduct = await getProductByProductId(product_id);
     logger.info(`Product: ${JSON.stringify(aProduct)}`);
     res.render('aProduct.ejs', { aProduct });
+
+  // Handle errors
   } catch (error) {
     logger.error('Error getting product page', error);
     res.status(500).render('503'); 
   }
 });
 
+// Export the module
 module.exports = router;
