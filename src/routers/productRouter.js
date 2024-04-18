@@ -1,7 +1,7 @@
 // Import required modules
 const express = require('express');
 const router = express.Router();
-const logger = require('../logEvents.js');
+const { logger } = require('../logEvents.js');
 const { getAllProducts, getProductByProductId } = require('../services/pg.products.dal.js');
 const isAuthentic = require('../middleware/authMiddleware.js');
 

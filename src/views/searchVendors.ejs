@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search for a Vendor</title>
+  <link rel="stylesheet" href="/styles/index.css">
+</head>
+
+<%- include('./partials/header.ejs') %>
+
+<body>
+  <div class = "home">
+  <h2>Search for a Vendor:</h2>
+
+  <div class = "searchDiv">
+  <h3>Search By:</h3>
+  
+  // Search by Vendor ID
+  <div class = "search-type">
+    <label for="vendor_id">Vendor ID:</label>
+    <input type="radio" id="vendor_id" name="search" value="vendor_id">
+  </div>
+    <form class="search-form" action="/vendor/id/" method="GET">
+      <h3>Search By ID:</h3>
+      <label for="vendor_id">Search By Vendor ID:</label>
+      <input type="text" id="vendorID" name="search" required>
+      <button>Search</button>
+      <br>
+    </form>
+
+  <br><br>
+  <a href="/vendors/all/" class="button">All Vendors</a>
+  </div>  
+ </div>
+</div>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const radioButtons = document.querySelectorAll('input[type="radio"]');
+      const searchForms = document.querySelectorAll('.search-form');
+
+      radioButtons.forEach(function(radioButton, index) {
+        radioButton.addEventListener('click', function() {
+          // Hide all search forms
+          searchForms.forEach(function(form) {
+            form.style.display = 'none';
+          });
+          if (radioButton.checked) {
+            searchForms[index].style.display = 'block';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

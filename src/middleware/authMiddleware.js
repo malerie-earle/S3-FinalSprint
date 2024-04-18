@@ -1,5 +1,5 @@
 // Import the required modules
-const logger = require('../logEvents.js');
+const { logger } = require('../logEvents.js');
 
 // Middleware to check if user is authenticated
 function isAuthentic(req, res, next) {

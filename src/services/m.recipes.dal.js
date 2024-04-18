@@ -2,7 +2,7 @@
 const mongodb = require('mongodb');
 const ObjectId = mongodb.ObjectId;
 const dal = require("./m.auth_db.js");
-const logger = require("../logEvents.js");
+const { logger } = require("../logEvents.js");
 
 // Get all recipes with pagination
 async function getAllRecipes(page = 1, pageSize = 50) {

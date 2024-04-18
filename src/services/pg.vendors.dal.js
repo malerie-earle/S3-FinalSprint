@@ -1,6 +1,6 @@
 // Import the logger
 const dal = require('./pg.auth_db');
-const logger = require('../logEvents');
+const { logger } = require('../logEvents');
 
 // Get all Vendors
 async function getAllVendors() {  

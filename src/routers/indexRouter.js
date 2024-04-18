@@ -1,7 +1,7 @@
 // Import the required modules
 const express = require('express');
 const router = express.Router();
-const logger = require('../logEvents.js');
+const { logger, logLogin, logLogout } = require('../logEvents.js');
 const dal = require('../services/pg.auth_db.js');
 const passport = require('passport');
 const { search, searchResults } = require('../services/searchLogic.js');
@@ -9,6 +9,11 @@ const isAuthentic = require('../middleware/authMiddleware.js');
 const { authenticateUser, signUpUser } = require('../services/pg.customers.dal.js');
 
 // List of All Available Routes
+logger.info('Router - API Endpoints:');
+logger.info('=========================');
+logger.info('Route: / - GET/READ - Home Page');
+logger.info('Route: /login/ - GET/READ - Login Page');
+logger.info('Route: /signup/ - GET/READ - Sign Up Page');
 logger.info('Router - API Endpoints:');
 logger.info('=========================');
 logger.info('Route: / - GET/READ - Home Page');
@@ -46,14 +51,14 @@ router.post('/login/', async (req, res) => {
           logger.error('Error in login:', err);
           res.render('login', { error: 'An error occurred during login.' });
         } else {
+          logLogin(user.customer_id);
           logger.info('User is authenticated. Redirecting to Home Page.');
           res.redirect('/');
         }
       });
     // If the user is not found, render the login page with an error message
     } else {
-      logger.info('Username or password is incorrect. Redirecting to Login Page.');
-      res.render('login', { error: 'Incorrect username or password.' });
+      res.render('login', { error: 'Invalid username or password.' });
     }
   // If an error occurs, render the login page with an error message
   } catch (error) {
@@ -74,6 +79,12 @@ router.get('/signup/', (req, res) => {
     logger.error('Error rendering the Sign Up Page:', error);
     res.status(500).render('503');
   }
+});
+
+router.get('/logout/', (req, res) => {
+  logLogout(req.user.customer_id);
+  req.logout();
+  res.redirect('/login');
 });
 router.post('/signup/', async (req, res) => {
   logger.info('Adding a new user:', req.body);

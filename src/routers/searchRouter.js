@@ -1,15 +1,17 @@
 // Import the required modules
 const express = require('express');
 const router = express.Router();
-const logger = require('../logEvents.js');
+const { logger, logSearchQuery } = require('../logEvents.js');
 const { searchInPostgres, searchInMongo } = require('../services/searchLogic.js');
-const isAuthentic = require('../middleware/authMiddleware.js');
+const isAuthenticated = require('../middleware/authMiddleware.js');  
+
 
 // List of All Available Routes
 logger.info('Route: /customer/search/ - GET/READ - Search Customer Page');
 logger.info('Route: /product/search/ - GET/READ - Search Product Page');
 logger.info('Route: /search/ - GET/READ - Search Recipe Page');
 logger.info('Route: /search/ - POST - Search Engine');
+
 
 // GET - Search Customer Page
 router.get('/customer/search/', isAuthentic, (req, res) => {
@@ -49,9 +51,7 @@ router.get('/search/', isAuthentic, (req, res) => {
   try {
     // Render the Search Page
     logger.info('Rendering the Search Page.');
-    res.render('searchEngine.ejs');
-
-  // Handle errors  
+    res.render('searchEngine.ejs', { user: req.user });
   } catch (error) {
     logger.error('Error rendering the Search Page:', error);
     res.status(500).render('503');
@@ -60,8 +60,9 @@ router.get('/search/', isAuthentic, (req, res) => {
 // POST - Search Engine
 router.post('/search/', isAuthentic, async (req, res) => {
   try {
-    // Get the search query and database selection
-    const { query, database, user_id } = req.body; 
+    const user_id = req.user.customer_id;
+    const query = req.body.query; 
+    const database = req.body.database;
     logSearchQuery(user_id, query, database);
 
     // Error handling
@@ -72,21 +73,19 @@ router.post('/search/', isAuthentic, async (req, res) => {
     // Search results
     let searchResults;
 
-    // If the database is PostgreSQL
+    // Search in PostgreSQL
     if (database === 'pg') {
       searchResults = await searchInPostgres(query);
-      searchResults = searchResults.flat(); 
       logger.info(`Search results for '${query}' in PostgreSQL`);
       return res.render('results/searchResults', { searchResults: searchResults });
 
-    // If the database is MongoDB
+    // Search in MongoDB
     } else if (database === 'mongo') {
       searchResults = await searchInMongo(query);
-      searchResults = searchResults.flat(); 
       logger.info(`Search results for '${query}' in MongoDB`);
       return res.render('results/searchResults', { searchResults: searchResults });
 
-    // If the database is both
+    // Search in both databases
     } else if (database === 'both') {
       let [pgResults, mongoResults] = await Promise.all([
         searchInPostgres(query),

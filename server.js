@@ -4,7 +4,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 // Imports
 const express = require('express');
-const logger = require('./src/logEvents');
+const { logger } = require('./src/logEvents');
 const methodOverride = require('method-override');
 const path = require('path');
 const session = require('express-session');
@@ -20,11 +20,12 @@ const isAuthentic = require('./src/middleware/authMiddleware');
 // Database Connection & routers
 const mPg = require('./src/services/pg.auth_db');
 const mDal = require('./src/services/m.auth_db.js');
-const customerRouter = require('./src/routers/customerRouter');
-const productRouter = require('./src/routers/productRouter');
 const indexRouter = require('./src/routers/indexRouter');
-const recipeRouter = require('./src/routers/recipeRouter');
+const customerRouter = require('./src/routers/customerRouter');
 const vendorRouter = require('./src/routers/vendorRouter');
+const productRouter = require('./src/routers/productRouter');
+const recipeRouter = require('./src/routers/recipeRouter');
+
 
 // App setup
 const app = express();

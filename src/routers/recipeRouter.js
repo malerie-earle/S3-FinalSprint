@@ -1,7 +1,7 @@
 // Import required modules
 const express = require('express');
 const router = express.Router();
-const logger = require('../logEvents.js');
+const { logger } = require('../logEvents.js');
 const dal = require('../services/m.auth_db.js');
 const { getAllRecipes, getRecipeById } = require('../services/m.recipes.dal.js');
 const isAuthentic = require('../middleware/authMiddleware.js');  
