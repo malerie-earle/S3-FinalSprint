@@ -12,11 +12,49 @@
 <body>
   <div class="home">
     <h1>Home Page</h1>
+
+    <h3>View All Customers:</h3>
     <a href="/customer/all/">All Customers</a>
 
-    <a href="/customer/add/">Add Customer</a>
+    <h3>View A Customer:</h3>
+    <form id="customer-form" action="/customer/id/:customer_id/" method="POST">
+      <label for="customer-id">Enter Customer ID:</label>
+      <input type="text" id="customer-id" name="id" required>
+      <input type="submit" value="Get Customer">
+    </form><br />
 
-    <a href="/registration/">Registration</a>
+    <h3>View All Products:</h3>
+    <a href="/product/all/">All Products</a>
+
+    <h3>View A Product:</h3>
+    <form id="product-form" action="/product/id/:product_id/" method="POST">
+      <label for="product-id">Enter Product ID:</label>
+      <input type="text" id="product-id" name="id" required>
+      <input type="submit" value="Get Product">
+    </form><br />
+
+    <h3>View All Vendors:</h3>
+    <a href="/vendor/all/">All Vendors</a>
+
+    <h3>View A Vendor:</h3>
+    <form id="vendor-form" action="/vendor/id/:vendor_id/" method="POST">
+      <label for="vendor-id">Enter Vendor ID:</label>
+      <input type="text" id="vendor-id" name="id" required>
+      <input type="submit" value="Get Vendor">
+    </form><br />
+
+    <h3>View All Recipes:</h3>
+    <a href="/recipe/all/">All Recipes</a>
+
+    <h3>View A Recipe:</h3>
+    <form id="recipe-form" action="/recipe/id/:recipe_id/" method="POST">
+      <label for="recipe-id">Enter Recipe ID:</label>
+      <input type="text" id="recipe-id" name="id" required>
+      <input type="submit" value="Get Recipe">
+    </form><br />
+
+    <h3>View All Orders:</h3>
+    <a href="/signup/">Sign Up New Customer</a>
 
     <% if (user) { %>
       <a href="/login/">Logout</a>
@@ -24,25 +62,15 @@
       <a href="/login/">Login</a>
     <% } %>
 
-    <a href="/search/">Search</a>
+    <h3>Search Engine:</h3>
+    <a href="/search/">Search Engine</a>
 
-    <a href="/product/all/">Products</a>
-
-    <a href="recipe/all/">Recipes</a>
-        
-    <h3>A Customer:</h3>
-    <form id="customer-form" action="/customer/:customer_id/" method="POST">
-      <label for="customer-id">Enter Customer ID:</label>
-      <input type="text" id="customer-id" name="id" required>
-      <input type="submit" value="Get Customer">
-    </form>
-
-    <h3>Edit Customer:</h3>
+    <h3>Change Customer Information:</h3>
     <form id="edit-customer-form" action="/customer/edit/:customer_id/" method="POST">
       <label for="edit-id">Enter Customer ID:</label>
       <input type="text" id="edit-id" name="id" required>
       <input type="submit" value="Edit Customer">
-    </form>
+    </form><br />
 
     <h3>Delete Customer:</h3>
     <form id="delete-customer-form" action="/customer/delete/" method="POST">
@@ -50,7 +78,7 @@
       <input type="text" id="delete-id" name="customer_id" required>
       <input type="submit" value="Delete Customer">
     </form>
-  </div>
+  </div><br />
 
   <script>
     console.log('Script is running');

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Successful Sign Up</title>
+  <link rel="stylesheet" href="/styles/index.css">
+</head>
+
+<%- include('./partials/header.ejs') %>
+
+<body>
+  <h1>Success! You have Signed Up successfully!</h1>
+  <h2>New User:</h2>
+  <% if (newCustomerId) { %>
+    <p>New User ID: <%= newCustomerId %></p>
+    <p>Username: <%= newUser.username %></p>
+    <p>First Name: <%= newUser.first_name %></p>
+    <p>Last Name: <%= newUser.last_name %></p>
+    <p>Gender: <%= newUser.gender %></p>
+    <p>Email: <%= newUser.email %></p>
+    <p>Phone Number: <%= newUser.ph_num %></p>
+    <p>Payment Method: <%= newUser.pay_method %></p>
+    <p>Street Address: <%= newUser.street_address %></p>
+    <p>City: <%= newUser.city %>, <%= newUser.province %>, <%= newUser.country %></p>
+    <p>Postal Code: <%= newUser.postal_code %></p>
+  <% } %>
+  <a href="/login/">Login</a>
+</body>
+</html>

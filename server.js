@@ -4,7 +4,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 // Imports
 const express = require('express');
-const logger = require('./src/logEvents');
+const { logger } = require('./src/logEvents');
 const methodOverride = require('method-override');
 const path = require('path');
 const session = require('express-session');
@@ -14,16 +14,18 @@ const { Pool } = require('pg');
 const { authenticateUser } = require('./src/services/pg.customers.dal');
 const bodyParser = require('body-parser');
 const flash = require('connect-flash');
+const isAuthentic = require('./src/middleware/authMiddleware');
 
 
 // Database Connection & routers
 const mPg = require('./src/services/pg.auth_db');
 const mDal = require('./src/services/m.auth_db.js');
-const customerRouter = require('./src/routers/customerRouter');
-const productRouter = require('./src/routers/productRouter');
 const indexRouter = require('./src/routers/indexRouter');
-const recipeRouter = require('./src/routers/recipeRouter');
+const customerRouter = require('./src/routers/customerRouter');
 const vendorRouter = require('./src/routers/vendorRouter');
+const productRouter = require('./src/routers/productRouter');
+const recipeRouter = require('./src/routers/recipeRouter');
+
 
 // App setup
 const app = express();
@@ -48,9 +50,8 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'src/views'));
 app.use(express.static('public'));  
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
-app.use(bodyParser.json());
 
 
 // Routers
@@ -71,7 +72,7 @@ app.use('/', require('./src/routers/searchRouter'));
     logger.info('Connected to the PostgreSQL Database!');
   } catch (error) {
     logger.error('Error connecting to the database', error);
-    res.status(500).render('503');
+    process.exit(1); 
   }
 })();
 
@@ -89,5 +90,5 @@ app.use((err, req, res, next) => {
 
 // Start the server
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  logger.info(`Server is running on port ${PORT}`);
 });
