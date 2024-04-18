@@ -11,7 +11,7 @@ logger.info('Route: /vendor/id/:id/ - GET/READ - Single Vendor by ID');
 logger.info('Route: /vendor/address/:id/ - GET/READ - Vendor Address by ID');
 
 // GET All Vendors
-router.get('/all/', isAuthentic, async (req, res) => {
+router.get('/all/', isAuthenticated, async (req, res) => {
   logger.info('Getting all vendors from the database.');
   try {
     // Get all vendors from the database
@@ -27,7 +27,7 @@ router.get('/all/', isAuthentic, async (req, res) => {
 });
 
 // GET - A Vendor
-router.get('/', isAuthentic, async (req, res) => {
+router.get('/', isAuthenticated, async (req, res) => {
   logger.info('Getting the Vendor by ID.');
   try {
     // Get a vendor by vendor_id
@@ -43,7 +43,7 @@ router.get('/', isAuthentic, async (req, res) => {
 });
 
 // GET - vendor by ID - /vendor/id/:id
-router.get('/id/:id/', isAuthentic, async (req, res) => {
+router.get('/id/:id/', isAuthenticated, async (req, res) => {
   logger.info('Getting the Vendor by ID.');
   const vendor_id = req.params.id; 
   try {
@@ -62,7 +62,7 @@ router.get('/id/:id/', isAuthentic, async (req, res) => {
 });
 
 // GET - vendor address by ID - /vendor/address/:id
-router.get('/address/:id/', isAuthentic, async (req, res) => {
+router.get('/address/:id/', isAuthenticated, async (req, res) => {
   logger.info('Getting the Vendor Address by ID.');
   const vendor_id = req.params.id;
   try {
