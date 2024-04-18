@@ -18,39 +18,23 @@ logger.info('Route: /signup/ - GET/READ - Sign Up Page');
 router.get('/', isAuthenticated, (req, res) => {
   try {
     logger.info('Rendering the Home Page.');
-    res.render('index.ejs', { user: req.user });
+    res.render('index.ejs', { user });
   } catch (error) {
     logger.error('Error rendering the Home Page:', error);
     res.status(500).render('503');
   }
 });
 
-// Login Page
-router.get('/login/', isAuthenticated, (req, res) => {
-  try {
-    logger.info('Rendering the Login Page.');
-    res.render('login');
-  } catch (error) {
-    logger.error('Error rendering the Login Page:', error);
-    res.status(500).render('503');
-  }
-});
-
 router.post('/login/', async (req, res) => {
   try {
+    logger.info('Authenticating the user:', req.body);
     const user = await authenticateUser(req.body.username, req.body.password);
     if (user) {
-      req.login(user, function(err) {
-        if (err) {
-          logger.error('Error in login:', err);
-          res.render('login', { error: 'An error occurred during login.' });
-        } else {
-          logLogin(user.customer_id);
-          logger.info('User is authenticated. Redirecting to Home Page.');
-          res.redirect('/');
-        }
-      });
+      logLogin(user.customer_id);
+      logger.info('User is authenticated. Redirecting to Home Page.');
+      res.render('index.ejs', { user });
     } else {
+      logger.error('User is not authenticated. Redirecting to Login Page.');
       res.render('login', { error: 'Invalid username or password.' });
     }
   } catch (error) {
@@ -59,47 +43,58 @@ router.post('/login/', async (req, res) => {
   }
 });
 
-router.get('/logout/', (req, res) => {
-  logLogout(req.user.customer_id);
-  req.logout();
-  res.redirect('/login');
+// Logout Page
+router.get('/logout/', isAuthenticated, (req, res) => {
+  try {
+    req.logout();
+    const logoutMessage = 'You are logged out';
+    logger.info('User is logged out. Redirecting to Login Page.');
+    req.flash('info', logoutMessage); // Use flash messages to send the logout message
+    res.redirect('/login/');
+  } catch (error) {
+    logger.error('Error in logout:', error);
+    res.status(500).render('503');
+  }
 });
 
-router.post('/signup/', async (req, res) => {
-  logger.info('Adding a new user:', req.body);
+
+// Sign Up Page
+router.get('/signup/', (req, res) => {
   try {
+    logger.info('Rendering the Sign Up Page.');
+    res.render('signup');
+  } catch (error) {
+    logger.error('Error rendering the Sign Up Page:', error);
+    res.status(500).render('503');
+  }
+});
+
+router.post('/signup', async (req, res) => {
+  try {
+    logger.info('Adding a new user:', req.body);
     const { first_name, last_name, email, ph_num, gender, pay_method, street_address, city, province, postal_code, country, username, password } = req.body;
     const newUser = await signUpUser({ first_name, last_name, email, ph_num, gender, pay_method, street_address, city, province, postal_code, country, username, password });
     const newCustomerId = newUser.newCustomer.customer_id;
-    res.render('signUp', { newCustomerId, newUser });
+    res.render('signupSuccess', { newCustomerId, newUser });
   } catch (error) {
     logger.error('Error adding a new user:', error);
     res.status(500).render('503');
   }
 });
 
-// Signup Success Page
-router.get('/signup/success/', isAuthenticated, (req, res) => {
-  try {
-    logger.info('Rendering the Sign Up Success Page.');
-    res.render('signUpSuccess', { newCustomerId: req.query.newCustomerId, newUser: req.query.newUser });
-  } catch (error) {
-    logger.error('Error rendering the Sign Up Success Page:', error);
-    res.status(500).render('503');
-  }
-});
-
-// Logout Route
-router.get('/logout/', isAuthenticated, (req, res) => {
+// Logout Page
+router.get('/logout', isAuthenticated, (req, res) => {
   try {
     req.logout();
-    req.flash('success_msg', 'You are logged out');
+
+    const logoutMessage = 'You are logged out';
     logger.info('User is logged out. Redirecting to Login Page.');
-    res.redirect('/login');
+    res.redirect('/login/', { logoutMessage });
   } catch (error) {
     logger.error('Error in logout:', error);
     res.status(500).render('503');
   }
 });
+
 
 module.exports = router;
