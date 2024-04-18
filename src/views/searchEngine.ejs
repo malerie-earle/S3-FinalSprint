@@ -7,28 +7,34 @@
   <link rel="stylesheet" href="/styles/index.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
+<%- include('./partials/header.ejs') %>
 <body>
-
+<div class="home">
   <h1>Newfie Nook Search:</h1>
+
+  <a href="/customer/search/">Search Customers</a>
+  <a href="/product/search/">Search Products</a>
+  <a href="/vendor/search/">Search Vendors</a>
+  <a href="/recipe/search/">Search Recipes</a>
 
   <!-- Form for search query, database selection, and user ID -->
   <div class="searchEngine">
     <form id="search-form" action="/search/" method="POST">
       <label for="search">Search:</label>
-      <input type="text" id="search" name="search" placeholder="Enter your search for products, recipes and more..." required>
+      <input type="text" id="search" name="search" placeholder="Enter your search for customers, products, vendors, & recipes.." required>
       
       <!-- Dropdown for selecting database -->
       <label for="database">Select Database:</label>
       <select id="database" name="database">
-        <option value="pg">PostgreSQL - Products & User search</option>
-        <option value="mongo">MongoDB - Recipes </option>
+        <option value="pg">PostgreSQL - Customers, Products, & Vendor Search</option>
+        <option value="mongo">MongoDB - Recipes Search </option>
         <option value="both">Both</option>
       </select>
       
       <!-- Hidden input field to capture user ID -->
-      <input type="hidden" id="user-id" name="user_id" value="">
-
-      <button type="submit">Search</button>
+      <input type="hidden" id="customer-id" name="customer_id" value="<%= user.customer_id %>">
+      <br />
+      <button class="submitButton" id="submit" type="submit">Search</button>
     </form>
   </div>
 
@@ -36,35 +42,38 @@
   <div id="search-results-container">
     <!-- Initially empty, will be populated with search results dynamically -->
   </div>
+</div>
 
-  <script>
-    // jQuery AJAX request to handle form submission
-    $('#search-form').submit(function(e) {
-      e.preventDefault(); // Prevent form submission
-      var query = $('#search').val(); // Get search query from input field
-      var database = $('#database').val(); // Get selected database from dropdown
-      var user_id = $('#user-id').val(); // Get user ID from hidden input
+<script>
+  $('#search-form').on('submit', function(event) {
+  event.preventDefault();
 
-      $.ajax({
-        type: 'POST',
-        url: '/search/',
-        data: { 
-          query: query,
-          database: database,
-          user_id: user_id 
-        },
-        success: function(response) {
-          // Display search results in the container
-          $('#search-results-container').html(response);
-        },
-        error: function(xhr, status, error) {
-          // Display error message
-          $('#search-results-container').html('<p>An error occurred. Please try again later.</p>');
-          console.error('Error:', error);
-        }
-      });
-    });
-  </script>
+  // Get the user_id, query, and database
+  var user_id = $('#customer-id').val();
+  var query = $('#search').val(); 
+  var database = $('#database').val();
+
+  // Send an AJAX request to the server
+  $.ajax({
+    url: '/search/', 
+    method: 'POST',
+    data: {
+      user_id: user_id,
+      query: query,
+      database: database
+    },
+    success: function(response) {
+      // Display search results in the container
+      $('#search-results-container').html(response);
+    },
+    error: function(xhr, status, error) {
+      // Display error message
+      $('#search-results-container').html('<p>An error occurred. Please try again later.</p>');
+      console.error('Error:', error);
+    }
+  });
+});
+</script>
 
 </body>
 </html>

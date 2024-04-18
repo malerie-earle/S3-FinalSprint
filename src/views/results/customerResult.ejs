@@ -1,7 +1,7 @@
 <div class="customerResult">
-  <h3><a href="/customer/<%= customer.customer_id %>"><%= customer.first_name %> <%= customer.last_name %></a></h3>
+  <h3><a href="/customer/id/<%= customer.customer_id %>"><%= customer.first_name %> <%= customer.last_name %></a></h3>
   <b>ID:</b><%= customer.customer_id %>   <b>Gender:</b><%= customer.gender %> <br />
   <b>Email:</b><%= customer.email %> <b>Phone Number:</b><%= customer.ph_num %> <br />
   <b>Payment Method:</b> <%= customer.pay_method %> <br />
-  <a href="/customer/<%= customer.customer_id %>">See More >></a>
+  <a href="/customer/id/<%= customer.customer_id %>">See More >></a>
 </div>

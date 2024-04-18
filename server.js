@@ -6,7 +6,7 @@ const passport = require('passport'); // Only import passport once
 
 // Imports
 const express = require('express');
-const logger = require('./src/logEvents');
+const { logger } = require('./src/logEvents');
 const methodOverride = require('method-override');
 const path = require('path');
 const session = require('express-session');
@@ -19,11 +19,12 @@ const flash = require('connect-flash');
 // Database Connection & routers
 const mPg = require('./src/services/pg.auth_db');
 const mDal = require('./src/services/m.auth_db.js');
-const customerRouter = require('./src/routers/customerRouter');
-const productRouter = require('./src/routers/productRouter');
 const indexRouter = require('./src/routers/indexRouter');
-const recipeRouter = require('./src/routers/recipeRouter');
+const customerRouter = require('./src/routers/customerRouter');
 const vendorRouter = require('./src/routers/vendorRouter');
+const productRouter = require('./src/routers/productRouter');
+const recipeRouter = require('./src/routers/recipeRouter');
+
 
 // App setup
 const app = express();
@@ -46,10 +47,9 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'src/views'));
 app.use(express.static('public'));  
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
-app.use(bodyParser.json());
-app.use(flash()); // Initialize connect-flash middleware
+
 
 // Routers
 app.use('/', indexRouter);
@@ -68,7 +68,7 @@ app.use('/', require('./src/routers/searchRouter'));
     logger.info('Connected to the PostgreSQL Database!');
   } catch (error) {
     logger.error('Error connecting to the database', error);
-    process.exit(1); // Stop the server
+    process.exit(1); 
   }
 })();
 
@@ -85,5 +85,5 @@ app.use((err, req, res, next) => {
 
 // Start the server
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  logger.info(`Server is running on port ${PORT}`);
 });

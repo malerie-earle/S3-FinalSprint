@@ -1,10 +1,22 @@
-const logger = require('../logEvents.js');
+// Check if connection string is defined
+if (!process.env.MDBATLAS) {
+  throw new Error('The MDBATLAS environment variable is not set');
+}
+
+// Import the required modules 
+const { logger } = require('../logEvents.js');
 const pgDal = require('./pg.auth_db.js');
 const mDal = require('./m.auth_db.js');
+const { MongoClient } = require('mongodb');
+const mongoose = require('mongoose');
+const checkIndexes = require('./searchIndexes');
 
+// Function to search in PostgreSQL
 async function searchInPostgres(query) {
-  let client;  // Declare client outside of try-catch to access it in finally block
+  // Declare the client variable
+  let client; 
   try {
+    // Connect to PostgreSQL
     client = await pgDal.connect();
 
     // Query the system catalogs to get all tables and columns
@@ -30,52 +42,105 @@ async function searchInPostgres(query) {
         searchResults.push(row);
       });
     }
-
-    return searchResults; // Return the search results
+    // Return the search results
+    // logger.info(searchResults);
+    return searchResults; 
+  
+  // Handle errors
   } catch (error) {
     logger.error('Error searching in PostgreSQL:', error);
     throw error;
+
+  // Ensure the client is released back to the pool
   } finally {
-    // Release the client back to the pool
     try {
       if (client) {
         await client.release();
       }
+    // Handle errors
     } catch (error) {
       logger.error('Error releasing PostgreSQL client:', error);
     }
   }
 }
 
+
+
+// Function to search in MongoDB
 async function searchInMongo(query) {
+  // Declare the Recipe model and client variables
+  let Recipe;
+  let client;
+  let searchResults = [];
+
+  // Ensure MongoDB indexes before performing the search
+  await checkIndexes();
+
   try {
+    // Check if the Recipe model is already defined
+    if (mongoose.models[process.env.MDBCOLLECTION]) { 
+      Recipe = mongoose.model(process.env.MDBCOLLECTION); 
+
+    // Define the Recipe model schema if it's not already defined
+    } else {
+      const RecipeSchema = new mongoose.Schema({
+        title: String,
+        ingredients: [String],
+        directions: [String],
+        link: String,
+        source: String,
+        NER: [String],
+      });
+      // Create the Recipe model
+      Recipe = mongoose.model(process.env.MDBCOLLECTION, RecipeSchema);
+    }
+
+    // Create a new MongoClient instance
+    client = new MongoClient(process.env.MDBATLAS);
+
     // Connect to MongoDB
-    const client = await mDal.connect();
+    await client.connect();
 
-    // Specify the database and collection
-    const db = client.db('NewfieNook'); 
-    const collection = db.collection('Recipes'); 
+    // Access the database and collection
+    const db = client.db(process.env.MDBNAME);
+    const collection = db.collection(process.env.MDBCOLLECTION); // Use environment variable
 
-    // Perform the search using safe query building techniques
+    // Perform the search using MongoDB's text search feature
     const result = await collection.find({ $text: { $search: query } }).toArray();
 
-    // Add a type property to each result object
-    result.forEach(item => {
-      // Ensure item is an array
-      item = Array.isArray(item) ? item : [item];
-      item.type = 'Recipes'; // Replace 'Recipes' with the appropriate collection name
+    // Add the search results to searchResults
+    searchResults = result.map(item => {
+      // Add a type property to each result object
+      item.type = process.env.MDBCOLLECTION;
+      // logger.info('Item: ', item);
+      return item;
     });
 
-    // Close the connection
-    await client.close();
-
-    return result;
+  // Handle errors
   } catch (error) {
     logger.error('Error searching in MongoDB:', error);
     throw error;
+  
+  // Ensure the client is closed
+  } finally {
+    if (client && client.topology.isConnected()) {
+      await client.close();
+    }
   }
+
+// Function to remove duplicate objects from an array
+function removeDuplicates(array) {
+  const jsonString = array.map(JSON.stringify);
+  const uniqueSet = new Set(jsonString);
+  return Array.from(uniqueSet).map(JSON.parse);
 }
 
+// Return the search results
+let uniqueSearchResults = removeDuplicates(searchResults);
+return uniqueSearchResults;
+}
+
+// Export the functions
 module.exports = {
   searchInPostgres,
   searchInMongo

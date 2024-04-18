@@ -1,5 +1,5 @@
 <h1>Search Results</h1>
-<p>Number of results: <%= searchResults.length %></p>
+<p>Number of results: <%= searchResults ? searchResults.length : 0 %></p>
 <% if (searchResults.length === 0) { %>
     <p>No results found.</p>
 <% } else { %>
@@ -16,8 +16,8 @@
             <%- include('vendorResult', { vendor: result }) %> 
         <% } else if (result.type === 'vendor_address') { %>
             <%- include('vendorAddressResult', { vendor_address: result }) %> 
-        <% } else if (result.type === 'recipes') { %>
-            <%- include('recipeResult', { recipes: result }) %> 
+        <% } else if (result.type === 'Recipes') { %>
+            <%- include('recipeResult', { Recipes: result }) %> 
         <% } else { %>
             <p>Unknown result type: <%= result.type %>. Please check your data.</p>
             <p><%= JSON.stringify(result) %></p>

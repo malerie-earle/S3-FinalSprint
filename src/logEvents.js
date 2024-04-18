@@ -14,97 +14,145 @@ if (!fs.existsSync(logsDir)) {
   }
 }
 
-// Get current date in YYYY-MM-DD format
-function getCurrentDate() {
-  return new Date().toLocaleDateString('en-US', { timeZone: 'UTC' });
+// Function to get current date and time as a string
+function getCurrentDateTime() {
+  const now = new Date();
+  return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
 }
 
-// Initiate daily log files inside the 'logs' directory for combined logs
-const fileRotateTransport = new winston.transports.DailyRotateFile({
-  filename: `${logsDir}/%DATE%/combined-%DATE%.log`,
-  datePattern: 'YYYY-MM-DD',
-  maxFiles: '30d'
-});
+// Function to create a transport for daily log files
+function createDailyRotateTransport(filename) {
+  return new winston.transports.DailyRotateFile({
+    filename,
+    datePattern: 'YYYY-MM-DD',
+    maxFiles: '30d'
+  });
+}
 
-// Initiate daily log files inside the 'logs' directory for error logs
-const errorFileRotateTransport = new winston.transports.DailyRotateFile({
-  filename: `${logsDir}/%DATE%/error-%DATE%.log`,
-  datePattern: 'YYYY-MM-DD',
-  level: 'error',
-  maxFiles: '30d'
-});
+// Function to create a transport for a single log file
+function createFileTransport(filename) {
+  return new winston.transports.File({
+    filename,
+    format: winston.format.combine(
+      winston.format.timestamp({ format: 'YYYY-MM-DD hh:mm:ss.SSS A' }),
+      winston.format.printf(info => `${info.timestamp} - ${info.message}`)
+    )
+  });
+}
 
-// Create a logger with custom format including colorization
-const logger = winston.createLogger({
-  levels: {
-    error: 0,
-    warn: 1,
-    info: 2,
-    debug: 3,
-  },
-  format: winston.format.combine(
-    winston.format.timestamp({ format: 'YYYY-MM-DD hh:mm:ss.SSS A' }),
-    winston.format.printf(info => {
-      let colorizedMessage = info.message;
-      switch (info.level) {
-        case 'info':
-          colorizedMessage = color.green(info.message);
-          break;
-        case 'warn':
-          colorizedMessage = color.magenta(info.message);
-          break;
-        case 'error':
-          colorizedMessage = color.red(info.message);
-          break;
-        case 'debug':
-          colorizedMessage = color.blue(info.message);
-          break;
-      }
-      // Add background color to the entire message
-      return color.bgBlack(`${info.timestamp} ${info.level}: ${colorizedMessage}`);
-    }),
-    winston.format.errors({ stack: true })
-  ),
-  defaultMeta: { service: 'admin-service' },
-  transports: [
-    fileRotateTransport,
-    errorFileRotateTransport,
-    new winston.transports.Console()
-  ],
-  exitOnError: false,
-  handleExceptions: true, 
-  handleRejections: true 
-});
-console.log(logger);
+// Function to create a logger for search queries
+function createSearchQueryLogger() {
+  const searchQueryFileTransport = createFileTransport(`${logsDir}/searchQueries.log`);
+  return winston.createLogger({
+    transports: [searchQueryFileTransport]
+  });
+}
 
-// Modify your error handling to capture stack traces
-process.on('uncaughtException', (err) => {
-  console.error('Uncaught Exception:', err);
-  console.error('Stack Trace:', err.stack);
-  process.exit(1); 
-});
+// Function to create a logger for errors
+function createErrorLogger() {
+  const errorFileRotateTransport = createDailyRotateTransport(`${logsDir}/%DATE%/error-%DATE%.log`);
+  return winston.createLogger({
+    transports: [errorFileRotateTransport]
+  });
+}
 
-// Fired when a log file is created
-fileRotateTransport.on('new', (filename) => {
-  logger.info(`A new log file was created: ${filename}`);
-});
+// Function to create a logger for login and logout events
+function createLoginLogoutLogger() {
+  const loginLogoutFileTransport = createFileTransport(`${logsDir}/loginLogout.log`);
+  const loginLogoutLogger = winston.createLogger({
+    transports: [loginLogoutFileTransport]
+  });
+  // Log a test message to ensure the logger is working
+  loginLogoutLogger.info('Login Logout logger initialized.');
+  return loginLogoutLogger;
+}
 
-// Fired when a log file is rotated
-fileRotateTransport.on('rotate', (oldFilename, newFilename) => {
-  logger.info(`A log file was rotated. Old filename: ${oldFilename}. New filename: ${newFilename}`);
-});
+// Function to get current date and time as a string
+function getCurrentDateTime() {
+  const now = new Date();
+  return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
+}
 
-// Fired when a log file is deleted
-fileRotateTransport.on('logRemoved', (removedFilename) => {
-  const newFilename = removedFilename.replace(logsDir, path.join(logsDir, getCurrentDate()));
-  logger.info(`A log file was removed: ${newFilename}`);
-});
+// Function to create a logger for combined logs
+function createCombinedLogger() {
+  const fileRotateTransport = createDailyRotateTransport(`${logsDir}/%DATE%/combined-%DATE%.log`);
+  return winston.createLogger({
+    transports: [
+      new winston.transports.Console({
+        format: winston.format.printf(info => {
+          let colorizedMessage = info.message;
+          switch (info.level) {
+            case 'info':
+              colorizedMessage = color.green(info.message);
+              break;
+            case 'warn':
+              colorizedMessage = color.magenta(info.message);
+              break;
+            case 'error':
+              colorizedMessage = color.red(info.message);
+              break;
+            case 'http':
+              colorizedMessage = color.rainbow(info.message);
+              break;
+            case 'debug':
+              colorizedMessage = color.blue(info.message);
+              break;
+          }
+          // Add current date and time and background color to the entire message
+          return color.bgBlack(`${getCurrentDateTime()} - ${colorizedMessage}`);
+        })
+      }),
+      new winston.transports.File({
+        filename: `${logsDir}/combined.log`,
+        format: winston.format.combine(
+          winston.format.timestamp({ format: 'YYYY-MM-DD hh:mm:ss.SSS A' }),
+          winston.format.printf(info => `${info.timestamp} - ${info.message}`)
+        )
+      })
+    ]
+  });
+}
 
-// Usage:
-logger.info('This is an information message.');
-logger.warn('This is a warning message.');
-logger.error('This is an error message.');
-logger.debug('This is a debug message.');
+// Create loggers for different purposes
+const searchQueryLogger = createSearchQueryLogger();
+const errorLogger = createErrorLogger();
+const loginLogoutLogger = createLoginLogoutLogger();
+const combinedLogger = createCombinedLogger();
 
-module.exports = 
-logger ;
+// Function to log search queries
+function logSearchQuery(user_id, query, database) {
+  searchQueryLogger.info(`User ID: ${user_id}, Query: ${query}, Database: ${database}`);
+}
+
+// Function to log errors
+function logError(error) {
+  errorLogger.error(error);
+}
+
+// Function to log login events
+function logLogin(user_id) {
+  loginLogoutLogger.info(`User ID: ${user_id} logged in`);
+}
+
+// Function to log logout events
+function logLogout(user_id) {
+  loginLogoutLogger.info(`User ID: ${user_id} logged out`);
+}
+
+// Function to log messages to the combined log
+function logMessage(message) {
+  combinedLogger.info(message);
+}
+
+module.exports = {
+  logSearchQuery,
+  logError,
+  logLogin,
+  logLogout,
+  logger: {
+    info: logMessage,
+    error: logMessage,
+    warn: logMessage,
+    debug: logMessage
+  }
+};

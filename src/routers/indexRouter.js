@@ -1,18 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const logger = require('../logEvents.js');
+const { logger, logLogin, logLogout } = require('../logEvents.js');
 const dal = require('../services/pg.auth_db.js');
 const passport = require('passport');
 const { search, searchResults } = require('../services/searchLogic.js');
-const  isAuthenticated = require('../middleware/authMiddleware.js');
-const { authenticateUser } = require('../services/pg.customers.dal.js');
-
+const isAuthenticated = require('../middleware/authMiddleware.js');
+const { authenticateUser, signUpUser } = require('../services/pg.customers.dal.js');
 
 // List of All Available Routes
-logger.info('Index Router - API Endpoints:');
-logger.info('Route: GET/READ - Home Page - /');
-logger.info('Route: GET/READ - Login Page - /login/');
-logger.info('Route: GET/READ - Registration Page - /registration/');
+logger.info('Router - API Endpoints:');
+logger.info('=========================');
+logger.info('Route: / - GET/READ - Home Page');
+logger.info('Route: /login/ - GET/READ - Login Page');
+logger.info('Route: /signup/ - GET/READ - Sign Up Page');
 
 // Home Page
 router.get('/', isAuthenticated, (req, res) => {
@@ -23,14 +23,13 @@ router.get('/', isAuthenticated, (req, res) => {
     logger.error('Error rendering the Home Page:', error);
     res.status(500).render('503');
   }
-  });
-
+});
 
 // Login Page
 router.get('/login/', isAuthenticated, (req, res) => {
   try {
-  logger.info('Rendering the Login Page.');
-  res.render('login');
+    logger.info('Rendering the Login Page.');
+    res.render('login');
   } catch (error) {
     logger.error('Error rendering the Login Page:', error);
     res.status(500).render('503');
@@ -44,80 +43,61 @@ router.post('/login/', async (req, res) => {
       req.login(user, function(err) {
         if (err) {
           logger.error('Error in login:', err);
-          res.render('login', { error: 'An error occurred during login.' }); // Render login page with error
+          res.render('login', { error: 'An error occurred during login.' });
         } else {
+          logLogin(user.customer_id);
           logger.info('User is authenticated. Redirecting to Home Page.');
-          res.redirect('/'); // Redirect to home page
+          res.redirect('/');
         }
       });
     } else {
-      logger.info('Username or password is incorrect. Redirecting to Login Page.');
-      res.render('login', { error: 'Incorrect username or password.' }); // Render login page with error
+      res.render('login', { error: 'Invalid username or password.' });
     }
   } catch (error) {
     logger.error('Error in login:', error);
-    res.render('login', { error: 'An error occurred during login.' }); // Render login page with error
-  }
-});
-
-
-
-// Routes for login pages
-router.get('/login/', (req, res) => {
-  try {
-  logger.info('Rendering the Login Page.');
-  res.render('login', { messages: req.flash('error') });
-  } catch (error) {
-    logger.error('Error rendering the Login Page:', error);
     res.status(500).render('503');
   }
 });
 
+router.get('/logout/', (req, res) => {
+  logLogout(req.user.customer_id);
+  req.logout();
+  res.redirect('/login');
+});
 
-
-// Routes for registration page
-router.get('/registration/', (req, res) => {
+router.post('/signup/', async (req, res) => {
+  logger.info('Adding a new user:', req.body);
   try {
-  logger.info('Rendering the Registration Page.');
-  res.render('registration', { messages: req.flash('error') });
+    const { first_name, last_name, email, ph_num, gender, pay_method, street_address, city, province, postal_code, country, username, password } = req.body;
+    const newUser = await signUpUser({ first_name, last_name, email, ph_num, gender, pay_method, street_address, city, province, postal_code, country, username, password });
+    const newCustomerId = newUser.newCustomer.customer_id;
+    res.render('signUp', { newCustomerId, newUser });
   } catch (error) {
-    logger.error('Error rendering the Registration Page:', error);
+    logger.error('Error adding a new user:', error);
     res.status(500).render('503');
   }
-  });
+});
 
-
-// Login Page
-router.get('/login/', isAuthenticated, (req, res) => {
+// Signup Success Page
+router.get('/signup/success/', isAuthenticated, (req, res) => {
   try {
-  logger.info('Rendering the Login Page.');
-  res.render('login');
+    logger.info('Rendering the Sign Up Success Page.');
+    res.render('signUpSuccess', { newCustomerId: req.query.newCustomerId, newUser: req.query.newUser });
   } catch (error) {
-    logger.error('Error rendering the Login Page:', error);
+    logger.error('Error rendering the Sign Up Success Page:', error);
     res.status(500).render('503');
   }
 });
 
 // Logout Route
-router.get('/logout/', (req, res) => {
-  req.logout(() => { // Add the callback function here
-    req.flash('success_msg', 'You are logged out'); // Optional: Flash message for successful logout
-    logger.info('User logged out successfully. Redirecting to Login Page.');
-    res.redirect('/login'); // Redirect to the login page or any other page
-  });
-});
-
-
-
-
-
-// Routes for registration page
-router.get('/registration/', (req, res) => {
+router.get('/logout/', isAuthenticated, (req, res) => {
   try {
-  logger.info('Rendering the Registration Page.');
-  res.render('registration', { messages: req.flash('error') });
+    req.logout();
+    req.flash('success_msg', 'You are logged out');
+    logger.info('User is logged out. Redirecting to Login Page.');
+    res.redirect('/login');
   } catch (error) {
-    logger.error('Error rendering the Registration Page:', error);
+    logger.error('Error in logout:', error);
     res.status(500).render('503');
   }
 });

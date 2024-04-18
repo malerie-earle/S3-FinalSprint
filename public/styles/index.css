@@ -623,3 +623,7 @@ transform: scale(1.5);
   color: black;
 }
 
+.submitButton {
+  border: 1px solid black;
+  border-radius: 5px;
+}
