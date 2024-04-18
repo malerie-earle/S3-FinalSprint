@@ -21,8 +21,8 @@ async function authenticateUser(username, password) {
     }
     // If the user is found, compare the password
     logger.info(`Retrieved user: ${JSON.stringify(user)}`);
-    logger.info(`Entered password: ${password}`);
-    logger.info(`Stored hashed password: ${user.password}`); // add password hashing - password showing as entered.
+    // logger.info(`Entered password: ${password}`);
+    // logger.info(`Stored hashed password: ${user.password}`); // add password hashing - password showing as entered.
 
     // Compare the entered password with the stored hashed password
     if (password !== user.password) {
@@ -62,17 +62,17 @@ async function signUpUser({ first_name, last_name, email, ph_num, gender, pay_me
 
     // Add a new Customer Address
     logger.info('pg.DAL: Adding a new customer address.');
-    const newCustomerAddress = await addCustomerAddress({ street_address, city, province, postal_code, country });
-    const newCustomerAddressID = newCustomerAddress.customer_id;
-    logger.info('pg.DAL: New customer address added successfully.');
+    const sqlAddress = `INSERT INTO public.customer_address (customer_id, street_address, city, province, postal_code, country) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;`;
+    const valuesAddress = [newCustomerId, street_address, city, province, postal_code, country];
+    const newCustomerAddress = await dal.query(sqlAddress, valuesAddress);
 
-    // Return the new customer details
-    logger.info('pg.DAL: New customer registered successfully.');
-    return { newCustomerID, newCustomer, newCustomerAccount, newCustomerAddress };
-    
-  // Handle errors
+    return {
+      customer: newCustomer.rows[0],
+      user: newUser.rows[0],
+      address: newCustomerAddress.rows[0]
+    };
   } catch (error) {
-    logger.error('Error in registerCustomer():', error);
+    logger.error('Error in registerAndAddCustomer():', error);
     throw error;
   }
 }
