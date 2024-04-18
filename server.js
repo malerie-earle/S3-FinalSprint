@@ -2,20 +2,20 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 
+const passport = require('passport'); // Only import passport once
+
 // Imports
 const express = require('express');
 const { logger } = require('./src/logEvents');
 const methodOverride = require('method-override');
 const path = require('path');
 const session = require('express-session');
-const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const { Pool } = require('pg');
 const { authenticateUser } = require('./src/services/pg.customers.dal');
 const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 const isAuthentic = require('./src/middleware/authMiddleware');
-
 
 // Database Connection & routers
 const mPg = require('./src/services/pg.auth_db');
@@ -39,11 +39,9 @@ app.use(session({
   cookie: { secure: false } // For development, set to true in production with HTTPS
 }));
 
-
 // Initialize Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
-
 
 // Middleware
 app.set('view engine', 'ejs');
@@ -55,13 +53,12 @@ app.use(methodOverride('_method'));
 
 
 // Routers
-app.use('/', require('./src/routers/indexRouter'));
-app.use('/customer/', require('./src/routers/customerRouter'));
-app.use('/product/', require('./src/routers/productRouter'));
-app.use('/recipe/', require('./src/routers/recipeRouter'));
-app.use('/vendor/', require('./src/routers/vendorRouter'));
+app.use('/', indexRouter);
+app.use('/customer/', customerRouter);
+app.use('/product/', productRouter);
+app.use('/recipe/', recipeRouter);
+app.use('/vendor/', vendorRouter);
 app.use('/', require('./src/routers/searchRouter'));
-
 
 // Connect to the database
 (async () => {
@@ -75,7 +72,6 @@ app.use('/', require('./src/routers/searchRouter'));
     process.exit(1); 
   }
 })();
-
 
 // Error handling
 app.use((err, req, res, next) => {
