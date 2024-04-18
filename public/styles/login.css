@@ -23,6 +23,9 @@ body {
     padding: 40px;
     text-align: center;
     border: 1px solid black;
+    position: relative;
+    top: 150px;
+    right: 520px;
 }
 
 h2 {
