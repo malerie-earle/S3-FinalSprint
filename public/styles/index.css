@@ -724,3 +724,8 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+.success {
+  display: none;
+
+}

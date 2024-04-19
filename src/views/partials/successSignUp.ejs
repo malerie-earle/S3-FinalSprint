@@ -1,0 +1,19 @@
+<h1>Success! You have Signed Up successfully!</h1>
+
+<% if (newUser && newUser.newCustomer && newUser.newCustomerAccount && newUser.newCustomerAddress) { %>
+  <h2>New User:</h2>
+  <p>New User ID: <%= newUser.newCustomer.customer_id %></p>
+  <p>Username: <%= newUser.newCustomerAccount.username %></p>
+  <p>First Name: <%= newUser.newCustomer.first_name %></p>
+  <p>Last Name: <%= newUser.newCustomer.last_name %></p>
+  <p>Gender: <%= newUser.newCustomer.gender %></p>
+  <p>Email: <%= newUser.newCustomer.email %></p>
+  <p>Phone Number: <%= newUser.newCustomer.ph_num %></p>
+  <p>Payment Method: <%= newUser.newCustomer.pay_method %></p>
+  <p>Street Address: <%= newUser.newCustomerAddress.street_address %></p>
+  <p>City: <%= newUser.newCustomerAddress.city %>, <%= newUser.newCustomerAddress.province %>, <%= newUser.newCustomerAddress.country %></p>
+  <p>Postal Code: <%= newUser.newCustomerAddress.postal_code %></p>
+<% } else { %>
+  <a href="/customer/all/">See All Customers >></a>
+<% } %>
+<a href="/customer/id/:customer_id">See More >></a>
