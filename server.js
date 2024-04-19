@@ -15,6 +15,30 @@ const { Pool } = require('pg');
 const { authenticateUser } = require('./src/services/pg.customers.dal');
 const bodyParser = require('body-parser');
 const flash = require('connect-flash');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
+// Bcrypt functions
+const hashPassword = async (password) => {
+  try {
+    const salt = await bcrypt.genSalt(saltRounds);
+    const hash = await bcrypt.hash(password, salt);
+    return hash;
+  } catch (error) {
+    console.error('Error hashing password:', error);
+    throw error;
+  }
+};
+
+const verifyPassword = async (password, hash) => {
+  try {
+    const isValid = await bcrypt.compare(password, hash);
+    return isValid;
+  } catch (error) {
+    console.error('Error verifying password:', error);
+    throw error;
+  }
+};
 
 // Database Connection & routers
 const mPg = require('./src/services/pg.auth_db');
@@ -24,7 +48,6 @@ const customerRouter = require('./src/routers/customerRouter');
 const vendorRouter = require('./src/routers/vendorRouter');
 const productRouter = require('./src/routers/productRouter');
 const recipeRouter = require('./src/routers/recipeRouter');
-
 
 // App setup
 const app = express();
@@ -50,6 +73,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 
+// Bcrypt middleware
+app.use((req, res, next) => {
+  req.hashPassword = hashPassword;
+  req.verifyPassword = verifyPassword;
+  next();
+});
 
 // Routers
 app.use('/', indexRouter);
