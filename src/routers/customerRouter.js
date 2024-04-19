@@ -5,6 +5,32 @@ const { logger } = require('../logEvents.js');
 const dal = require('../services/pg.auth_db.js');
 const passport = require('passport');
 const isAuthenticated = require('../config/passport-config.js');
+const bcrypt = require('bcrypt');
+
+const saltRounds = 10;
+
+// Hash a password
+const hashPassword = async (password) => {
+  try {
+    const salt = await bcrypt.genSalt(saltRounds);
+    const hash = await bcrypt.hash(password, salt);
+    return hash;
+  } catch (error) {
+    console.error('Error hashing password:', error);
+    throw error;
+  }
+};
+
+// Verify a password
+const verifyPassword = async (password, hash) => {
+  try {
+    const isValid = await bcrypt.compare(password, hash);
+    return isValid;
+  } catch (error) {
+    console.error('Error verifying password:', error);
+    throw error;
+  }
+};
 
 
 
@@ -21,6 +47,31 @@ logger.info('Route: /customer/username/:username - GET/READ - Single Customer by
 logger.info('Route: /customer/add/ - POST/CREATE - Add Customer');
 logger.info('Route: /customer/edit - PUT/UPDATE - Edit Customer');
 logger.info('Route: /customer/delete - DELETE - Delete Customer');
+
+
+// Hash a Password Endpoint
+router.post('/hash', async (req, res) => {
+  const { password } = req.body;
+  try {
+    const hashedPassword = await hashPassword(password);
+    res.json({ hashedPassword });
+  } catch (error) {
+    logger.error('Error hashing password:', error);
+    res.status(500).json({ error: 'Could not hash password' });
+  }
+});
+
+// Verify a Password Endpoint
+router.post('/verify', async (req, res) => {
+  const { password, hash } = req.body;
+  try {
+    const isValid = await verifyPassword(password, hash);
+    res.json({ isValid });
+  } catch (error) {
+    logger.error('Error verifying password:', error);
+    res.status(500).json({ error: 'Could not verify password' });
+  }
+});
 
 
 // GET All Customers

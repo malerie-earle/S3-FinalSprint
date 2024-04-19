@@ -2,19 +2,43 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 
+const passport = require('passport'); // Only import passport once
+
 // Imports
 const express = require('express');
 const { logger } = require('./src/logEvents');
 const methodOverride = require('method-override');
 const path = require('path');
 const session = require('express-session');
-const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const { Pool } = require('pg');
 const { authenticateUser } = require('./src/services/pg.customers.dal');
 const bodyParser = require('body-parser');
 const flash = require('connect-flash');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
+// Bcrypt functions
+const hashPassword = async (password) => {
+  try {
+    const salt = await bcrypt.genSalt(saltRounds);
+    const hash = await bcrypt.hash(password, salt);
+    return hash;
+  } catch (error) {
+    console.error('Error hashing password:', error);
+    throw error;
+  }
+};
+
+const verifyPassword = async (password, hash) => {
+  try {
+    const isValid = await bcrypt.compare(password, hash);
+    return isValid;
+  } catch (error) {
+    console.error('Error verifying password:', error);
+    throw error;
+  }
+};
 
 // Database Connection & routers
 const mPg = require('./src/services/pg.auth_db');
@@ -24,7 +48,6 @@ const customerRouter = require('./src/routers/customerRouter');
 const vendorRouter = require('./src/routers/vendorRouter');
 const productRouter = require('./src/routers/productRouter');
 const recipeRouter = require('./src/routers/recipeRouter');
-
 
 // App setup
 const app = express();
@@ -38,11 +61,9 @@ app.use(session({
   cookie: { secure: false } // For development, set to true in production with HTTPS
 }));
 
-
 // Initialize Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
-
 
 // Middleware
 app.set('view engine', 'ejs');
@@ -52,15 +73,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 
+// Bcrypt middleware
+app.use((req, res, next) => {
+  req.hashPassword = hashPassword;
+  req.verifyPassword = verifyPassword;
+  next();
+});
 
 // Routers
-app.use('/', require('./src/routers/indexRouter'));
-app.use('/customer/', require('./src/routers/customerRouter'));
-app.use('/product/', require('./src/routers/productRouter'));
-app.use('/recipe/', require('./src/routers/recipeRouter'));
-app.use('/vendor/', require('./src/routers/vendorRouter'));
+app.use('/', indexRouter);
+app.use('/customer/', customerRouter);
+app.use('/product/', productRouter);
+app.use('/recipe/', recipeRouter);
+app.use('/vendor/', vendorRouter);
 app.use('/', require('./src/routers/searchRouter'));
-
 
 // Connect to the database
 (async () => {
@@ -74,7 +100,6 @@ app.use('/', require('./src/routers/searchRouter'));
     process.exit(1); 
   }
 })();
-
 
 // Error handling
 app.use((err, req, res, next) => {
