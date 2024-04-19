@@ -29,7 +29,7 @@ router.get('/all/', async (req, res) => {
   try {
     const theCustomers = await getAllCustomers();
     logger.info('All customers retrieved successfully.');
-    res.render('allCustomers.ejs', { theCustomers: theCustomers });
+    res.render('allCustomers.ejs', { theCustomers });
   } catch (error) {
     logger.error('Error getting all customers:', error);
     res.status(500).render('503');
@@ -138,29 +138,6 @@ router.get('/username/:username/', async (req, res) => {
     res.status(503).render('503');
   }
 });
-
-// ADD a Customer
-router.get('/add/', (req, res) => {
-  logger.info('Rendering the Add Customer Page.');
-  res.render('addCustomer');
-});
-router.post('/add/', async (req, res) => {
-  logger.info('Adding a new customer.');
-  try {
-    const {customer_id, first_name, last_name, email, ph_num, gender, pay_method} = req.body.newCustomer;
-    const newCustomer = await addCustomer({customer_id, first_name, last_name, email, ph_num, gender, pay_method});
-    const {username, password} = req.body.newCustomerAccount;
-    const newCustomerAccount = await addCustomerAccount({customer_id: newCustomer.customer_id, username, password});
-    const {street_address, city, province, postal_code, country} = req.body.newCustomerAddress;
-    const newCustomerAddress = await addCustomerAddress({customer_id: newCustomer.customer_id, street_address, city, province, postal_code, country});
-    logger.info('New customer added successfully.');
-    res.redirect(`/customers/`);
-  } catch (error) {
-    logger.error('Error adding a new customer:', error);
-    res.status(500).render('503');
-  }
-});
-
 
 // Edit Customer Page
 router.get('/edit/:customer_id', async (req, res) => {

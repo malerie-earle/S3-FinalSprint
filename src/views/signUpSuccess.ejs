@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -11,9 +11,10 @@
 
 <body>
   <h1>Success! You have Signed Up successfully!</h1>
-  <h2>New User:</h2>
-  <% if (newCustomerId) { %>
-    <p>New User ID: <%= newCustomerId %></p>
+
+  <% if (newUser) { %>
+    <h2>New User:</h2>
+    <p>New User ID: <%= newUser.customer_id %></p>
     <p>Username: <%= newUser.username %></p>
     <p>First Name: <%= newUser.first_name %></p>
     <p>Last Name: <%= newUser.last_name %></p>
@@ -24,7 +25,9 @@
     <p>Street Address: <%= newUser.street_address %></p>
     <p>City: <%= newUser.city %>, <%= newUser.province %>, <%= newUser.country %></p>
     <p>Postal Code: <%= newUser.postal_code %></p>
+  <% } else { %>
+    <a href="/customer/all/">See All Customers >></a>
   <% } %>
-  <a href="/login/">Login</a>
+  <a href="/customer/id/:customer_id">See More >></a>
 </body>
-</html>
+</html> -->

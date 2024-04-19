@@ -5,70 +5,52 @@ const bcrypt = require('bcrypt');
 
 // Authenticate User
 async function authenticateUser(username, password) {
+  logger.info('pg.DAL: authenticateUser():');
   try {
+    // Authenticate the user
     logger.info('pg.DAL: Authenticating user.');
-    const user = await getCustomerByUsername(username);
-    
+    const sql = 'SELECT * FROM public.customer_account WHERE username = $1;';
+    // Execute the query
+    const result = await dal.query(sql, [username]);
+    const user = result.rows[0];
+
+    // If the user is not found, return null
     if (!user) {
       logger.info('User not found.');
       return null;
     }
-
-    logger.info(`Entered password: ${password}`);
-    logger.info(`Stored password: ${user.password}`);
+    // If the user is found, compare the password
+    logger.info(`Retrieved user: ${JSON.stringify(user)}`);
+    // logger.info(`Entered password: ${password}`);
+    // logger.info(`Stored hashed password: ${user.password}`); // add password hashing - password showing as entered.
 
     // Compare the entered password with the stored hashed password
     if (password !== user.password) {
-      logger.error('User authentication failed.');
+      logger.info('Incorrect password.');
       return null;
-    }    
+    }
 
     // Return the user
     logger.info('User authenticated successfully.');
     return user;
 
-
+  // Handle errors
   } catch (error) {
     logger.error('Error in authenticateUser():', error);
     throw error;
   }
 }
 
-
-// Sign Up User
-async function signUpUser(newUser) {
-  try {
-    logger.info('pg.DAL: signUpUser():');
-    const { first_name, last_name, email, ph_num, gender, pay_method, username, password, street_address, city, province, postal_code, country } = newUser;
-
-    // Generate a new customer ID
-    const newCustomerId = await generateNewCustomerId();
-
-    // Add a new Customer
-    const newCustomer = await addCustomer({ customer_id: newCustomerId, first_name, last_name, email, ph_num, gender, pay_method });
-
-    // Add a new Customer Account
-    await addCustomerAccount({ customer_id: newCustomerId, username, password });
-
-    // Add a new Customer Address
-    await addCustomerAddress({ customer_id: newCustomerId, street_address, city, province, postal_code, country });
-
-    logger.info('pg.DAL: New user registered successfully.');
-    return newCustomer;
-
-  } catch (error) {
-    logger.error('Error in signUpUser():', error);
-    throw error;
-  }
-}
-
-// Generate a new customer ID
+// Generate a new Customer ID
 async function generateNewCustomerId() {
   try {
-    const lastIdQuery = 'SELECT MAX(customer_id) AS max_id FROM public.customer;';
-    const lastIdResult = await dal.query(lastIdQuery);
-    const maxCustomerId = lastIdResult.rows[0].max_id;
-    return maxCustomerId + 1;
+    logger.info('pg.DAL: Generating a new customer ID.');
+    const sql = 'SELECT MAX(customer_id) AS max_id FROM public.customer;';
+    const result = await dal.query(sql);
+    const newCustomerId = result.rows[0].max_id + 1;
+    logger.info('New customer ID generated successfully.');
+    return newCustomerId;
+
   } catch (error) {
     logger.error('Error in generateNewCustomerId():', error);
     throw error;
@@ -76,48 +58,66 @@ async function generateNewCustomerId() {
 }
 
 // Add a new Customer
-async function addCustomer(customerData) {
+async function addCustomer(req) {
   try {
-    const { customer_id, first_name, last_name, email, ph_num, gender, pay_method } = customerData;
+    logger.info('pg.DAL: Adding a new customer.');
+    const { first_name, last_name, email, ph_num, gender, pay_method } = req.body.newCustomer;
+    const idQuery = 'SELECT MAX(customer_id) AS max_id FROM public.customer;';
     const sql = `INSERT INTO public.customer (customer_id, first_name, last_name, email, ph_num, gender, pay_method) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *;`;
+
+    const lastIdResult = await dal.query(idQuery);
+    const customer_id = lastIdResult.rows[0].max_id + 1;
     const values = [customer_id, first_name, last_name, email, ph_num, gender, pay_method];
-    const newCustomer = await dal.query(sql, values);
-    return newCustomer.rows[0];
+
+    const newCustomerResult = await dal.query(sql, values);
+    const newCustomer = newCustomerResult.rows[0];
+    logger.info('New customer added successfully.');
+    return newCustomer;
+
   } catch (error) {
-    logger.error('Error in addCustomer():', error);
+    logger.error('Error in addCustomer():', error.message);
+    logger.error('Stack trace:', error.stack);
     throw error;
   }
 }
 
 // Add a new Customer Account
-async function addCustomerAccount(accountData) {
+async function addCustomerAccount(req, customer_id) {
   try {
-    const { customer_id, username, password } = accountData;
+    logger.info('pg.DAL: Adding a new customer account.');
+    const { username, password } = req.body.newCustomerAccount;
     const sql = `INSERT INTO public.customer_account (customer_id, username, password) VALUES ($1, $2, $3) RETURNING *;`;
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const values = [customer_id, username, hashedPassword];
-    const newCustomerAccount = await dal.query(sql, values);
-    return newCustomerAccount.rows[0];
+    const values = [customer_id, username, password];
+    const newCustomerAccountResult = await dal.query(sql, values);
+    const newCustomerAccount = newCustomerAccountResult.rows[0];
+    logger.info('New customer account added successfully.');
+    return newCustomerAccount;
+
   } catch (error) {
-    logger.error('Error in addCustomerAccount():', error);
+    logger.error('Error in addCustomerAccount():', error.message);
+    logger.error('Stack trace:', error.stack);
     throw error;
   }
 }
 
 // Add a new Customer Address
-async function addCustomerAddress(addressData) {
+async function addCustomerAddress(req, customer_id) {
   try {
-    const { customer_id, street_address, city, province, postal_code, country } = addressData;
+    logger.info('pg.DAL: Adding a new customer address.');
+    const { street_address, city, province, postal_code, country } = req.body.newCustomerAddress;
     const sql = `INSERT INTO public.customer_address (customer_id, street_address, city, province, postal_code, country) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;`;
     const values = [customer_id, street_address, city, province, postal_code, country];
-    const newCustomerAddress = await dal.query(sql, values);
-    return newCustomerAddress.rows[0];
+    const newCustomerAddressResult = await dal.query(sql, values);
+    const newCustomerAddress = newCustomerAddressResult.rows[0];
+    logger.info('New customer address added successfully.');
+    return newCustomerAddress;
+
   } catch (error) {
-    logger.error('Error in addCustomerAddress():', error);
+    logger.error('Error in addCustomerAddress():', error.message);
+    logger.error('Stack trace:', error.stack);
     throw error;
   }
 }
-
 
 // Edit a Customer
 async function editCustomer({customer_id, first_name, last_name, email, ph_num, gender, pay_method}) {
@@ -141,16 +141,14 @@ async function editCustomer({customer_id, first_name, last_name, email, ph_num, 
     logger.error('Error in editCustomer():', error);
     throw error;
   }
-}
+};
 
 // Edit a Customer Account
 async function editCustomerAccount({ customer_id, username, password }) {
   try {
     logger.info('pg.DAL: Editing a customer account.');
     const sql = 'UPDATE public.customer_account SET username = $2, password = $3 WHERE customer_id = $1 RETURNING *;';
-    // Execute the query
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const values = [customer_id, username, hashedPassword];
+    const values = [customer_id, username, password]; 
     const updatedCustomerAccount = await dal.query(sql, values);
     logger.info('Customer account edited successfully.');
     return updatedCustomerAccount.rows[0];
@@ -160,7 +158,7 @@ async function editCustomerAccount({ customer_id, username, password }) {
     logger.error('Error in editCustomerAccount():', error);
     throw error;
   }
-}
+};
 
 // Edit a Customer Address
 async function editCustomerAddress({ customer_id, street_address, city, province, postal_code, country }) {
@@ -178,7 +176,7 @@ async function editCustomerAddress({ customer_id, street_address, city, province
     logger.error('Error in editCustomerAddress():', error);
     throw error;
   }
-}
+};
 
 
 // Delete a customer
@@ -211,9 +209,9 @@ async function getAllCustomers() {
       ORDER BY c.customer_id DESC;
     `;
     // Execute the query
-    const result = await dal.query(sql);
+    const theCustomers = await dal.query(sql);
     logger.info('pg.DAL: All customers retrieved successfully.');
-    return result;
+    return theCustomers.rows;
 
   // Handle errors
   } catch (error) {
@@ -257,7 +255,7 @@ async function getCustomerAccountByCustomerId(customer_id) {
     logger.error('Error in getCustomerAccountByCustomerId():', error);
     throw error;
   }
-}
+};
 
 
 // Get a Customer Address by customer_id
@@ -276,7 +274,7 @@ async function getCustomerAddressByCustomerId(customer_id) {
     logger.error('Error in getCustomerAddressByCustomerId():', error);
     throw error;
   }
-}
+};
 
 // Get a Customer by first_name
 async function getCustomersByFirstName(first_name) {
@@ -388,7 +386,7 @@ async function getCustomersByPayMethod(pay_method) {
     logger.error('Error in getCustomersByPayMethod():', error);
     throw error;
   }
-}
+};
 
 
 // Get a Customer by username
@@ -416,11 +414,7 @@ async function getCustomerByUsername(username) {
 
 module.exports = {
   authenticateUser,
-  signUpUser,
   generateNewCustomerId,
-  addCustomer,
-  addCustomerAccount,
-  addCustomerAddress,
   editCustomer,
   editCustomerAccount,
   editCustomerAddress,
@@ -435,5 +429,8 @@ module.exports = {
   getCustomerByPhoneNum,
   getCustomersByGender,
   getCustomersByPayMethod,
-  getCustomerByUsername
+  getCustomerByUsername,
+  addCustomer,
+  addCustomerAccount,
+  addCustomerAddress
 };

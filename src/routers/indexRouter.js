@@ -5,7 +5,10 @@ const dal = require('../services/pg.auth_db.js');
 const passport = require('passport');
 const { search, searchResults } = require('../services/searchLogic.js');
 const isAuthenticated = require('../middleware/authMiddleware.js');
-const { authenticateUser, signUpUser } = require('../services/pg.customers.dal.js');
+const { generateNewCustomerId, getAllCustomers, getCustomerAccountByCustomerId, getCustomerAddressByCustomerId, getCustomerByCustomerId, getCustomerByEmail, getCustomerByPhoneNum, getCustomerByUsername, getCustomersByFirstName, getCustomersByGender, getCustomersByLastName, getCustomersByPayMethod, editCustomer, editCustomerAccount, editCustomerAddress, deleteCustomer, signUpUser, authenticateUser, addCustomer, addCustomerAccount, addCustomerAddress } = require('../services/pg.customers.dal.js');
+const { log } = require('winston');
+
+
 
 // List of All Available Routes
 logger.info('Router - API Endpoints:');
@@ -25,6 +28,15 @@ router.get('/', isAuthenticated, (req, res) => {
   }
 });
 
+router.get('/login/', (req, res) => {
+  try {
+    logger.info('Rendering the Login Page.');
+    res.render('login');
+  } catch (error) {
+    logger.error('Error rendering the Login Page:', error);
+    res.status(500).render('503');
+  }
+});
 router.post('/login/', async (req, res) => {
   try {
     logger.info('Authenticating the user:', req.body);
@@ -58,40 +70,30 @@ router.get('/logout/', isAuthenticated, (req, res) => {
 });
 
 
-// Sign Up Page
+
+// Display the form for adding a customer
 router.get('/signup/', (req, res) => {
-  try {
-    logger.info('Rendering the Sign Up Page.');
-    res.render('signup');
-  } catch (error) {
-    logger.error('Error rendering the Sign Up Page:', error);
-    res.status(500).render('503');
-  }
+  logger.info('Rendering the Add Customer Page.');
+  res.render('signUp');
 });
-
-router.post('/signup', async (req, res) => {
+router.post('/signup/', async (req, res) => {
+  logger.info('Adding a new customer.');
   try {
-    logger.info('Adding a new user:', req.body);
-    const { first_name, last_name, email, ph_num, gender, pay_method, street_address, city, province, postal_code, country, username, password } = req.body;
-    const newUser = await signUpUser({ first_name, last_name, email, ph_num, gender, pay_method, street_address, city, province, postal_code, country, username, password });
-    const newCustomerId = newUser.newCustomer.customer_id;
-    res.render('signupSuccess', { newCustomerId, newUser });
-  } catch (error) {
-    logger.error('Error adding a new user:', error);
-    res.status(500).render('503');
-  }
-});
+    const newCustomer = await addCustomer(req);
+    logger.info(`Successfully added a new customer.`);
+    
+    const newCustomerAccount = await addCustomerAccount(req, newCustomer.customer_id);
+    logger.info(`Successfully added a new customer account.`);
 
-// Logout Page
-router.get('/logout', isAuthenticated, (req, res) => {
-  try {
-    req.logout();
+    const newCustomerAddress = await addCustomerAddress(req, newCustomer.customer_id);
+    logger.info(`Successfully added a new customer address.`);
 
-    const logoutMessage = 'You are logged out';
-    logger.info('User is logged out. Redirecting to Login Page.');
-    res.redirect('/login/', { logoutMessage });
+    const newUser = {newCustomer, newCustomerAccount, newCustomerAddress};
+    req.session.newUser = newUser; 
+    res.redirect('/customer/all/');
+    logger.info('Successfully added a new user.');
   } catch (error) {
-    logger.error('Error in logout:', error);
+    logger.error('Router: Error adding a new customer:', error);
     res.status(500).render('503');
   }
 });
