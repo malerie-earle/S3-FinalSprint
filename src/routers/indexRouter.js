@@ -89,17 +89,29 @@ router.get('/signup/success/', isAuthenticated, (req, res) => {
   }
 });
 
-// Logout Route
-router.get('/logout/', isAuthenticated, (req, res) => {
-  try {
+// Logout route
+router.get('/logout', (req, res) => {
+  logger.info('Logging out the user.');
+
+  // If using sessions, this will destroy the session
+  req.session.destroy((err) => {
+    if (err) {
+      logger.error('Error destroying session:', err);
+      return res.status(500).render('503');
+    }
+    
+    // After destroying the session, log the user out
     req.logout();
-    req.flash('success_msg', 'You are logged out');
-    logger.info('User is logged out. Redirecting to Login Page.');
     res.redirect('/login');
-  } catch (error) {
-    logger.error('Error in logout:', error);
-    res.status(500).render('503');
-  }
+  });
 });
+
+
+
+
+
+
+
+
 
 module.exports = router;

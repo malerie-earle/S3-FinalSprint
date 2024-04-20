@@ -19,8 +19,6 @@ async function authenticateUser(username, password) {
     }
     // If the user is found, compare the password
     logger.info(`Retrieved user: ${JSON.stringify(user)}`);
-    logger.info(`Entered password: ${password}`);
-    logger.info(`Stored hashed password: ${user.password}`); // add password hashing - password showing as entered.
 
     // Compare the entered password with the stored hashed password
     if (password !== user.password) {
