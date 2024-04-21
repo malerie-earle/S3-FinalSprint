@@ -4,6 +4,28 @@ const { logger, logSearchQuery } = require('../logEvents.js');
 const { searchInPostgres, searchInMongo } = require('../services/searchLogic.js');
 const isAuthenticated = require('../middleware/authMiddleware.js');  
 
+// Search Products
+router.get('/product/search/', isAuthenticated, (req, res) => {
+  try {
+    logger.info('Rendering the Search Page.');
+    res.render('searchProducts.ejs', { user: req.user });
+  } catch (error) {
+    logger.error('Error rendering the Search Page:', error);
+    res.status(500).render('503');
+  }
+}); 
+
+// Search Customers
+router.get('/customer/search/', isAuthenticated, (req, res) => {
+  try {
+    logger.info('Rendering the Search Page.');
+    res.render('searchCustomers.ejs', { user: req.user });
+  } catch (error) {
+    logger.error('Error rendering the Search Page:', error);
+    res.status(500).render('503');
+  }
+});
+
 // GET - Search Recipe Page
 router.get('/search/', isAuthenticated, (req, res) => {
   try {
