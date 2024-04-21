@@ -7,6 +7,20 @@ const passport = require('passport');
 const isAuthenticated = require('../config/passport-config.js');
 const bcrypt = require('bcrypt');
 
+// List of All Available Routes
+logger.info('Route: /customer/all/ - GET/READ - All Customers');
+logger.info('Route: /customer/id/:id - GET/READ - Single Customer by ID');
+logger.info('Route: /customer/first/:firstName - GET/READ - Customers by First Name');
+logger.info('Route: /customer/last/:lastName - GET/READ - Customers by Last Name');
+logger.info('Route: /customer/email/:email - GET/READ - Single Customer by Email');
+logger.info('Route: /customer/phone/:ph_num - GET/READ - Single Customer by Phone Number');
+logger.info('Route: /customer/gender/:gender - GET/READ - Customers by Gender');
+logger.info('Route: /customer/payment/:pay_method - GET/READ - Customers by Pay Method');
+logger.info('Route: /customer/username/:username - GET/READ - Single Customer by Username');
+logger.info('Route: /customer/add/ - POST/CREATE - Add Customer');
+logger.info('Route: /customer/edit - PUT/UPDATE - Edit Customer');
+logger.info('Route: /customer/delete - DELETE - Delete Customer');
+
 const saltRounds = 10;
 
 // Hash a password
@@ -32,25 +46,8 @@ const verifyPassword = async (password, hash) => {
   }
 };
 
-
-
-// List of All Available Routes
-logger.info('Route: /customer/all/ - GET/READ - All Customers');
-logger.info('Route: /customer/id/:id - GET/READ - Single Customer by ID');
-logger.info('Route: /customer/first/:firstName - GET/READ - Customers by First Name');
-logger.info('Route: /customer/last/:lastName - GET/READ - Customers by Last Name');
-logger.info('Route: /customer/email/:email - GET/READ - Single Customer by Email');
-logger.info('Route: /customer/phone/:ph_num - GET/READ - Single Customer by Phone Number');
-logger.info('Route: /customer/gender/:gender - GET/READ - Customers by Gender');
-logger.info('Route: /customer/payment/:pay_method - GET/READ - Customers by Pay Method');
-logger.info('Route: /customer/username/:username - GET/READ - Single Customer by Username');
-logger.info('Route: /customer/add/ - POST/CREATE - Add Customer');
-logger.info('Route: /customer/edit - PUT/UPDATE - Edit Customer');
-logger.info('Route: /customer/delete - DELETE - Delete Customer');
-
-
 // Hash a Password Endpoint
-router.post('/hash', async (req, res) => {
+router.post('/hash/', async (req, res) => {
   const { password } = req.body;
   try {
     const hashedPassword = await hashPassword(password);
@@ -62,7 +59,7 @@ router.post('/hash', async (req, res) => {
 });
 
 // Verify a Password Endpoint
-router.post('/verify', async (req, res) => {
+router.post('/verify/', async (req, res) => {
   const { password, hash } = req.body;
   try {
     const isValid = await verifyPassword(password, hash);
@@ -89,16 +86,16 @@ router.get('/all/', async (req, res) => {
 
 
 // GET - Customer by ID - /customer/:id
-router.get('/id/:id', async (req, res) => {
+router.get('/id/:id/', async (req, res) => {
 
   const id = req.params.id;
   logger.info(`Getting the customer by ID: ${id}`);
   try {
-    const aCustomer = await getCustomerByCustomerId(id);
-    const aCustomerAccount = await getCustomerAccountByCustomerId(id);
-    const aCustomerAddress = await getCustomerAddressByCustomerId(id);
-    logger.info(`Customer: ${JSON.stringify(aCustomer, aCustomerAccount, aCustomerAddress)}`);
-    res.render('customer.ejs', { aCustomer, aCustomerAccount, aCustomerAddress });
+    const customer = await getCustomerByCustomerId(id);
+    const customerAccount = await getCustomerAccountByCustomerId(id);
+    const customerAddress = await getCustomerAddressByCustomerId(id);
+    logger.info(`Customer: ${JSON.stringify(customer, customerAccount, customerAddress)}`);
+    res.render('results/userResult.ejs', { customer, customerAccount, customerAddress });
 
   } catch (error) {
     logger.error('Error getting customer page', error);

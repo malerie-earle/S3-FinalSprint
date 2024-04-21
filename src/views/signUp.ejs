@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up Page</title>
+  <title>Add Customer</title>
   <link rel="stylesheet" href="/styles/index.css">
 </head>
 
@@ -12,68 +12,65 @@
 <body>
 <div class = "home">
 <div class="add-content">
-  <h1>Sign Up:</h1>
-  <form action="/signup/" method="POST">
-    <h2>New User:</h2>
+  <h1>Add Customer:</h1>
+  <form action="/signup/" method="POST" id="signUpForm">
+    <h2>Sign Up:</h2>
     <label>
       First Name:
-      <input class="addForm" type="text" name="newUser[first_name]" placeholder="First Name" required>
+      <input class="addForm" type="text" name="newCustomer[first_name]" placeholder="First Name" required>
     </label>
     <label>
       Last Name:
-      <input class="addForm" type="text" name="newUser[last_name]" placeholder="Last Name" required>
+      <input class="addForm" type="text" name="newCustomer[last_name]" placeholder="Last Name" required>
     </label>
     <label>
       Gender:
-      <input class="addForm" type="text" name="newUser[gender]" placeholder="Gender" required>
+      <input class="addForm" type="text" name="newCustomer[gender]" placeholder="Gender" required>
     </label>
     <label>
       Email:
-      <input class="addForm" type="text" name="newUser[email]" placeholder="Email" required>
+      <input class="addForm" type="text" name="newCustomer[email]" placeholder="Email" required>
     </label>
     <label>
       Phone Number:
-      <input class="addForm" type="text" name="newUser[ph_num]" placeholder="Phone Number" required>
+      <input class="addForm" type="text" name="newCustomer[ph_num]" placeholder="Phone Number" required>
     </label>
     <label>
       Payment Method:
-      <input class="addForm" type="text" name="newUser[pay_method]" placeholder="Payment Method" required>
-    </label>
-    <label>
-      Street Address:
-      <input class="addForm" type="text" name="newUserAddress[street_address]" placeholder="Street Address" required>
-    </label>
-    <label>
-      City:
-      <input class="addForm" type="text" name="newUserAddress[city]" placeholder="City" required>
-    </label>
-    <label>
-      Province:
-      <input class="addForm" type="text" name="newUserAddress[province]" placeholder="Province" required>
-    </label>
-    <label>
-      Postal Code:
-      <input class="addForm" type="text" name="newUserAddress[postal_code]" placeholder="Postal Code" required>
-    </label>
-    <label>
-      Country:
-      <input class="addForm" type="text" name="newUserAddress[country]" placeholder="Country" required>
+      <input class="addForm" type="text" name="newCustomer[pay_method]" placeholder="Payment Method" required>
     </label>
     <label>
       Username:
-      <input class="addForm" type="text" name="newUserAccount[username]" placeholder="Username" required>
+      <input class="addForm" type="text" name="newCustomerAccount[username]" placeholder="Username" required>
     </label>
     <label>
       Password:
-      <input class="addForm" type="password" name="newUserAccount[password]" placeholder="Password" required>
+      <input class="addForm" type="password" name="newCustomerAccount[password]" placeholder="Password" required>
     </label>
     <label>
-      Confirm Password:
-      <input class="addForm" type="password" name="password" placeholder="Password" required>
+      Street Address:
+      <input class="addForm" type="text" name="newCustomerAddress[street_address]" placeholder="Street Address" required>
+    </label>
+    <label>
+      City:
+      <input class="addForm" type="text" name="newCustomerAddress[city]" placeholder="City" required>
+    </label>
+    <label>
+      Province:
+      <input class="addForm" type="text" name="newCustomerAddress[province]" placeholder="Province" required>
+    </label>
+    <label>
+      Postal Code:
+      <input class="addForm" type="text" name="newCustomerAddress[postal_code]" placeholder="Postal Code" required>
+    </label>
+    <label>
+      Country:
+      <input class="addForm" type="text" name="newCustomerAddress[country]" placeholder="Country" required>
     </label>
     <br />
-    <button>ADD USER</button>
+    <button>Sign Up</button>
   </form>
+
 </div>
 </div>
 <%- include('./partials/footer.ejs') %>

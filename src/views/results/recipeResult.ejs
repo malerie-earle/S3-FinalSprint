@@ -1,8 +1,9 @@
 <div class="recipeResult">
-  <h3><a href="/recipe/id/<%= Recipes._id %>"><%= Recipes.title %></a></h3>
-  <%= Recipes._id %>
+  <h3><a href="/recipe/all/"><%= Recipes.title %></a></h3>
+  <h3>ID: <%= Recipes._id %></h3>
+  <h3>Ingredients:</h3>
   <% Recipes.ingredients.forEach(function(ingredient) { %>
     <p><%= ingredient %></p>
   <% }); %>
-  <a href="/recipe/id/<%= Recipes._id %>">See More >></a>
+  <a href="/recipe/all/">See More >></a>
 </div>
