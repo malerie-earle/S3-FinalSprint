@@ -20,6 +20,7 @@ function getCurrentDateTime() {
   return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
 }
 
+
 // Function to create a transport for daily log files
 function createDailyRotateTransport(filename) {
   return new winston.transports.DailyRotateFile({
@@ -65,12 +66,6 @@ function createLoginLogoutLogger() {
   // Log a test message to ensure the logger is working
   loginLogoutLogger.info('Login Logout logger initialized.');
   return loginLogoutLogger;
-}
-
-// Function to get current date and time as a string
-function getCurrentDateTime() {
-  const now = new Date();
-  return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
 }
 
 // Function to create a logger for combined logs
