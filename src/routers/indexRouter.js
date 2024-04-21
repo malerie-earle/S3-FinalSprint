@@ -153,23 +153,6 @@ router.get('/signup/success/', (req, res) => {
   }
 });
 
-// Logout route
-router.get('/logout/', (req, res) => {
-  logger.info('Logging out the user.');
-
-  // If using sessions, this will destroy the session
-  req.session.destroy((err) => {
-    if (err) {
-      logger.error('Error destroying session:', err);
-      return res.status(500).render('503');
-    }
-    
-    // After destroying the session, log the user out
-    req.logout();
-    res.redirect('/login/');
-  });
-});
-
 
 // Contact Page
 router.get('/contact/', isAuthenticated, (req, res) => {
