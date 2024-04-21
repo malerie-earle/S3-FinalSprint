@@ -14,13 +14,36 @@ logger.info('=========================');
 logger.info('Route: / - GET/READ - Home Page');
 logger.info('Route: /login/ - GET/READ - Login Page');
 logger.info('Route: /signup/ - GET/READ - Sign Up Page');
-// Home Page
-router.get('/', (req, res) => {
-  console.log('Session:', JSON.stringify(req.session, null, 2)); // Log session data as JSON
-  
+
+// Root Route
+router.get('/', isAuthenticated, (req, res) => {
   try {
+    if (isAuthenticated) { 
+      logger.info('Rendering the Home Page.');
+      logger.info('Session:', JSON.stringify(req.session, null, 2));
+      res.render('searchEngine.ejs', { user: req.user.customer_id })
+    } else {
+      logger.info('Redirecting to Login Page.');
+      return res.redirect('/login/');
+    }
+  } catch (error) {
+    logger.error('Error rendering the Home Page:', error);
+    res.status(500).render('503');
+  }
+});
+
+// Home Page
+router.get('/search/', isAuthenticated, (req, res) => {
+  logger.info('Session:', JSON.stringify(req.session, null, 2)); 
+  try {
+    if (!isAuthenticated) {
+      logger.info('Redirecting to Login Page.');
+      return res.redirect('/login/');
+
+    } else {
     logger.info('Rendering the Home Page.');
-    res.render('searchEngine.ejs', { user: req.user });
+    res.render('searchEngine.ejs', { user: req.user.customer_id });
+    } 
   } catch (error) {
     logger.error('Error rendering the Home Page:', error);
     res.status(500).render('503');
@@ -31,7 +54,7 @@ router.get('/', (req, res) => {
 router.get('/index/', isAuthenticated, (req, res) => { 
   try {
     logger.info('Rendering the Index Page.');
-    res.render('index', { user: req.user });
+    res.render('index', { user: req.user.customer_id });
   } catch (error) {
     logger.error('Error rendering the Index Page:', error);
     res.status(500).render('503');
@@ -42,7 +65,7 @@ router.get('/index/', isAuthenticated, (req, res) => {
 router.get('/contact/', isAuthenticated, (req, res) => {
   try {
     logger.info('Rendering the Contact Page.');
-    res.render('contact', { user: req.user });
+    res.render('contact', { user: req.user.customer_id });
   } catch (error) {
     logger.error('Error rendering the Contact Page:', error);
     res.status(500).render('503');
@@ -71,8 +94,8 @@ router.post('/login/', async (req, res) => {
         } else {
           logLogin(user.customer_id);
           logger.info('User is authenticated. Redirecting to Home Page.');
-          console.log('Session after login:', JSON.stringify(req.session, null, 2)); // Log session after login as JSON
-          res.redirect('/');
+          console.log('Session after login:', JSON.stringify(req.session, null, 2)); 
+          res.render('searchEngine', { user: req.user.customer_id});
         }
       });
     } else {
@@ -106,9 +129,9 @@ router.get('/logout/', (req, res) => {
       logger.info('User logged out.');
       
       // Log session data after destroying the session
-      console.log('Session after logout:', JSON.stringify(req.session, null, 2)); // Log session after logout as JSON
+      logger.info('Session after logout:', JSON.stringify(req.session, null, 2)); // Log session after logout as JSON
       
-      res.redirect('/login');
+      res.redirect('/login/');
     });
   });
 });

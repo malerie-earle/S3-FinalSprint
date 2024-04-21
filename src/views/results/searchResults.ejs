@@ -1,7 +1,9 @@
 <div class="searchResultsContainer">
     <h1>Search Results</h1>
     <p>Number of results: <%= searchResults ? searchResults.length : 0 %></p>
-    <% if (searchResults.length === 0) { %>
+    <% if (!Array.isArray(searchResults)) { %>
+        <p>Error: searchResults is not an array.</p>
+    <% } else if (searchResults.length === 0) { %>    
         <p>No results found.</p>
     <% } else { %>
         <% searchResults.forEach(function(result) { %>
@@ -11,9 +13,9 @@
             <% } else if (result.type === 'customer') { %>
                 <%- include('customerResult', { customer: result }) %> 
             <% } else if (result.type === 'customer_account') { %>
-                <%- include('customerAccountResult', { customerAccount: result }) %>
+                <%- include('customerAccountResult', { customer_account: result }) %>
             <% } else if (result.type === 'customer_address') { %>
-                <%- include('customerAddressResult', { customerAddress: result }) %>
+                <%- include('customerAddressResult', { customer_address: result }) %>
             <% } else if (result.type === 'vendor') { %>
                 <%- include('vendorResult', { vendor: result }) %> 
             <% } else if (result.type === 'vendor_address') { %>

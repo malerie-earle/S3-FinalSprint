@@ -1,6 +1,6 @@
 body {
   background-color: #252525;
-  color: rgb(139, 139, 139);
+  color: white;
   font-family: "Lato", sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -32,10 +32,10 @@ body {
 }
 
 
-  h1 {
-    color: #000000b4;
-    margin-bottom: 20px;
-  }
+h1 {
+  color: #000000b4;
+  margin-bottom: 20px;
+}
 
 
 h2 {
@@ -426,19 +426,22 @@ transform: scale(1.5);
   height: max-content;
   width: 90%;
   border-radius: 10px;
-  border: 1px solid #57ff5db1;
+  border: 2px solid #ff0080;
   margin: 10vh 2vw;
   padding: 10vh 2vw;
   background-color: #039F4C;
-  background: hsla(0, 0%, 12%, 1);
-  background: linear-gradient(180deg, hsla(0, 0%, 12%, 1) 0%, hsla(148, 96%, 32%, 1) 50%, hsla(0, 0%, 12%, 1) 100%);
-  background: -moz-linear-gradient(180deg, hsla(0, 0%, 12%, 1) 0%, hsla(148, 96%, 32%, 1) 50%, hsla(0, 0%, 12%, 1) 100%);
-  background: -webkit-linear-gradient(180deg, hsla(0, 0%, 12%, 1) 0%, hsla(148, 96%, 32%, 1) 50%, hsla(0, 0%, 12%, 1) 100%);
+  background: 
+  linear-gradient(90deg, 
+    hsla(147, 100%, 30%, 1) 0%, 
+    hsla(0, 0%, 100%, 1) 32%, 
+    hsla(0, 0%, 100%, 1) 68%, 
+    hsla(330, 100%, 80%, 1) 100%
+  );
   color: black;
 }
 
 .home a {
-  color: white;
+  color: black;
   text-decoration: none;
 }
 

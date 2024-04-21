@@ -65,7 +65,6 @@ async function searchInPostgres(query) {
 }
 
 
-
 // Function to search in MongoDB
 async function searchInMongo(query) {
   // Declare the Recipe model and client variables
@@ -127,17 +126,9 @@ async function searchInMongo(query) {
       await client.close();
     }
   }
+  // Return the search results
+  return searchResults;
 
-// Function to remove duplicate objects from an array
-function removeDuplicates(array) {
-  const jsonString = array.map(JSON.stringify);
-  const uniqueSet = new Set(jsonString);
-  return Array.from(uniqueSet).map(JSON.parse);
-}
-
-// Return the search results
-let uniqueSearchResults = removeDuplicates(searchResults);
-return uniqueSearchResults;
 }
 
 // Export the functions
