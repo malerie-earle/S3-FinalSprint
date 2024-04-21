@@ -9,13 +9,10 @@
 </head>
 <%- include('./partials/header.ejs') %>
 <body>
+<div class = "searchPage">
 <div class="home">
-  <h1>Newfie Nook Search:</h1>
-
-  <a href="/customer/search/">Search Customers</a>
-  <a href="/product/search/">Search Products</a>
-  <a href="/vendor/search/">Search Vendors</a>
-  <a href="/recipe/search/">Search Recipes</a>
+  <h1>Welcome <%= user.first_name %> <%= user.last_name %>!</h1>
+  <h2>Newfie Nook Search:</h2>
 
   <!-- Form for search query, database selection, and user ID -->
   <div class="searchEngine">
@@ -38,15 +35,45 @@
     </form>
   </div>
 
-  <!-- Container for displaying search results -->
+<h3>Search Options:</h3>
+  <a href="/customer/search/">Search Customers</a>
+  <a href="/product/search/">Search Products</a>
+  <br />
+<h3>See All Items:</h3>
+  <a href="/customer/all/">All Customers</a>
+  <a href="/product/all/">All Products</a>
+  <a href="/vendor/all/">All Vendors</a>
+  <a href="/recipe/all/">All Recipes</a>
+  <br />
+<h3>User Options:</h3>
+  <a href="/signup/">Sign Up New Customer</a>
+  <a href="/index/">Other Options</a>
+  <a href="/login/">Login</a>
+  <a href="/logout/">Logout</a>
+
+
   <div id="search-results-container">
-    <!-- Initially empty, will be populated with search results dynamically -->
+    <!-- Show loading spinner or message while fetching data -->
+    <div id="loading-indicator" style="display: none;">
+      <img src="../images/loading.gif" alt="Loading Spinner">
+      <p>Loading...</p>
+    </div>
+  
+    <!-- Actual search results will be displayed here -->
+    <div id="search-results">
+      <!-- Search results will be dynamically populated here -->
+    </div>
+    <br />
   </div>
+</div>
 </div>
 
 <script>
   $('#search-form').on('submit', function(event) {
   event.preventDefault();
+
+  // Show loading indicator
+  $('#loading-indicator').show();
 
   // Get the user_id, query, and database
   var user_id = $('#customer-id').val();
@@ -63,16 +90,27 @@
       database: database
     },
     success: function(response) {
-      // Display search results in the container
-      $('#search-results-container').html(response);
-    },
+  // Hide loading indicator
+  $('#loading-indicator').hide();
+
+  // Display search results in the container
+  $('#search-results').html(response);
+},
     error: function(xhr, status, error) {
+      // Hide loading indicator
+      $('#loading-indicator').hide();
+
       // Display error message
-      $('#search-results-container').html('<p>An error occurred. Please try again later.</p>');
+      $('#search-results').html('<p>An error occurred. Please try again later.</p>');
+
+      // Hide pagination controls
+      $('.pagination').hide();
+
       console.error('Error:', error);
     }
   });
 });
+
 </script>
 
 </body>

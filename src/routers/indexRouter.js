@@ -18,9 +18,31 @@ logger.info('Route: /signup/ - GET/READ - Sign Up Page');
 router.get('/', isAuthenticated, (req, res) => {
   try {
     logger.info('Rendering the Home Page.');
-    res.render('index.ejs', { user: req.user });
+    res.render('searchEngine.ejs', { user: req.user });
   } catch (error) {
     logger.error('Error rendering the Home Page:', error);
+    res.status(500).render('503');
+  }
+});
+
+// Index Page
+router.get('/index/', isAuthenticated, (req, res) => { 
+  try {
+    logger.info('Rendering the Index Page.');
+    res.render('index', { user: req.user });
+  } catch (error) {
+    logger.error('Error rendering the Index Page:', error);
+    res.status(500).render('503');
+  }
+});
+
+// Contact
+router.get('/contact/', isAuthenticated, (req, res) => {
+  try {
+    logger.info('Rendering the Contact Page.');
+    res.render('contact', { user: req.user });
+  } catch (error) {
+    logger.error('Error rendering the Contact Page:', error);
     res.status(500).render('503');
   }
 });
@@ -102,7 +124,7 @@ router.get('/logout', (req, res) => {
     
     // After destroying the session, log the user out
     req.logout();
-    res.redirect('/login');
+    res.redirect('/login/');
   });
 });
 
