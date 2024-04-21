@@ -14,11 +14,17 @@ logger.info('=========================');
 logger.info('Route: / - GET/READ - Home Page');
 logger.info('Route: /login/ - GET/READ - Login Page');
 logger.info('Route: /signup/ - GET/READ - Sign Up Page');
+
+
 // Home Page
-router.get('/', (req, res) => {
+router.get('/search/', (req, res) => {
   console.log('Session:', JSON.stringify(req.session, null, 2)); // Log session data as JSON
   
   try {
+    if (!isAuthenticated) {
+      logger.info('User is not authenticated. Redirecting to Login Page.');
+      return res.redirect('/login/');
+    }
     logger.info('Rendering the Home Page.');
     res.render('searchEngine.ejs', { user: req.user });
   } catch (error) {
@@ -108,7 +114,7 @@ router.get('/logout/', (req, res) => {
       // Log session data after destroying the session
       console.log('Session after logout:', JSON.stringify(req.session, null, 2)); // Log session after logout as JSON
       
-      res.redirect('/login');
+      res.redirect('/login/');
     });
   });
 });
