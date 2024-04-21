@@ -14,6 +14,11 @@ body {
   background-position: center center; /* This line moves the image up */
 }
 
+.login-body {
+  min-height: 100vh; /* or adjust the value as needed */
+}
+
+
 .login-container {
   display: flex;
   flex-direction: column;
@@ -29,6 +34,12 @@ body {
   /* border: 2px solid #ff0080b4; */
   position: relative;
   top: 100px;
+}
+
+/* Move footer down for login page */
+.login-footer {
+  position:relative;
+  top: 200px; /* Adjust the margin-top to move the footer down */
 }
 
 
