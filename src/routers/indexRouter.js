@@ -13,9 +13,10 @@ logger.info('=========================');
 logger.info('Route: / - GET/READ - Home Page');
 logger.info('Route: /login/ - GET/READ - Login Page');
 logger.info('Route: /signup/ - GET/READ - Sign Up Page');
-
 // Home Page
-router.get('/', isAuthenticated, (req, res) => {
+router.get('/', (req, res) => {
+  console.log('Session:', JSON.stringify(req.session, null, 2)); // Log session data as JSON
+  
   try {
     logger.info('Rendering the Home Page.');
     res.render('index.ejs', { user: req.user });
@@ -26,7 +27,7 @@ router.get('/', isAuthenticated, (req, res) => {
 });
 
 // Login Page
-router.get('/login/', isAuthenticated, (req, res) => {
+router.get('/login/', (req, res) => {
   try {
     logger.info('Rendering the Login Page.');
     res.render('login');
@@ -47,6 +48,7 @@ router.post('/login/', async (req, res) => {
         } else {
           logLogin(user.customer_id);
           logger.info('User is authenticated. Redirecting to Home Page.');
+          console.log('Session after login:', JSON.stringify(req.session, null, 2)); // Log session after login as JSON
           res.redirect('/');
         }
       });
@@ -59,12 +61,38 @@ router.post('/login/', async (req, res) => {
   }
 });
 
+// Logout route
 router.get('/logout/', (req, res) => {
   logLogout(req.user.customer_id);
-  req.logout();
-  res.redirect('/login');
+  
+  // Log session data before destroying the session
+  console.log('Session before logout:', JSON.stringify(req.session, null, 2)); // Log session before logout as JSON
+  
+  // If using sessions, this will destroy the session
+  req.session.destroy((err) => {
+    if (err) {
+      logger.error('Error destroying session:', err);
+      return res.status(500).render('503');
+    }
+    
+    // Explicitly clear the session object
+    req.session = null;
+    
+    // After destroying the session, log the user out
+    req.logout(() => {
+      logger.info('User logged out.');
+      
+      // Log session data after destroying the session
+      console.log('Session after logout:', JSON.stringify(req.session, null, 2)); // Log session after logout as JSON
+      
+      res.redirect('/login');
+    });
+  });
 });
 
+
+
+// Signup route
 router.post('/signup/', async (req, res) => {
   logger.info('Adding a new user:', req.body);
   try {
@@ -79,7 +107,7 @@ router.post('/signup/', async (req, res) => {
 });
 
 // Signup Success Page
-router.get('/signup/success/', isAuthenticated, (req, res) => {
+router.get('/signup/success/', (req, res) => {
   try {
     logger.info('Rendering the Sign Up Success Page.');
     res.render('signUpSuccess', { newCustomerId: req.query.newCustomerId, newUser: req.query.newUser });
@@ -89,29 +117,5 @@ router.get('/signup/success/', isAuthenticated, (req, res) => {
   }
 });
 
-// Logout route
-router.get('/logout', (req, res) => {
-  logger.info('Logging out the user.');
-
-  // If using sessions, this will destroy the session
-  req.session.destroy((err) => {
-    if (err) {
-      logger.error('Error destroying session:', err);
-      return res.status(500).render('503');
-    }
-    
-    // After destroying the session, log the user out
-    req.logout();
-    res.redirect('/login');
-  });
-});
-
-
-
-
-
-
-
-
-
 module.exports = router;
+
