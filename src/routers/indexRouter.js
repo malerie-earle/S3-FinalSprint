@@ -6,6 +6,7 @@ const passport = require('passport');
 const { search, searchResults } = require('../services/searchLogic.js');
 const isAuthenticated = require('../middleware/authMiddleware.js');
 const { authenticateUser, signUpUser } = require('../services/pg.customers.dal.js');
+const { addCustomer, addCustomerAccount, addCustomerAddress } = require('../services/pg.customers.dal.js');
 
 // List of All Available Routes
 logger.info('Router - API Endpoints:');
@@ -87,15 +88,31 @@ router.get('/logout/', (req, res) => {
   res.redirect('/login');
 });
 
+
+
+// Display the Sign Up
+router.get('/signup/', (req, res) => {
+  logger.info('Rendering the Add Customer Page.');
+  res.render('signUp');
+});
 router.post('/signup/', async (req, res) => {
-  logger.info('Adding a new user:', req.body);
+  logger.info('Adding a new customer.');
   try {
-    const { first_name, last_name, email, ph_num, gender, pay_method, street_address, city, province, postal_code, country, username, password } = req.body;
-    const newUser = await signUpUser({ first_name, last_name, email, ph_num, gender, pay_method, street_address, city, province, postal_code, country, username, password });
-    const newCustomerId = newUser.newCustomer.customer_id;
-    res.render('signUp', { newCustomerId, newUser });
+    const newCustomer = await addCustomer(req);
+    logger.info(`Successfully added a new customer.`);
+    
+    const newCustomerAccount = await addCustomerAccount(req, newCustomer.customer_id);
+    logger.info(`Successfully added a new customer account.`);
+
+    const newCustomerAddress = await addCustomerAddress(req, newCustomer.customer_id);
+    logger.info(`Successfully added a new customer address.`);
+
+    const newUser = {newCustomer, newCustomerAccount, newCustomerAddress};
+    req.session.newUser = newUser; 
+    res.redirect('/customer/all/');
+    logger.info('Successfully added a new user.');
   } catch (error) {
-    logger.error('Error adding a new user:', error);
+    logger.error('Router: Error adding a new customer:', error);
     res.status(500).render('503');
   }
 });
@@ -112,7 +129,7 @@ router.get('/signup/success/', isAuthenticated, (req, res) => {
 });
 
 // Logout route
-router.get('/logout', (req, res) => {
+router.get('/logout/', (req, res) => {
   logger.info('Logging out the user.');
 
   // If using sessions, this will destroy the session
@@ -129,7 +146,16 @@ router.get('/logout', (req, res) => {
 });
 
 
-
+// Contact Page
+router.get('/contact/', isAuthenticated, (req, res) => {
+  try {
+    logger.info('Rendering the Contact Page.');
+    res.render('contact', { user: req.user });
+  } catch (error) {
+    logger.error('Error rendering the Contact Page:', error);
+    res.status(500).render('503');
+  }
+});
 
 
 

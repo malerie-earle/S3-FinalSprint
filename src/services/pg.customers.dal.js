@@ -38,42 +38,83 @@ async function authenticateUser(username, password) {
 }
 
 
-// Register a new user
-async function signUpUser({ first_name, last_name, email, ph_num, gender, pay_method, username, password, street_address, city, province, postal_code, country }) {
-  logger.info('pg.DAL: signUpUser():');
-  const userDetails = { first_name, last_name, email, ph_num, gender, pay_method, username, password, street_address, city, province, postal_code, country };
-  logger.info('pg.DAL: signUpUser():', userDetails);
+// Generate a new Customer ID
+async function generateNewCustomerId() {
   try {
-    // Add a new Customer
-    logger.info('pg.DAL: Adding a new customer.');
-    const newCustomer = await addCustomer({ first_name, last_name, email, ph_num, gender, pay_method });
-    const newCustomerId = newCustomer.customer_id;
-    logger.info('pg.DAL: New customer added successfully.');
+    logger.info('pg.DAL: Generating a new customer ID.');
+    const sql = 'SELECT MAX(customer_id) AS max_id FROM public.customer;';
+    const result = await dal.query(sql);
+    const newCustomerId = result.rows[0].max_id + 1;
+    logger.info('New customer ID generated successfully.');
+    return newCustomerId;
 
-    // Add a new Customer Account
-    logger.info('pg.DAL: Registering a new user.');
-    const newCustomerAccount = await addCustomerAccount({ username, password });
-    const newCustomerID = newCustomerAccount.customer_id;
-
-    logger.info('pg.DAL: New user registered successfully.');
-
-    // Add a new Customer Address
-    logger.info('pg.DAL: Adding a new customer address.');
-    const newCustomerAddress = await addCustomerAddress({ street_address, city, province, postal_code, country });
-    const newCustomerAddressID = newCustomerAddress.customer_id;
-    logger.info('pg.DAL: New customer address added successfully.');
-
-    // Return the new customer details
-    logger.info('pg.DAL: New customer registered successfully.');
-    return { newCustomerID, newCustomer, newCustomerAccount, newCustomerAddress };
-    
-  // Handle errors
   } catch (error) {
-    logger.error('Error in registerCustomer():', error);
+    logger.error('Error in generateNewCustomerId():', error);
     throw error;
   }
 }
 
+// Add a new Customer
+async function addCustomer(req) {
+  try {
+    logger.info('pg.DAL: Adding a new customer.');
+    const { first_name, last_name, email, ph_num, gender, pay_method } = req.body.newCustomer;
+    const idQuery = 'SELECT MAX(customer_id) AS max_id FROM public.customer;';
+    const sql = `INSERT INTO public.customer (customer_id, first_name, last_name, email, ph_num, gender, pay_method) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *;`;
+
+    const lastIdResult = await dal.query(idQuery);
+    const customer_id = lastIdResult.rows[0].max_id + 1;
+    const values = [customer_id, first_name, last_name, email, ph_num, gender, pay_method];
+
+    const newCustomerResult = await dal.query(sql, values);
+    const newCustomer = newCustomerResult.rows[0];
+    logger.info('New customer added successfully.');
+    return newCustomer;
+
+  } catch (error) {
+    logger.error('Error in addCustomer():', error.message);
+    logger.error('Stack trace:', error.stack);
+    throw error;
+  }
+}
+
+// Add a new Customer Account
+async function addCustomerAccount(req, customer_id) {
+  try {
+    logger.info('pg.DAL: Adding a new customer account.');
+    const { username, password } = req.body.newCustomerAccount;
+    const sql = `INSERT INTO public.customer_account (customer_id, username, password) VALUES ($1, $2, $3) RETURNING *;`;
+    const values = [customer_id, username, password];
+    const newCustomerAccountResult = await dal.query(sql, values);
+    const newCustomerAccount = newCustomerAccountResult.rows[0];
+    logger.info('New customer account added successfully.');
+    return newCustomerAccount;
+
+  } catch (error) {
+    logger.error('Error in addCustomerAccount():', error.message);
+    logger.error('Stack trace:', error.stack);
+    throw error;
+  }
+}
+
+// Add a new Customer Address
+async function addCustomerAddress(req, customer_id) {
+  try {
+    logger.info('pg.DAL: Adding a new customer address.');
+    const { street_address, city, province, postal_code, country } = req.body.newCustomerAddress;
+    const sql = `INSERT INTO public.customer_address (customer_id, street_address, city, province, postal_code, country) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;`;
+    const values = [customer_id, street_address, city, province, postal_code, country];
+    const newCustomerAddressResult = await dal.query(sql, values);
+    const newCustomerAddress = newCustomerAddressResult.rows[0];
+    logger.info('New customer address added successfully.');
+    return newCustomerAddress;
+
+  } catch (error) {
+    logger.error('Error in addCustomerAddress():', error.message);
+    logger.error('Stack trace:', error.stack);
+    throw error;
+  }
+}
 
 // Get all Customers
 async function getAllCustomers() {  
@@ -293,63 +334,6 @@ async function getCustomerByUsername(username) {
 };
 
 
-// Add a new Customer
-async function addCustomer({ first_name, last_name, email, ph_num, gender, pay_method }) {
-  logger.info('pg.DAL: addCustomer():');
-  try {
-    const sql = `INSERT INTO public.customer (customer_id, first_name, last_name, email, ph_num, gender, pay_method) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *;`;
-    const idQuery = 'SELECT MAX(customer_id) AS max_id FROM public.customer;';
-    // Get the last customer_id
-    const lastIdResult = await dal.query(idQuery);
-    const newCustomerId = lastIdResult.rows[0].max_id + 1;
-    const values = [newCustomerId, first_name, last_name, email, ph_num, gender, pay_method];
-    // Execute the query
-    const newCustomer = await dal.query(sql, values);
-    return newCustomer.rows[0];
-
-  // Handle errors
-  } catch (error) {
-    logger.error('Error in addCustomer():', error);
-    throw error;
-  }
-};
-
-// Add a new Customer Account
-async function addCustomerAccount({ customer_id, username, password }) {
-  logger.info('pg.DAL: Adding a new customer account.');
-  try {
-    const sql = `INSERT INTO public.customer_account (customer_id, username, password) VALUES ($1, $2, $3) RETURNING *;`;
-    // Hash the password
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const values = [customer_id, username, hashedPassword];
-    // Execute the query
-    const newCustomerAccount = await dal.query(sql, values);
-    return newCustomerAccount.rows[0];
-
-  // Handle errors
-  } catch (error) {
-    logger.error('Error in addCustomerAccount():', error);
-    throw error;
-  }
-};
-
-// Add a new Customer Address
-async function addCustomerAddress({ customer_id, street_address, city, province, postal_code, country }) {
-  try {
-    logger.info('pg.DAL: Adding a new customer address.');
-    const sql = `INSERT INTO public.customer_address (customer_id, street_address, city, province, postal_code, country) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;`;
-    const values = [customer_id, street_address, city, province, postal_code, country];
-    // Execute the query
-    const newCustomerAddress = await dal.query(sql, values);
-    logger.info('pg.DAL: New customer address added successfully.');
-    return newCustomerAddress.rows[0];
-  } catch (error) {
-    logger.error('Error in addCustomerAddress():', error);
-    throw error;
-  }
-};
-
-
 // Edit a Customer
 async function editCustomer({customer_id, first_name, last_name, email, ph_num, gender, pay_method}) {
   try {
@@ -431,6 +415,11 @@ async function deleteCustomer(customer_id) {
 
 
 module.exports = {
+  authenticateUser,
+  generateNewCustomerId,
+  addCustomer,
+  addCustomerAccount,
+  addCustomerAddress,
   getAllCustomers,
   getCustomerByCustomerId,
   getCustomerAccountByCustomerId,
@@ -442,13 +431,8 @@ module.exports = {
   getCustomersByGender,
   getCustomersByPayMethod,
   getCustomerByUsername,
-  addCustomer,
-  addCustomerAccount,
-  addCustomerAddress,
   editCustomer,
   editCustomerAccount,
   editCustomerAddress,
-  deleteCustomer,
-  authenticateUser,
-  signUpUser
+  deleteCustomer
 };
