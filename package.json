@@ -35,5 +35,8 @@
     "mocha": "^10.4.0",
     "sinon": "^17.0.1",
     "supertest": "^6.3.4"
+  },
+  "scripts": {
+    "test": "mocha"
   }
 }

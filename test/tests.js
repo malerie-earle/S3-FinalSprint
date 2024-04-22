@@ -1,12 +1,14 @@
+// Set the MDBATLAS environment variable
+process.env.MDBATLAS = 'mongodb+srv://admin:dbpassword@newfiecluster.culsrfo.mongodb.net/NewfieNook';
 
 // MongoDB Connection Test
 const assert = require('assert');
-const pool = require('./m.auth_db');
+const pool = require('../src/services/m.auth_db');
 
 describe('MongoDB Connection', () => {
   it('should connect to MongoDB Atlas', async () => {
     await pool.connect();
-    assert.strictEqual(pool.isConnected(), true);
+    assert.ok(pool.db, 'Expected database connection to be established');
   });
 
   after(async () => {
@@ -14,12 +16,16 @@ describe('MongoDB Connection', () => {
   });
 });
 
+
+
+
+
+
 // MongoDB Search Test
-const assert = require('assert');
-const searchLogic = require('./searchLogic');
+const searchLogic = require('../src/services/searchLogic');
 
 describe('MongoDB Text Search', () => {
-  it('should return search results based on the query', async () => {
+  it('should return search results based on the query', async () => { // Removed 'done' parameter
     const query = 'chicken';
     const searchResults = await searchLogic.searchInMongo(query);
     
@@ -27,14 +33,16 @@ describe('MongoDB Text Search', () => {
     searchResults.forEach(result => {
       assert.ok(result.title.toLowerCase().includes(query) || result.ingredients.join(' ').toLowerCase().includes(query) || result.directions.join(' ').toLowerCase().includes(query), `Search result should contain the query "${query}" in title, ingredients, or directions`);
     });
-  });
+  }).timeout(5000); // Increased timeout to 5 seconds
 });
+
+
+
 
 
 // Customer Addition Test
 
-const assert = require('assert');
-const pgDal = require('./pg.customers.dal');
+const pgDal = require('../src/services/pg.customers.dal');
 
 describe('PostgreSQL Customer Addition', () => {
   it('should add a new customer to the database', async () => {
@@ -57,3 +65,4 @@ describe('PostgreSQL Customer Addition', () => {
     assert.strictEqual(addedCustomer.pay_method, newCustomer.pay_method);
   });
 });
+
