@@ -4,7 +4,8 @@
   "description": "Semester 3 Final sprint",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test:mocha": "mocha",
+    "test:jest": "jest"
   },
   "author": "Malerie Earle & Janeil Carroll",
   "license": "ISC",
@@ -32,7 +33,10 @@
     "winston-daily-rotate-file": "^5.0.0"
   },
   "devDependencies": {
+    "chai": "^5.1.0",
     "jest": "^29.7.0",
+    "mocha": "^10.4.0",
+    "sinon": "^17.0.1",
     "supertest": "^6.3.4"
   }
 }
