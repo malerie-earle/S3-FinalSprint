@@ -1,0 +1,76 @@
+{
+  "vendors": [
+    {
+      "vendor_id": 1,
+      "vendor_name": "Purity Company Ltd.",
+      "website": "https://purity.nf.ca/",
+      "vendor_description": "Purity Factories Limited is a Canadian food manufacturing company, specializing in baked goods, confectionery, and snack foods. The company is based in St. John's, Newfoundland and Labrador, Canada.",
+      "email": "info@purity.nf.ca",
+      "ph_num": "1-800-563-3411",
+      "product_id": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]
+    },
+    {
+      "vendor_id": 2,
+      "vendor_name": "Skipper's Joe Souvenirs",
+      "website": "https://skipperjoessouvenirs.com/",
+      "vendor_description": "Skipper's Joe Souvenirs is a local business that specializes in Newfoundland-themed souvenirs and gifts. We offer a wide range of products, including clothing, accessories, home decor, and more. Our products are designed to celebrate the unique culture and heritage of Newfoundland and Labrador.",
+      "email": "skipperjoessouvenirs@gmail.com",
+      "ph_num": "(709) 673-6440",
+      "product_id": [67, 68, 70, 71, 72, 73, 74, 75, 76 ,77, 78, 79, 80, 81, 82, 83, 102, 104, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200]
+    },
+    {
+      "vendor_id": 3,
+      "vendor_name": "Newfoundland Chocolate Company",
+      "website": "https://www.newfoundlandchocolatecompany.com/",
+      "vendor_description": "The Newfoundland Chocolate Company is a local business that creates artisan chocolates and confections. We are dedicated to using only the finest ingredients to create the best possible chocolates and confections. Our chocolates are made by hand in small batches to ensure the highest quality and freshness.",
+      "email": "info@newfoundlandchocolatecompany.com",
+      "ph_num": "709-579-0099",
+      "product_id": [66, 69]
+    },
+    {
+      "vendor_id": 4,
+      "vendor_name": "The Dark Tickle Company",
+      "website": "https://www.darktickle.com/",
+      "vendor_description": "The Dark Tickle Company is a family-owned and operated business located in St. Lunaire-Griquet, Newfoundland. We specialize in wild berry products, jams, sauces, and teas made from locally harvested berries and herbs. Our products are made with the highest quality ingredients and are free from artificial colors, flavors, and preservatives.",
+      "email": "orders@darktickle.com",
+      "ph_num": "1-844-999-2374",
+      "product_id": [61, 62, 63, 64, 65]
+    },
+    {
+      "vendor_id": 5,
+      "vendor_name": "Freezerland Newfoundland",
+      "website": "https://www.freezerlandnfld.com/",
+      "vendor_description": "Freezerland Newfoundland is a local business that specializes in wild game and seafood products. We offer a wide range of products, including moose, caribou, and seal meat, as well as cod, halibut, and salmon. Our products are sourced from local hunters and fishermen and are processed and packaged in our facility in St. John's, Newfoundland.",
+      "email": "info@freezerlandnfld.com",
+      "ph_num": "905-791-4983",
+      "product_id": [84, 85, 86, 87, 88, 89, 90, 91]
+    },
+    {
+      "vendor_id": 6,
+      "vendor_name": "Amazon Canada",
+      "website": "https://www.amazon.ca/",
+      "vendor_description": "Amazon.ca is a business that specializes in online retail. We offer a wide range of products, including electronics, books, clothing, and more. Our products are sourced from local and international suppliers and are shipped directly to your door. We are committed to providing our customers with the best possible shopping experience and customer service.",
+      "email": "info@amazon.ca",
+      "ph_num": "1-877-586-3230",
+      "product_id": [92, 93, 103]
+    },
+    {
+      "vendor_id": 7,
+      "vendor_name": "Spindrift Handknits",
+      "website": "https://www.spindrifthandknits.ca/",
+      "vendor_description": "Spindrift Handknits is a local business that specializes in hand-knit sweaters, hats, and accessories. We offer a wide range of products, including traditional Newfoundland and Fair Isle designs. Our products are made with the highest quality yarns and are hand-knit by skilled artisans in Newfoundland and Labrador.",
+      "email": "info@spindrifthandknits.ca",
+      "ph_num": "709-753-7222",
+      "product_id": [94, 95, 96, 97, 98, 99, 100, 101]
+    },
+    {
+      "vendor_id": 8,
+      "vendor_name": "Urban Market 1919",
+      "website": "https://www.urbanmarket1919shop.com/",
+      "vendor_description": "Urban Market 1919 is a local business that specializes in handmade and locally sourced products. We offer a wide range of products, including jewelry, home decor, clothing, and more. Our products are made by local artisans and craftspeople and are designed to celebrate the unique culture and heritage of Newfoundland and Labrador.",
+      "email": "info@urbanmarket1919.com",
+      "ph_num": "709-753-1919",
+      "product_id": [105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161]
+    }
+  ]
+}
