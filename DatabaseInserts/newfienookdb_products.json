@@ -1,0 +1,1807 @@
+{
+  "products": [
+    {
+      "product_id": 1,
+      "product_name": "Purity Syrup - Blue Raspberry",
+      "price": 5.99,
+      "category": "Food-and-Drink",
+      "description": "Our syrups are great for everyday refreshment or as the star ingredient of your own drink creation. Just mix with water and enjoy!",
+      "image": "https://freezerlandnfld.com/cdn/shop/files/Purity_Syrup_Blue_Raspberry_1066x.jpg?v=1685879301",
+      "vendor": "Purity Company"
+    },
+    {
+      "product_id": 2,
+      "product_name": "Purity Syrup - Raspberry",
+      "price": 5.99,
+      "category": "Food-and-Drink",
+      "description": "Our syrups are great for everyday refreshment or as the star ingredient of your own drink creation. Just mix with water and enjoy!",
+      "image": "https://freezerlandnfld.com/cdn/shop/files/Purity_Syrup_Raspberry_1066x.jpg?v=1685879301",
+      "vendor": "Purity Company"
+    },
+    {
+      "product_id": 3,
+      "product_name": "Purity Syrup - Strawberry",
+      "price": 5.99,
+      "category": "Food-and-Drink",
+      "description": "Our syrups are great for everyday refreshment or as the star ingredient of your own drink creation. Just mix with water and enjoy!",
+      "image": "https://freezerlandnfld.com/cdn/shop/files/Purity_Syrup_Strawberry_1066x.jpg?v=1685879296",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 4,
+      "product_name": "Purity Syrup - Orange Creamsicle",
+      "price": 5.99,
+      "category": "Food-and-Drink",
+      "description": "Our syrups are great for everyday refreshment or as the star ingredient of your own drink creation. Just mix with water and enjoy!",
+      "image": "https://freezerlandnfld.com/cdn/shop/files/Purity_Syrup_Orange_Creamsicle_1066x.jpg?v=1685879301",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 5,
+      "product_name": "Purity Syrup - Cherry",
+      "price": 5.99,
+      "category": "Food-and-Drink",
+      "description": "Our syrups are great for everyday refreshment or as the star ingredient of your own drink creation. Just mix with water and enjoy!",
+      "image": "https://images.freshop.com/00057858100635/15ea9f275ae2f6417987c2a52369b40e_large.png",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 6,
+      "product_name": "Purity Syrup - Fruit Punch",
+      "price": 5.99,
+      "category": "Food-and-Drink",
+      "description": "Our syrups are great for everyday refreshment or as the star ingredient of your own drink creation. Just mix with water and enjoy!",
+      "image": "https://voila.ca/images-v3/2d92d19c-0354-49c0-8a91-5260ed0bf531/33d0e4f8-7538-4b35-9baa-f1c63c4e5d3c/500x500.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 7,
+      "product_name": "Purity Syrup - Iced Tea",
+      "price": 5.99,
+      "category": "Food-and-Drink",
+      "description": "Our syrups are great for everyday refreshment or as the star ingredient of your own drink creation. Just mix with water and enjoy!",
+      "image": "https://purity.nf.ca/wp-content/uploads/2018/02/icedteasyrup.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 8,
+      "product_name": "Purity Syrup - Pineapple",
+      "price": 5.99,
+      "category": "Food-and-Drink",
+      "description": "Our syrups are great for everyday refreshment or as the star ingredient of your own drink creation. Just mix with water and enjoy!",
+      "image": "https://freezerlandnfld.com/cdn/shop/files/Purity_Syrup_Pineapple_535x.jpg?v=1685879301",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 9,
+      "product_name": "Purity Chocolate Chip Cookies",
+      "price": 5.49,
+      "category": "Food-and-Drink",
+      "description": "Our crave-worthy version of the classic cookie, with plenty of chocolate chips for your pleasure.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/04/product-chocolatechip-600x400-1.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 10,
+      "product_name": "Purity Family Favourites",
+      "price": 5.75,
+      "category": "Food-and-Drink",
+      "description": "A wide variety of tasty cookies from which to choose. What’s your favourite?",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/04/product-familyfavs-600x400-1.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 11,
+      "product_name": "Fancy Biscuit Assortment",
+      "price": 5.29,
+      "category": "Food-and-Drink",
+      "description": "A wide variety of sweet biscuits makes for a satisfying snack.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/04/product-fancybiscuitassorted-600x400-1.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 12,
+      "product_name": "Variety Pack Biscuits",
+      "price": 7.95,
+      "category": "Food-and-Drink",
+      "description": "A different type of cookie in each section. Great for those who enjoy variety, or for larger gatherings.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/04/product-varietypack-600x400-1.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 13,
+      "product_name": "Purity Jam Jams 350G",
+      "price": 4.49,
+      "category": "Food-and-Drink",
+      "description": "Moist, jam-filled sponge cookies. A traditional favourite. Available in a 350G Tin Tied package.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/04/product-jamjams350-600x400-1.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 14,
+      "product_name": "Purity Jam Jams 425G",
+      "price": 5.99,
+      "category": "Food-and-Drink",
+      "description": "Moist, jam-filled sponge cookies. A traditional favourite. Available in a resealable 425G package.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/04/product-jamjams425-600x400-1.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 15,
+      "product_name": "Purity: Tea-Vees",
+      "price": 4.99,
+      "category": "Food-and-Drink",
+      "description": "Jelly-filled sponge cookies that are a welcome treat any time of the day.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/04/product-teevees-600x400-1.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 16,
+      "product_name": "Purity: Coconut Bar",
+      "price": 6.49,
+      "category": "Food-and-Drink",
+      "description": "Our delicious Coconut Bar cookies at tea-time makes for a delightful treat.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/04/product-coconutbar-600x400-1.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 17,
+      "product_name": "Purity: Lemon Creams",
+      "price": 7.99,
+      "category": "Food-and-Drink",
+      "description": "A biscuit baked to the perfect texture with a hint of lemon flavour.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/04/product-lemoncreams-600x400-1.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 18,
+      "product_name": "Purity: Caraway Biscuits",
+      "price": 6.99,
+      "category": "Food-and-Drink",
+      "description": "Mouthwatering and moreish, they make for an excellent after-dinner or anytime snack.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/04/product-caraway-600x400-1.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 19,
+      "product_name": "Purity: Family Cookies",
+      "price": 4.99,
+      "category": "Food-and-Drink",
+      "description": "A tasty combination of nutritious oatmeal and dried raisins.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/04/product-familycookies-600x400-1.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 20,
+      "product_name": "Purity: Oatmeal Biscuits",
+      "price": 5.99,
+      "category": "Food-and-Drink",
+      "description": "Our delicious take on the traditional oatmeal cookie. Loaded with flavour.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/04/product-oatmealbisuits-600x400-1.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 21,
+      "product_name": "Purity: Ginger Cookies",
+      "price": 6.99,
+      "category": "Food-and-Drink",
+      "description": "Great ginger flavour in a larger cookie with just the right amount of “more please”.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/04/product-gingercookies-600x400-1.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 22,
+      "product_name": "Purity: Ginger Snaps",
+      "price": 4.99,
+      "category": "Food-and-Drink",
+      "description": "Traditional, delicious, and made with plenty of ginger spice. The name comes from the “snap” sound when you break them.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/04/product-gingersnaps-600x400-1.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 23,
+      "product_name": "Round Milk Lunch Biscuits",
+      "price": 5.50,
+      "category": "Food-and-Drink",
+      "description": "Low in fat and cholesterol free, these round biscuits are a perfect snack.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/04/product-milkround2-600x400-1.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 24,
+      "product_name": "Square Milk Lunch Biscuits",
+      "price": 5.99,
+      "category": "Food-and-Drink",
+      "description": "For those who prefer a square shaped biscuit that is low in fat and cholesterol free.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/04/product-milksquare2-600x400-1.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 25,
+      "product_name": "Classic Milk Lunch Biscuits",
+      "price": 4.99,
+      "category": "Food-and-Drink",
+      "description": "A thinner, sweeter biscuit with a flakier snap. Pairs nicely with your favourite spread.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/04/product-milkclassic-600x400-1.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 26,
+      "product_name": "Hamilton's Milk Lunch Biscuits",
+      "price": 5.99,
+      "category": "Food-and-Drink",
+      "description": "A crisp and tender biscuit with a light milky flavour.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/04/product-milkhamilton3-600x400-1.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 27,
+      "product_name": "Cream Crackers",
+      "price": 6.49,
+      "category": "Food-and-Drink",
+      "description": "Our most famous cracker with the unmistakable airy texture and irresistible flavour.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/04/product-creamcracker-600x400-1.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 28,
+      "product_name": "Cream Crackers 25% Less Fat",
+      "price": 6.49,
+      "category": "Food-and-Drink",
+      "description": "All the mouthwatering enjoyment of our regular cream cracker in a 25% less fat alternative.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/04/product-creamcracker25b-600x400-1.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 29,
+      "product_name": "Cream Crisps Crackers 200G",
+      "price": 3.99,
+      "category": "Food-and-Drink",
+      "description": "Flaky goodness that pairs perfectly with your favourite jam or spread.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/04/product-creamcrisps-600x400-1.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 30,
+      "product_name": "Cream Crisps Crackers 400G",
+      "price": 4.99,
+      "category": "Food-and-Drink",
+      "description": "Flaky goodness that pairs perfectly with your favourite jam or spread.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/04/product-creamcrisps-600x400-1.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 31,
+      "product_name": "Tip Top Crackers",
+      "price": 4.99,
+      "category": "Food-and-Drink",
+      "description": "This flaky, mouthwatering soda cracker is perfect solo or in your favourite soup.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/04/product-tiptop-600x400-1.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 32,
+      "product_name": "Assorted Kisses",
+      "price": 4.99,
+      "category": "Food-and-Drink",
+      "description": "An enviable assortment of our chewy, delectable, handmade kisses.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/04/product-tiptop-600x400-1.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 33,
+      "product_name": "Peanut Butter Kisses",
+      "price": 4.99,
+      "category": "Food-and-Drink",
+      "description": "When peanut butter lovers want something extra indulgent, these kisses deliver.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/04/product-peanutbutterkisses-600x400-1.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 34,
+      "product_name": "Rum & Butter Kisses",
+      "price": 4.99,
+      "category": "Food-and-Drink",
+      "description": "Buttery-smooth and creamy with just the right punch of rum flavour.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/04/product-rumbutterkisses-600x400-1.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 35,
+      "product_name": "Bulls Eyes",
+      "price": 4.99,
+      "category": "Food-and-Drink",
+      "description": "Irresistible handmade molasses morsels you’ll savour over and over.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/04/product-bullseyes-600x400-1.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 36,
+      "product_name": "Candy Barrels",
+      "price": 4.99,
+      "category": "Food-and-Drink",
+      "description": "Green? Black? Everyone’s got a favourite. Our candy barrels are fun-shaped and bursting with fruit flavours.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/04/product-candybarrels-600x400-1.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 37,
+      "product_name": "Purity Climax Mixture",
+      "price": 4.99,
+      "category": "Food-and-Drink",
+      "description": "Our classic colourful candy overflowing with a rainbow of fruit flavours.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/04/product-climaxmixture-600x400-1.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 38,
+      "product_name": "Purity Spearmint Nobs",
+      "price": 4.99,
+      "category": "Food-and-Drink",
+      "description": "A refreshing spearmint treat handmade by our candy makers.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/04/product-spearmintnobs2-600x400-1.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 39,
+      "product_name": "Purity Spearmint Lumps",
+      "price": 4.99,
+      "category": "Food-and-Drink",
+      "description": "Always on hand when a substantial blast of spearmint freshness is in order.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/04/product-spearmintlumps-600x400-1.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 40,
+      "product_name": "Purity Peppermint Nobs 170G",
+      "price": 4.49,
+      "category": "Food-and-Drink",
+      "description": "Our famously “moreish” peppermint morsels",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/04/product-peppermintnobs3-600x400-1.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 41,
+      "product_name": "Purity Peppermint Nobs 325G",
+      "price": 6.29,
+      "category": "Food-and-Drink",
+      "description": "Our famously “moreish” peppermint morsels",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/04/product-peppermintnobs3-600x400-1.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 42,
+      "product_name": "Purity Peppermintt Lumps",
+      "price": 4.99,
+      "category": "Food-and-Drink",
+      "description": "Lovable, shareable lumps of bold peppermint flavour.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/04/product-peppermintlumps2-600x400-1.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 43,
+      "product_name": "Purity Goodie Box",
+      "price": 39.99,
+      "category": "Food-and-Drink",
+      "description": "Treat yourself or someone you love to a large assortment of much-loved Purity favorites! From apple and partridgeberry jam to peppermint nobs, we’ve gathered the Purity products you crave into one amazing box of goodies. Includes 1x Bottle Flavoured Syrup, 1x Package Cream Crackers, 1x Package Lemon Creams, 1x Package Assorted Kisses, 1x Package Peppermint Nobs, 1x 250ml Tub Partridgeberry/Apple Jam, 1x Package Jam Jams",
+      "image": "https://purity.nf.ca/wp-content/uploads/2016/09/goodieboxwithproducts-wide.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 44,
+      "product_name": "Purity Men's Trademark T-Shirt",
+      "price": 24.99,
+      "category": "Clothing-and-Apparel",
+      "description": "Super soft to the touch and showcasing the iconic Purity trademark, this tri-blend t-shirt is lightweight and comfortable with room to move. The unique fabric blend is designed for durability, ensuring you’ll get years of wear from this quality t-shirt. Includes super soft tri-blend, semi-fitted with side-seam construction, double-needle sleeve and bottom hems, 50% polyester, 25% combed and ring-spun cotton, 25% rayon. Sizes: S - XXL.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2017/12/caribou-charcoal-men.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 45,
+      "product_name": "Purity Official Logo Cap",
+      "price": 16.95,
+      "category": "Clothing-and-Apparel",
+      "description": "The perfect cap has arrived! This durable, one-size-fits-all washed black twill cap is a great gift for someone you love, and an excellent way to cap off your own wardrobe. It's 100% cotton, unstructured soft-lined front matching adjustable self back strap.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/10/purityballhot-600x600-1.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 46,
+      "product_name": "Purity: Unisex Hard Bread T-Shirt",
+      "price": 24.99,
+      "category": "Clothing-and-Apparel",
+      "description": "Featuring our famous Purity Hard Bread, this t-shirt is easy to love! Vibrantly colored in signature Purity red and very durable, this eye-catching t-shirt is made of a quality fabric blend to give you years of wear and enjoyment. It's super soft, semi-fitted with side-seam construction, Tear Away Label, 100% ring-spun cotton. Sizes: S – XXL.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2019/10/female-hard-bread-t-shirt.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 47,
+      "product_name": "Purity: Unisex Jam Jams Crewneck Fleece",
+      "price": 34.99,
+      "category": "Clothing-and-Apparel",
+      "description": "Let the world know how much you love Jam Jams with this soft and durable crewneck fleece sweatshirt that features the Purity logo and pays tribute to the moistest, most iconic cookie around! It's 50/50 combed ring-spun cotton/polyester, ribbed neck and cuffs, double-needle stitched neck, double-needle stitched armholes, cuffs, and waistband. Sizes S - 3XL.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2021/05/purityunisexcrewneckfleece-grey.png",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 48,
+      "product_name": "Purity: Unisex Jam Jams T-Shirt",
+      "price": 24.99,
+      "category": "Clothing-and-Apparel",
+      "description": "It’s the most delicious addition to your wardrobe yet! Soft, lightweight and comfortable, this quality t-shirt features the iconic Purity Jam Jam cookie and logo. Made of a uniquely durable fabric blend, the Jam Jam t-shirt is sure to impress your friends. It might make them hungry too! Super soft tri-blend. Semi-fitted with side-seam construction, double-needle sleeve and bottom hems, 50% polyester, 25% combed and ring-spun cotton, 25% rayon.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2019/10/purityjamjamtshirt-man_600.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 49,
+      "product_name": "Purity: Unisex Crewneck Fleece",
+      "price": 34.99,
+      "category": "Clothing-and-Apparel",
+      "description": "Super soft to the touch and big on comfort and style. Wear your Purity pride and keep perfectly cozy with this durable crewneck fleece sweatshirt in heather red and featuring the classic Purity logo. It's 50% combed ring-spun cotton, 50% polyester, 12.5 oz, double-needle stitch on armholes, cuffs, waistband and around the neck, side-seamed, rib neck and cuffs. Sizes S-3XL.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2019/11/purityunisexcrewneckfleece02.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 50,
+      "product_name": "Purity: Unisex Purity Nob T-Shirt",
+      "price": 24.99,
+      "category": "Clothing-and-Apparel",
+      "description": "It won’t ruin your party, or your wardrobe! Featuring our famous peppermint nobs, this soft and durable quality t-shirt makes an eye-catching fashion statement that captures the fun of Purity. Super soft and semi-fitted, side seams, TearAway label, 100% ring spun cotton.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2019/02/front-female-purity-nob-t-shirt.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 51,
+      "product_name": "Purity: Unisex Signature Products T-Shirt",
+      "price": 24.99,
+      "category": "Clothing-and-Apparel",
+      "description": "Durable, super-soft t-shirt listing popular Purity favourites. Manufactured for long wear and impressing your friends, it’s a Purity fan must-have! Pre-shrunk, semi-fitted, Tear-away tag.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2021/03/shop-tshirt-2021a.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 52,
+      "product_name": "Purity: Unisex Purity Vintage Hoodie",
+      "price": 39.99,
+      "category": "Clothing-and-Apparel",
+      "description": "Soft to the touch with a comfy fit, Purity Vintage hoodies are the perfect expression of everyday style. Made from quality materials, this durable pullover is sure to become an essential item in your casual wardrobe. It's classic fit, pre-shrunk fleece knit, unlined hood with white drawcords, double-needle topstitch at neck, 1×1 rib spandex cuffs and waistband, pouch pocket, & 70% combed ring spun cotton / 30% polyester. Sizes S - 2XL.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2018/06/sweatshirt-grunge-grey.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 53,
+      "product_name": "Purity: Unisex Purity Vintage Hoodie",
+      "price": 39.99,
+      "category": "Clothing-and-Apparel",
+      "description": "Soft to the touch with a comfy fit, Purity Vintage hoodies are the perfect expression of everyday style. Made from quality materials, this durable pullover is sure to become an essential item in your casual wardrobe. It's classic fit, pre-shrunk fleece knit, unlined hood with white drawcords, double-needle topstitch at neck, 1×1 rib spandex cuffs and waistband, pouch pocket, & 70% combed ring spun cotton / 30% polyester. Sizes S - 2XL.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2018/05/sweatshirt-grunge-black.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 54,
+      "product_name": "Purity: Unisex/Men's Red Trademark T-Shirt",
+      "price": 24.99,
+      "category": "Clothing-and-Apparel",
+      "description": "Super soft and comfortable, with the iconic Purity trademark. This unique fabric blend is designed for durability, ensuring you’ll get years of wear. Pre-shrunk jersey knit, semi-fitted with side seam construction, double-needle sleeve and bottom hems, TearAway label. 50% polyester, 25% combed ring spun cotton, 25% rayon. Sizes: S-XXL.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/09/puritytsforstoremens400x400.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 55,
+      "product_name": "Purity: Women's Red Trademark T-Shirt",
+      "price": 24.99,
+      "category": "Clothing-and-Apparel",
+      "description": "Say hello to your new favourite t-shirt featuring our iconic Purity trademark. The unique fabric blend is crafted to stand up to years of wear with comfort and style. Pre-shrunk jersey knit, semi-fitted contoured silhouette, flattering curved bottom hem, TearAway label, 50% polyester, 25% combed ring spun cotton, 25% rayon Sizes: S-XXL.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2020/09/puritytsforstore400x400.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 56,
+      "product_name": "Purity: Women's Purity Trademark T-Shirt",
+      "price": 24.99,
+      "category": "Clothing-and-Apparel",
+      "description": "Featuring the instantly recognizable Purity trademark and a unique tri-blend fabric that’s crafted to stand up to years of wear and washing, this always-smooth and comfy fitting t-shirt is never short on comfort or style. Super soft tri-blend, fitted style with side-seam construction, double-needle sleeve and bottom hems, 50% polyester, 25% combed and ring-spun cotton, 25% rayon. Sizes: M-XL.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2016/09/caribou-flek-women.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 57,
+      "product_name": "Purity: Women's Purity Trademark T-Shirt",
+      "price": 24.99,
+      "category": "Clothing-and-Apparel",
+      "description": "Featuring the instantly recognizable Purity trademark and a unique tri-blend fabric that’s crafted to stand up to years of wear and washing, this always-smooth and comfy fitting t-shirt is never short on comfort or style. Super soft tri-blend, fitted style with side-seam construction, double-needle sleeve and bottom hems, 50% polyester, 25% combed and ring-spun cotton, 25% rayon. Sizes: M-XL.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2017/12/caribou-charcoal-women.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 58,
+      "product_name": "Purity: Official Purity Cotton Tote",
+      "price": 7.99,
+      "category": "Clothing-and-Apparel",
+      "description": "Step out in sweet Purity style with our durable must-have cotton tote bag featuring the iconic Purity logo. This quality tote bag is built for strength with reinforced cotton webbing handles and is sure to be a stylish companion on your next shopping trip! Classic tote bag design, 24″ long cotton webbing handles. It's 100% natural cotton.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2019/07/totes.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 59,
+      "product_name": "Purity: Official Purity Logo Mug",
+      "price": 12.95,
+      "category": "Home-Decor",
+      "description": "Perfect for your morning coffee or tea, weekends by the campfire, or at the cabin. This Purity classic metal mug with stainless-steel rim has a large handle for a comfortable grip and its durable metal construction means you’ll get years of use. Great for the cabin or the office, metal construction, with the classic Purity logo, stainless steel-rim, hand wash only.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2021/08/purity-mug-for-web-copy2.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 60,
+      "product_name": "Purity: Official Purity Playing Cards",
+      "price": 9.95,
+      "category": "Toys-and-Games",
+      "description": "Make your next game of cards even sweeter with this stack of custom playing cards featuring the Purity logo.",
+      "image": "https://purity.nf.ca/wp-content/uploads/2021/03/shop-cards-2021b.jpg",
+      "vendor": "Purity Company Ltd."
+    },
+    {
+      "product_id": 61,
+      "product_name": "Dark Tickle: Newfoundland Moose Turds",
+      "price": 15.75,
+      "category": "Food-and-Drink",
+      "description": "Tiramisu Caramels in Dark Chocolate.",
+      "image": "https://shopdownhome.com/cdn-cgi/image/quality%3D85/assets/images/thumbnails/85478_thumbnail.jpg",
+      "vendor": "Dark Tickle"
+    },
+    {
+      "product_id": 62,
+      "product_name": "Dark Tickle: Blueberry Tea",
+      "price": 9.99,
+      "category": "Food-and-Drink",
+      "description": "Tiramisu Caramels in Dark Chocolate.",
+      "image": "https://shopdownhome.com/cdn-cgi/image/quality%3D85/assets/images/thumbnails/79375_thumbnail.jpg",
+      "vendor": "Dark Tickle"
+    },
+    {
+      "product_id": 63,
+      "product_name": "Dark Tickle: Wild Blueberry Coffee 60G",
+      "price": 9.99,
+      "category": "Food-and-Drink",
+      "description": "Ingredients: Coffee, Natural and Artificial Flavours.",
+      "image": "https://shopdownhome.com/cdn-cgi/image/quality%3D85/assets/images/thumbnails/85477_thumbnail.jpg",
+      "vendor": "Dark Tickle"
+    },
+    {
+      "product_id": 64,
+      "product_name": "Dark Tickle: Wild Blueberry Spread - 34ml",
+      "price": 4.99,
+      "category": "Food-and-Drink",
+      "description": "Ingredients: Sugar, Wild Blueberries, Water and Neutral Pectin.",
+      "image": "https://shopdownhome.com/cdn-cgi/image/quality%3D85/assets/images/thumbnails/85280_thumbnail.jpg",
+      "vendor": "Dark Tickle"
+    },
+    {
+      "product_id": 65,
+      "product_name": "Dark Tickle: Berry Sauce",
+      "price": 9.99,
+      "category": "Food-and-Drink",
+      "description": "Handcrafted in Newfoundland and Labrador.",
+      "image": "https://skipperjoessouvenirs.com/cdn/shop/files/image_2544726f-1801-4ea5-a1d9-63d695a955d7_1296x.heic?v=1691970079",
+      "vendor": "Dark Tickle"
+    },
+    {
+      "product_id": 66,
+      "product_name": "Newfoundland Chocolate Company - Bars 50G",
+      "price": 5.49,
+      "category": "Food-and-Drink",
+      "description": "Ingredients: Coffee, Natural and Artificial Flavours.",
+      "image": "https://shopdownhome.com/cdn-cgi/image/quality%3D85/assets/images/thumbnails/85477_thumbnail.jpg",
+      "vendor": "Newfoundland Chocolate Company"
+    },
+    {
+      "product_id": 67,
+      "product_name": "Salt Water: Whipped Soap",
+      "price": 14.99,
+      "category": "Bath-and-Body",
+      "description": "You can use our Whipped Soaps as a hand wash, as a body wash or even as a shaving cream! Use your hands or a small scoop to apply it to your hands, loofah or your legs. With the Whipped Soap, a little goes a long way!",
+      "image": "https://skipperjoessouvenirs.com/cdn/shop/products/image_802223e8-a353-4261-8635-e421d19ccf12_1296x.jpg?v=1631544714",
+      "vendor": "Skipper Joe's Souvenirs"
+    },
+    {
+      "product_id": 68,
+      "product_name": "Skipper Joe's: Candy Cane Hot Chocolate",
+      "price": 9.99,
+      "category": "Food-and-Drink",
+      "description": "Sweet, rich & delicious candy cane hot chocolate powder just in time for the holidays. ☕️ 🍫. Skipper Joe’s original recipe of candy cane Hot Chocolate. 🎄🍫 Add 3 tbsp to hot water or milk for a creamy cup of cocoa.",
+      "image": "https://skipperjoessouvenirs.com/cdn/shop/files/IMG-5179_1080x.jpg?v=1699098803",
+      "vendor": "Skipper Joe's Souvenirs"
+    },
+    {
+      "product_id": 69,
+      "product_name": "Nut 'n Better Bar - 50G",
+      "price": 5.49,
+      "category": "Food-and-Drink",
+      "description": "Newfoundland Chocolate Company Bars, milk chocolate with caramel & peanuts. 50g",
+      "image": "https://skipperjoessouvenirs.com/cdn/shop/files/FullSizeRender_6a1b1fb7-8c70-40b8-8769-6dacbdab820e_1296x.heic?v=1695301610",
+      "vendor": "Newfoundland Chocolate Company"
+    },
+    {
+      "product_id": 70,
+      "product_name": "Mummer LED Light Up Ornament - Yellow",
+      "price": 12.99,
+      "category": "Seasonal",
+      "description": "LED Light up Mummer ornaments Available in 3 Colors, green, red and yellow. Battery operated. Price is per one bulb.",
+      "image": "https://skipperjoessouvenirs.com/cdn/shop/products/image_8f125e63-1d3b-44fc-a34c-0c5e34f57081_1080x.jpg?v=1639247733",
+      "vendor": "Skipper Joe's Souvenirs"
+    },
+    {
+      "product_id": 71,
+      "product_name": "Mummer LED Light Up Ornament - Red",
+      "price": 12.99,
+      "category": "Seasonal",
+      "description": "LED Light up Mummer ornaments Available in 3 Colors, green, red and yellow. Battery operated. Price is per one bulb.",
+      "image": "https://skipperjoessouvenirs.com/cdn/shop/products/image_54a0e652-9c08-4827-a2a2-a6c663ce012a_1080x.jpg?v=1639247740",
+      "vendor": "Skipper Joe's Souvenirs"
+    },
+    {
+      "product_id": 72,
+      "product_name": "Mummer LED Light Up Ornament - Green",
+      "price": 12.99,
+      "category": "Seasonal",
+      "description": "LED Light up Mummer ornaments Available in 3 Colors, green, red and yellow. Battery operated. Price is per one bulb.",
+      "image": "https://skipperjoessouvenirs.com/cdn/shop/products/image_81683f48-862f-4624-8fdb-c0848c3c4b3d_1080x.jpg?v=1639247737",
+      "vendor": "Skipper Joe's Souvenirs"
+    },
+    {
+      "product_id": 73,
+      "product_name": "Bergy Bits: Chocolate Covered Marshmallow Bits",
+      "price": 8.99,
+      "category": "Food-and-Drink",
+      "description": "Chocolate covered marshmallows.",
+      "image": "https://skipperjoessouvenirs.com/cdn/shop/products/image_89afe50e-39ae-4a76-8ff9-5322fff813d0_1080x.jpg?v=1664929240",
+      "vendor": "Skipper Joe's Souvenirs"
+    },
+    {
+      "product_id": 74,
+      "product_name": "Handmade Red Truck Stud Earrings - Clay by Amy",
+      "price": 15.99,
+      "category": "Seasonal",
+      "description": "Handmade classic earrings.",
+      "image": "https://skipperjoessouvenirs.com/cdn/shop/files/IMG-5310_1080x.jpg?v=1699465414",
+      "vendor": "Skipper Joe's Souvenirs"
+    },
+    {
+      "product_id": 75,
+      "product_name": "Handmade Grinch Stud Earrings - Clay by Amy",
+      "price": 16.99,
+      "category": "Seasonal",
+      "description": "Handmade classic earrings.",
+      "image": "https://skipperjoessouvenirs.com/cdn/shop/files/IMG-5312_1080x.jpg?v=1699463869",
+      "vendor": "Skipper Joe's Souvenirs"
+    },
+    {
+      "product_id": 76,
+      "product_name": "Handmade Grinch Dangling Earrings - Clay by Amy",
+      "price": 24.99,
+      "category": "Seasonal",
+      "description": "Handmade classic earrings.",
+      "image": "https://skipperjoessouvenirs.com/cdn/shop/files/IMG-5307_1080x.jpg?v=1699464016",
+      "vendor": "Skipper Joe's Souvenirs"
+    },
+    {
+      "product_id": 77,
+      "product_name": "Crochet Round Coaster Set",
+      "price": 11.99,
+      "category": "Home-Decor",
+      "description": "These beautiful handmade coasters add a great addition to your home or office. Available in a variety of colors, these coasters measure 6” round making it a perfect fit for your coffee mug or even a small plate.",
+      "image": "https://skipperjoessouvenirs.com/cdn/shop/products/image_f8588ecf-4dfe-44ff-ade8-34617e169254_1296x.jpg?v=1636583685",
+      "vendor": "Skipper Joe's Souvenirs"
+    },
+    {
+      "product_id": 78,
+      "product_name": "Newfoundland & Labrador Touque",
+      "price": 15.99,
+      "category": "Clothing-and-Apparel",
+      "description": "Winter hat.",
+      "image": "https://skipperjoessouvenirs.com/cdn/shop/products/image_bf53ed5b-939c-4ecf-8002-26d36d6be529_1080x.heic?v=1665260631",
+      "vendor": "Skipper Joe's Souvenirs"
+    },
+    {
+      "product_id": 79,
+      "product_name": "Newfoundland Cutting/Cheese Board & Spreader Set",
+      "price": 17.99,
+      "category": "Home-Decor",
+      "description": "This beautiful bamboo cheeseboard has imprint on the front of board of the shape of Newfoundland. Comes with a cheese speeder and boxed with ribbon for gift giving.",
+      "image": "https://skipperjoessouvenirs.com/cdn/shop/products/image_89d391ed-ea5c-4553-b7d7-566a8b0366a9_1296x.jpg?v=1603311730",
+      "vendor": "Skipper Joe's Souvenirs"
+    },
+    {
+      "product_id": 80,
+      "product_name": "Handmade Newfoundland String Art - Red Heart",
+      "price": 32.49,
+      "category": "Home-Decor",
+      "description": "30% Off!",
+      "image": "https://skipperjoessouvenirs.com/cdn/shop/products/image_3914f1d6-edec-466d-970b-2c36e2571865_1296x.jpg?v=1635080157",
+      "vendor": "Skipper Joe's Souvenirs"
+    },
+    {
+      "product_id": 81,
+      "product_name": "Handmade Newfoundland String Art - Gold Heart",
+      "price": 32.49,
+      "category": "Home-Decor",
+      "description": "30% Off!",
+      "image": "https://skipperjoessouvenirs.com/cdn/shop/products/image_9242557b-14cd-49a1-8f1d-7b4349dd8961_1296x.jpg?v=1635080161",
+      "vendor": "Skipper Joe's Souvenirs"
+    },
+    {
+      "product_id": 82,
+      "product_name": "Knitted Handmade Afghan Pillow - Republic of NL",
+      "price": 51.99,
+      "category": "Home-Decor",
+      "description": "Knitted square pillows handmade in Newfoundland with the colors of Republic of Newfoundland",
+      "image": "https://skipperjoessouvenirs.com/cdn/shop/products/image_570eded8-30fb-497c-833c-c0d8663a1822_1080x.jpg?v=1600269635",
+      "vendor": "Skipper Joe's Souvenirs"
+    },
+    {
+      "product_id": 83,
+      "product_name": "Salt Water: Bathroom Sprays",
+      "price": 12.99,
+      "category": "Bath-and-Body",
+      "description": "A great alternative to candles! Many candles release harsh candles into the air that we breathe in. Room sprays allow you to enjoy a great smelling room without harsh chemicals.",
+      "image": "https://skipperjoessouvenirs.com/cdn/shop/products/image_d8f0a6b7-5979-4297-ae53-11528e9889fe_1080x.jpg?v=1631642474",
+      "vendor": "Skipper Joe's Souvenirs"
+    },
+    {
+      "product_id": 84,
+      "product_name": "Newfoundland Favourites Fleece Throw",
+      "price": 29.99,
+      "category": "Home-Decor",
+      "description": "Size: 50 x 60.",
+      "image": "https://freezerlandnfld.com/cdn/shop/files/fleece-blanket-nfld-faves_1066x.jpg?v=1702060752",
+      "vendor": "Freezerland Newfoundland"
+    },
+    {
+      "product_id": 85,
+      "product_name": "Newfoundland Sayings Fleece Throw",
+      "price": 29.99,
+      "category": "Home-Decor",
+      "description": "Size: 50 x 60.",
+      "image": "https://freezerlandnfld.com/cdn/shop/files/fleece-blanket-nfld-throw-mobile_1066x.jpg?v=1702062007",
+      "vendor": "Freezerland Newfoundland"
+    },
+    {
+      "product_id": 86,
+      "product_name": "Any Mummers 'Lowed In? Mug",
+      "price": 9.99,
+      "category": "Home-Decor",
+      "description": "Coffee Mug.",
+      "image": "https://freezerlandnfld.com/cdn/shop/files/mug-mummers-2_1066x.jpg?v=1702147293",
+      "vendor": "Freezerland Newfoundland"
+    },
+    {
+      "product_id": 87,
+      "product_name": "Word Search of Newfoundland and Labrador - Volume One",
+      "price": 16.95,
+      "category": "Books",
+      "description": "Say hello to the Word Search of Newfoundland and Labrador, the ultimate puzzle book for word search enthusiasts and lovers of this stunning place we call home. Featuring 140 puzzles ranging from easy to challenging, each word search will give you an opportunity to learn something new about this province. From our culture, to our landmarks, to our history, to our sayings, to our diverse communities, to fast facts, to our friends (and even folks you may know), each puzzle is carefully crafted to ensure that every word you find is one you can add to your Newfoundland vocabulary.",
+      "image": "https://freezerlandnfld.com/cdn/shop/files/word-search_1066x.jpg?v=1694965993",
+      "vendor": "Freezerland Newfoundland"
+    },
+    {
+      "product_id": 88,
+      "product_name": "Pease Pudding Bag",
+      "price": 2.95,
+      "category": "Home-Decor",
+      "description": "Use to make traditional 'Pease Pudding', a famous accompaniment for Jiggs Dinner. Fill bag with peas to desired amount. Use ties to secure top of bag. if peas do not fill bag, fold down top before securing ties to leave a suitable amount of slack. Hook a fork in the loop at bottom of bag to shake hot pudding from bag. If you prefer a drier pudding, squeeze some water from the bag before removing. Features making this the best bag are sturdy ties instead of string, loop on bottom for handling hot bag; finished interior seams means no stray threads in pudding. 65% polyester 35% cotton & double seamed for durability. Made in Newfoundland. Launder before initial use. Machine wash & dry.",
+      "image": "https://freezerlandnfld.com/cdn/shop/files/pease-pudding-bag_1066x.jpg?v=1692450349",
+      "vendor": "Freezerland Newfoundland"
+    },
+    {
+      "product_id": 89,
+      "product_name": "Warrens - Pickled Weiners",
+      "price": 14.99,
+      "category": "Food-and-Drink",
+      "description": "Warren's pickled wieners are a staple snack food. Perfect for the cabin, a late night trip to the refrigerator, or anytime!",
+      "image": "https://freezerlandnfld.com/cdn/shop/files/warrens-small_1066x.jpg?v=1692449776",
+      "vendor": "Freezerland Newfoundland"
+    },
+    {
+      "product_id": 90,
+      "product_name": "Taste of Home Box",
+      "price": 14.99,
+      "category": "Food-and-Drink",
+      "description": "Missing the Rock? Come grab a little taste of home for only 14.99 + tax per box. Includes Lays Fries n' Gravy Chips, Jam Jams - 2 pack, Caramel Log, Can of Vienna Sausages, Can of Crush Pineapple Pop, & Bag of Yummies",
+      "image": "https://freezerlandnfld.com/cdn/shop/files/Taste-Of-Home_1500x.jpg?v=1692128233",
+      "vendor": "Freezerland Newfoundland"
+    },
+    {
+      "product_id": 91,
+      "product_name": "Crush Pineapple Pop - 12 pack",
+      "price": 25.19,
+      "category": "Food-and-Drink",
+      "description": "12 pack of Crush Pineapple Pop.",
+      "image": "https://freezerlandnfld.com/cdn/shop/files/Crush_Pineapple_Case_1500x.jpg?v=1687026352",
+      "vendor": "Freezerland Newfoundland"
+    },
+    {
+      "product_id": 92,
+      "product_name": "A Puffin Playing by the Sea - The Twelve Days of Christmas by Gina Noordhof",
+      "price": 16.95,
+      "category": "Books",
+      "description": "The classic holiday carol The 12 Days of Christmas takes on a Newfoundland and Labrador twist in this cute children's book. Instead of a partridge in a pear tree, the first day of Christmas brings a puffin by the sea; other Newfoundland and Labrador-themed gifts include caribou, Norsemen, mummers - and even caroling codfish! Plus, the author provides interesting background information on each of the 12 gifts. It highlights the unique qualities of this Canadian province in a fun, heart filled and educational manner. With the help of the whimsical puffin character and beautiful illustrations by Derek Peddle , Gina Noordhof's first book will be certain to please young and old. It will appeal to people from around the world who want to learn about the province and those who are proud of their birthplace and its unique history and nature. This is a first in a series of books that will exhibit each provinces qualities. Singalong to the this soon to be New hit song, The Twelve Days of Christmas in Newfoundland and Labrador",
+      "image": "https://m.media-amazon.com/images/I/91mGVV04hrL._SL1500_.jpg",
+      "vendor": "Amazon Canada"
+    },
+    {
+      "product_id": 93,
+      "product_name": "Caramel Log",
+      "price": 2.95,
+      "category": "Food-and-Drink",
+      "description": "A wafer and caramel biscuit fully covered in chocolate flavoured coating sprinkled with roasted coconut. Biscuit 32g.",
+      "image": "https://www.tunnock.co.uk/media/1160/Caramel_log.png?wproduct_idth=1000",
+      "vendor": "Amazon Canada"
+    },
+    {
+      "product_id": 94,
+      "product_name": "Moose Trigger Mitt",
+      "price": 44.95,
+      "category": "Clothing-and-Apparel",
+      "description": "This very warm double knit mitten features the thumb and finger. Very popular with hunters and fisherman. Suitable for all chilly outdoor activities. It has a stretchy knit two, purl two ribbed band that tucks in nicely. Hand knit with 100 % wool, worsted weight.",
+      "image": "https://images.squarespace-cdn.com/content/v1/578419ff8419c226c6e4304f/1468276204042-33PFE6BU1FGDXV78V2K5/trigger-mit.jpg?format=750w",
+      "vendor": "Spindrift Handknits"
+    },
+    {
+      "product_id": 95,
+      "product_name": "Moose Cap",
+      "price": 41.95,
+      "category": "Clothing-and-Apparel",
+      "description": "This toque style cap has a turned up knit two, purl two ribbed edge. The moose silhouette section is double knit. It is a stretchy fit so it will be comfortable for average to larger size. It has a handmade tassel attached with a braided wool cord. Designed by Christine LeGrow. Hand knit with 100% wool, worsted weight.",
+      "image": "https://images.squarespace-cdn.com/content/v1/578419ff8419c226c6e4304f/1468365306690-2YUI5F2G2CS3GEXV7XWD/moose-cap.jpg?format=750w",
+      "vendor": "Spindrift Handknits"
+    },
+    {
+      "product_id": 96,
+      "product_name": "Traditional Newfoundland Work Sock",
+      "price": 37.95,
+      "category": "Clothing-and-Apparel",
+      "description": "This traditional hand knit work sock is the perfect answer to keep the feet warm in all outdoor activities. It is a generous width and has a comfort knit two, purl two ribbed band. Hand knit 100% wool, worsted weight.",
+      "image": "https://images.squarespace-cdn.com/content/v1/578419ff8419c226c6e4304f/1474748309001-TTRZRWBFAV6H9VWVZ73E/work-sock.jpg?format=750w",
+      "vendor": "Spindrift Handknits"
+    },
+    {
+      "product_id": 97,
+      "product_name": "Traditional Newfoundland Vamp",
+      "price": 28.95,
+      "category": "Clothing-and-Apparel",
+      "description": "This very short sock is typically worn over another sock of choice. Wear it when added warmth is needed for the foot but not the leg. It is great to wear as a slipper too. It has a knit one, purl one, ribbed edge and a stocking stitch foot. Hand knit, 100% wool, worsted weight.",
+      "image": "https://images.squarespace-cdn.com/content/v1/578419ff8419c226c6e4304f/1474748778093-HE8JQCA6ZT6FSVZX1FED/05T.jpg?format=750w",
+      "vendor": "Spindrift Handknits"
+    },
+    {
+      "product_id": 98,
+      "product_name": "Republic of Newfoundland Flap Cap",
+      "price": 67.95,
+      "category": "Clothing-and-Apparel",
+      "description": "This republic ear flap cap has two tri-colour flags. One on each ear flap. The cap is warm and cosy with a double knit section of white starbursts on a medium grey background. This style is best worn pulled well down over the head. It features three handmade pom-poms in the Republic of Nfld. colours, attached with hand knotted wool cord. Designed and hand knit by Laurie LeGrow. Hand knit with 100% wool, worsted weight.",
+      "image": "https://images.squarespace-cdn.com/content/v1/578419ff8419c226c6e4304f/1474754574636-IN12OWYN6013URM585OL/05.jpg?format=750w",
+      "vendor": "Spindrift Handknits"
+    },
+    {
+      "product_id": 99,
+      "product_name": "Republic of Newfoundland Turn-Back Sock",
+      "price": 41.95,
+      "category": "Clothing-and-Apparel",
+      "description": "This hiking sock is meant to be worn in short hiking boots and shoes. The moss stitch cuff has a slit at the back, so that it can easily turn back over a short boot. The underside is a trim knit one, purl one ribbing that fits snugly around the ankle. The foot is a traditional stocking stitch knit. It has a flag on the outside ankle of each foot. This cosy sock can be worn as a slipper. Designed by Christine LeGrow.",
+      "image": "https://images.squarespace-cdn.com/content/v1/578419ff8419c226c6e4304f/1474754758754-MD0ALOKSQ63BWS8GN79V/06.jpg?format=750w",
+      "vendor": "Spindrift Handknits"
+    },
+    {
+      "product_id": 100,
+      "product_name": "Inky Old Squids - Cat Toys",
+      "price": 19.95,
+      "category": "Pet-Supplies",
+      "description": "Our Inky Old Squids are made from 100% sheep wool and organic catnip. Our most popular cat toy is perfect for cats that like to pull and bite on things that dangle. Their dangly tentacles are sure to please.",
+      "image": "https://images.squarespace-cdn.com/content/v1/578419ff8419c226c6e4304f/1474763949043-NFBU5043PWM6EHE0QOF7/01-Squid.jpg?format=750w",
+      "vendor": "Spindrift Handknits"
+    },
+    {
+      "product_id": 101,
+      "product_name": "Capelin Guys - Cat Toys",
+      "price": 19.95,
+      "category": "Pet-Supplies",
+      "description": "Our Capelin Guys are made from 100% sheep wool and organic catnip. They are perfect for cats that like to bat their toys around.",
+      "image": "https://images.squarespace-cdn.com/content/v1/578419ff8419c226c6e4304f/1474759419858-K3QNN0P68XXXDJJM2V4X/01-Caplin.jpg?format=750w",
+      "vendor": "Spindrift Handknits"
+    },
+    {
+      "product_id": 102,
+      "product_name": "The Saucy Newfoundland Co. : Lassie Ketchup",
+      "price": 9.99,
+      "category": "Food-and-Drink",
+      "description": " This really isn't your Mudder's ketchup, but she says she really loves it! She says its a fancy way to spruce up her meals. The lassy is our attempt to make this saucy crowd a little sweeter. Mudder says it isn't working!",
+      "image": "https://skipperjoessouvenirs.com/cdn/shop/products/image_013a5b1d-bb3a-4c49-9141-9f7d6e28df95_1080x.jpg?v=1633381067",
+      "vendor": "Skipper Joe's Souvenirs"
+    },
+    {
+    "product_id": 103,
+    "product_name": "Newfoundland and Labrador Puzzle",
+    "price": 19.99,
+    "category": "Toys-and-Games",
+    "description": "Piece together the beauty of Newfoundland and Labrador with our scenic puzzle. Featuring stunning images of the province's landscapes and wildlife, it's a fun and challenging activity for the whole family.",
+    "image": "https://giftsofjoy.ca/cdn/shop/products/image_53309697-ff48-4a4b-8f1e-a92767079783_1296x.jpg?v=1615294303",
+    "vendor": "Amazon Canada"
+  },
+  {
+    "product_id": 104,
+    "product_name": "Hand-Painted Wooden Birdhouse",
+    "price": 27.99,
+    "category": "Home-Decor",
+    "description": "Bring the beauty of nature to your backyard with our hand-painted wooden birdhouse. Each birdhouse is lovingly crafted and painted by local artisans, providing a cozy home for your feathered friends.",
+    "image": "https://i.pinimg.com/564x/07/36/07/0736072b03f8ddce288455410fc1ddda.jpg",
+    "vendor": "Skipper Joe's Souvenirs"
+  },
+  {
+    "product_id": 105,
+    "product_name": "Potter by the Sea: Ceramic Mug",
+    "price": 49.99,
+    "category": "Home-Decor",
+    "description": "Enjoy your morning coffee or tea in style with our handcrafted ceramic mug. Each mug is made by local artisans and features a unique design inspired by the beauty of Newfoundland and Labrador.",
+    "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/7422/5834/when_people_say_Its_too_early_to_be_thinking_about_christmas_but_youre_4_weeks_away_from_opening_a_christmas_store._40__50849.1699454936.png?c=1",
+    "vendor": "Urban Market 1919"
+  },
+  {
+    "product_id": 106,
+    "product_name": "NL Island Mug",
+    "price": 39.99,
+    "category": "Home-Decor",
+    "description": "Show your love for Newfoundland and Labrador with our NL Island mug. Made from durable ceramic, it's perfect for enjoying your morning coffee or tea.",
+    "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/7373/5754/Screenshot_20230124_123800__82107.1698858357.png?c=1",
+    "vendor": "Urban Market 1919"
+  },
+  {
+    "product_id": 107,
+    "product_name": "Mussels Bloom Artwork",
+    "price": 59.99,
+    "category": "Home-Decor",
+    "description": "Add a touch of coastal charm to your home with our Mussels Bloom artwork. It's the perfect way to bring the beauty of Newfoundland and Labrador into your space.",
+    "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/7363/5743/1000005906__96423.1698852912.jpg?c=1",
+    "vendor": "Urban Market 1919"
+  },
+  {
+    "product_id": 108,
+    "product_name": "Whale Tail Hook",
+    "price": 29.99,
+    "category": "Home-Decor",
+    "description": "Keep your space organized and stylish with our whale tail hook. Made from durable cast iron, it's perfect for hanging coats, hats, and more.",
+    "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/7357/5735/375872893_336804392206513_5436162244277155675_n__95544.1698852810.jpg?c=1",
+    "vendor": "Urban Market 1919"
+  },
+  {
+    "product_id": 109,
+    "product_name": "NL Tea Towels by Kate Fudge Art",
+    "price": 24.99,
+    "category": "Home-Decor",
+    "description": "Add a touch of Newfoundland and Labrador to your kitchen with our NL tea towels. Made from durable cotton, they feature original artwork by local artist Kate Fudge",
+    "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/7323/5726/granny__65780.1698850250.jpg?c=1",
+    "vendor": "Urban Market 1919"
+  },
+ {
+  "product_id": 110,
+  "product_name": "Liz Smith Cherry Wood Boards",
+  "price": 49.99,
+  "category": "Home-Decor",
+  "description": "Add a touch of elegance to your kitchen with our Liz Smith cherry wood boards. Made from durable cherry wood, they're perfect for serving cheese, charcuterie, and more.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/7189/5568/4__56145.1694691420.jpg?c=1",
+  "vendor": "Urban Market 1919"
+ },
+ {
+  "product_id": 111,
+  "product_name": "Wooden Saw Wall Signs",
+  "price": 39.99,
+  "category": "Home-Decor",
+  "description": "Add a touch of rustic charm to your home with our wooden saw wall signs. Made from reclaimed wood, they feature a variety of designs and sayings to suit your style.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/7186/5566/wooden-saw__36461.1694452462.jpg?c=1",
+  "vendor": "Urban Market 1919"
+ },
+ {
+  "product_id": 112,
+  "product_name": "Wild Flower Design Embroidery",
+  "price": 29.99,
+  "category": "Home-Decor",
+  "description": "Add a touch of elegance to your home with our wild flower design embroidery. Made from durable cotton, it features a beautiful floral design that will brighten up any room.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/7154/5460/298651221_170253068879041_8022270159523931640_n__53596.1691930051.jpg?c=1",
+  "vendor": "Urban Market 1919"
+ },
+ {
+  "product_id": 113,
+  "product_name": "Caplin Stained Glass on Driftwood",
+  "price": 49.99,
+  "category": "Home-Decor",
+  "description": "Add a touch of coastal charm to your home with our caplin on driftwood. Made from durable resin, it features a school of caplin swimming in the ocean.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/7128/5322/fish-four__80462.1689961642.jpg?c=1",
+  "vendor": "Urban Market 1919"
+ },
+ {
+  "product_id": 114,
+  "product_name": "Humpback Whale Stained Glass",
+  "price": 59.99,
+  "category": "Home-Decor",
+  "description": "Add a touch of coastal charm to your home with our humpback whale stained glass. Made from durable resin, it features a humpback whale swimming in the ocean.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/80w/products/7128/5323/IMG_6924__69422.1689961643.jpg?c=1",
+  "vendor": "Urban Market 1919"
+ },
+ {
+  "product_id": 115,
+  "product_name": "Sea Glass Necklace - Chainies Pendant",
+  "price": 39.99,
+  "category": "Jewelry",
+  "description": "Add a touch of elegance to your outfit with our sea glass necklace. Made from genuine sea glass, it features a beautiful chainies pendant that will complement any look.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/7158/5468/chainies__77432.1692028131.jpg?c=1",
+  "vendor": "Urban Market 1919"
+ },
+ {
+  "product_id": 116,
+  "product_name": "Sea Glass Earrings - Green Drop",
+  "price": 29.99,
+  "category": "Jewelry",
+  "description": "Add a touch of elegance to your outfit with our sea glass earrings. Made from genuine sea glass, they feature a beautiful green drop design that will complement any look.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/7155/5465/GreenEarrings9562_540x__35724.1692028102.jpg?c=1",
+  "vendor": "Urban Market 1919"
+ },
+ {
+  "product_id": 117,
+  "product_name": "Wavy Willow Wooden Drop Earrings",
+  "price": 24.99,
+  "category": "Jewelry",
+  "description": "Add a touch of boho chic to your outfit with our wavy willow wooden drop earrings. Made from durable wood, they feature a beautiful wavy design that will complement any look.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/80w/products/7132/5348/bp-2_1684104943__51363.1691508377.jpg?c=1",
+  "vendor": "Urban Market 1919" 
+ },
+ {
+  "product_id": 118,
+  "product_name": "Ruthies: Whale Tail Earrings",
+  "price": 29.99,
+  "category": "Jewelry",
+  "description": "Add a touch of coastal charm to your outfit with our whale tail earrings. Made from durable resin, they feature a beautiful whale tail design that will complement any look.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/6089/4084/IMG-7245__80496.1652883825.jpg?c=1",
+  "vendor": "Urban Market 1919"
+ },
+ {
+  "product_id": 119,
+  "product_name": "Ruthies: Whale Tail Drop Earrings",
+  "price": 29.99,
+  "category": "Jewelry",
+  "description": "Add a touch of coastal charm to your outfit with our whale tail drop earrings. Made from durable resin, they feature a beautiful whale tail design that will complement any look.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/80w/products/6089/4085/IMG-7246__34934.1652883826.jpg?c=1",
+  "vendor": "Urban Market 1919"
+ },
+ {
+  "product_id": 120,
+  "product_name": "Saltware Pewter: Row House Brooch",
+  "price": 29.99,
+  "category": "Jewelry",
+  "description": "Add a touch of Newfoundland charm to your outfit with our row house brooch. Made from durable pewter, it features a beautiful row house design that will complement any look.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/5725/3705/IMG-1816__17880.1642967017.386.513__46936.1645135147.jpg?c=1",
+  "vendor": "Urban Market 1919"
+ },
+{
+  "product_id": 121,
+  "product_name": "Saltware Pewter: NL Island Brooch",
+  "price": 29.99,
+  "category": "Jewelry",
+  "description": "Add a touch of Newfoundland charm to your outfit with our NL island brooch. Made from durable pewter, it features a beautiful NL island design that will complement any look.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/5724/3704/IMG-1812__51574.1642966898.386.513__83125.1645131195.jpg?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 122,
+  "product_name": "Saltware Pewter: Cod Fish Brooch",
+  "price": 29.99,
+  "category": "Jewelry",
+  "description": "Add a touch of Newfoundland charm to your outfit with our cod fish brooch. Made from durable pewter, it features a beautiful cod fish design that will complement any look.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/5723/3470/bh_cdfh_base__47404.1642895858.jpg?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 123,
+  "product_name": "Saltware Pewter: Nan's Teapot Necklace",
+  "price": 29.99,
+  "category": "Jewelry",
+  "description": "Add a touch of Newfoundland charm to your outfit with our Nan's teapot necklace. Made from durable pewter, it features a beautiful teapot design that will complement any look.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/5722/3475/IMG-1803__45066.1642900905.jpg?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 124,
+  "product_name": "Saltware Pewter: Inukshuk Pendant",
+  "price": 29.99,
+  "category": "Jewelry",
+  "description": "Add a touch of Newfoundland charm to your outfit with our inukshuk pendant. Made from durable pewter, it features a beautiful inukshuk design that will complement any look.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/5721/3472/IMG-1800__56913.1642896740.jpg?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 125,
+  "product_name": "Saltware Pewter: Love Newfoundland Pendant",
+  "price": 29.99,
+  "category": "Jewelry",
+  "description": "Add a touch of Newfoundland charm to your outfit with our love Newfoundland pendant. Made from durable pewter, it features a beautiful love Newfoundland design that will complement any look.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/5720/3473/unnamed__08445.1642897393.jpg?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 126,
+  "product_name": "Saltware Pewter: Mussel Pendant",
+  "price": 29.99,
+  "category": "Jewelry",
+  "description": "Add a touch of Newfoundland charm to your outfit with our mussel pendant. Made from durable pewter, it features a beautiful mussel design that will complement any look.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/320w/products/5719/3474/IMG-1802__79182.1642900881.jpg?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 127,
+  "product_name": "Mummer Stained Glass Ornament",
+  "price": 19.99,
+  "category": "Seasonal",
+  "description": "Add a touch of Newfoundland charm to your holiday decor with our mummer stained glass ornament. Made from durable resin, it features a beautiful mummer design that will brighten up your tree.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/6312/4405/Glass-Mummer-ornaments__19352.1669054908.jpg?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 128,
+  "product_name": "Capelin Weather by Lori Doody",
+  "price": 19.99,
+  "category": "Books",
+  "description": "Join Capelin on his adventures as he explores the weather in Newfoundland and Labrador. This charming children's book is perfect for young readers who love to learn about the world around them.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/7117/5351/9781927917091__43786__23676.1691513067.jpg?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 129,
+  "product_name": "Heart Shaped Chocolate Jam Jams",
+  "price": 9.99,
+  "category": "Seasonal",
+  "description": "Heart shaped cookies filled with jam and coated in chocolate. Perfect for Valentine's Day or any special occasion.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/7493/5892/0__27914.1706204969.jpg?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 130,
+  "product_name": "Boil Up Kettle T-Shirt",
+  "price": 29.99,
+  "category": "Clothing-and-Apparel",
+  "description": "Show your love for Newfoundland and Labrador with our boil up kettle t-shirt. Made from soft cotton, it's perfect for everyday wear.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/7450/5858/1863993332__28007.1700670730.jpg?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 131,
+  "product_name": "Jesus, Mary, & Joseph Ornament",
+  "price": 19.99,
+  "category": "Seasonal",
+  "description": "Add a touch of Newfoundland charm to your holiday decor with our Jesus, Mary, & Joseph ornament. Made from durable resin, it features an image of Jesus Christ, Mary Brown, and Joseph Smallwood.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/7439/5849/ORNAMENT__64024.1699551359.JPG?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 132,
+  "product_name": "Engraved Lobster Notebook",
+  "price": 24.99,
+  "category": "Books",
+  "description": "Take notes in style with our engraved lobster notebook. Made from local wood, it features a beautiful lobster design that will inspire your creativity.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/7387/5797/kkdhds__50268.1698946071.JPG?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 133,
+  "product_name": "Engraved Moose on Moon Ornament",
+  "price": 19.99,
+  "category": "Seasonal",
+  "description": "Add a touch of Newfoundland charm to your holiday decor with our engraved moose on moon ornament. Made from local wood, it features a beautiful moose design that will brighten up your tree.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/7386/5846/fjrjilds__22630.1699538026.JPG?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 134,
+  "product_name": "Sealskin NL Island Ornament",
+  "price": 19.99,
+  "category": "Seasonal",
+  "description": "Add a touch of Newfoundland charm to your holiday decor with our sealskin NL island ornament. Made from genuine sealskin, it features a beautiful NL island design that will brighten up your tree.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/7377/5791/310644393_112331638307055_8530349287357089519_n__87249.1698943978.jpg?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 135,
+  "product_name": "Whale Sweatshirt with 'this blows.'",
+  "price": 49.99,
+  "category": "Clothing-and-Apparel",
+  "description": "Stay cozy and stylish with our whale sweatshirt. Made from soft cotton, it features a playful 'this blows.' design that's perfect for everyday wear.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/7344/5770/image__79208__85266.1698942512.jpg?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 136,
+  "product_name": "Pet Bandanas with St.John's, NL Jellybean Row",
+  "price": 19.99,
+  "category": "Pet-Supplies",
+  "description": "Dress up your furry friend with our pet bandanas. Made from durable fabric, they feature a playful St.John's, NL Jellybean Row design that will make your pet the talk of the town.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/7313/5700/il_1588xN-5091766268_7c6n__40848.1698353691.jpg?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 137,
+  "product_name": "Jiggs Dinner Clay Ornament",
+  "price": 19.99,
+  "category": "Seasonal",
+  "description": "Add a touch of Newfoundland charm to your holiday decor with our Jiggs dinner clay ornament. Made from durable clay, it features a beautiful Jiggs dinner design that will brighten up your tree.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/7311/5717/1-39__36865.1698415506.jpg?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 138,
+  "product_name": "Cold Plate Clay Ornament",
+  "price": 19.99,
+  "category": "Seasonal",
+  "description": "Add a touch of Newfoundland charm to your holiday decor with our cold plate clay ornament. Made from durable clay, it features a beautiful cold plate design that will brighten up your tree.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/80w/products/7311/5719/when_people_say_Its_too_early_to_be_thinking_about_christmas_but_youre_4_weeks_away_from_opening_a_christmas_store._6__75667.1698415506.jpg?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 139,
+  "product_name": "TVAL Cupcake Soap",
+  "price": 9.99,
+  "category": "Bath-and-Body",
+  "description": "Indulge in a sweet treat with our cupcake soap. Made from natural ingredients, it's perfect for pampering yourself or giving as a gift.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/7138/5334/black__38791.1690386943.jpg?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 140,
+  "product_name": "Watercolour Prints Tote Bags",
+  "price": 29.99,
+  "category": "Clothing-and-Apparel",
+  "description": "Carry your essentials in style with our watercolour prints tote bags. Made from durable canvas, they feature a variety of designs inspired by the beauty of Newfoundland and Labrador.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/7124/5317/blueberry-tote__04408.1689685120.jpg?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 141,
+  "product_name": "Stained Glass Bird Suncatcher",
+  "price": 59.99,
+  "category": "Home-Decor",
+  "description": "Add a touch of beauty to your home with our stained glass bird suncatcher. Made from durable glass, it features a beautiful bird design that will brighten up any room.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/7127/5321/chickadee__26152.1689961625.jpg?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 142,
+  "product_name": "Hand-Tied Baby Hair Bow Headbands in NL Tartan",
+  "price": 19.99,
+  "category": "Clothing-and-Apparel",
+  "description": "Dress up your little one with our hand-tied baby hair bow headbands. Made from soft fabric, they feature a playful NL tartan design that's perfect for everyday wear.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/6664/4783/hair-bow__65921.1674851382.jpg?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 143,
+  "product_name": "Handknit Amelia Jane Slippers",
+  "price": 29.99,
+  "category": "Clothing-and-Apparel",
+  "description": "Stay cozy and stylish with our Amelia Jane slippers. Made from soft fabric, they feature a playful NL tartan design that's perfect for lounging at home.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/320w/products/6658/4777/286031132_395732319236365_2409863954993462348_n__68759.1674851356.jpg?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 144,
+  "product_name": "HOME: NL Pot Trivet",
+  "price": 19.99,
+  "category": "Home-Decor",
+  "description": "Protect your countertops and tables with our NL pot trivet. Made from durable wood, it features a beautiful NL design that will complement any kitchen decor.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/320w/products/6653/4771/IMG-0664__98300.1674851324.jpg?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 145,
+  "product_name": "Engraved Wood HOME NL Sign",
+  "price": 29.99,
+  "category": "Home-Decor",
+  "description": "Add a touch of Newfoundland charm to your home with our engraved wood HOME NL sign. Made from durable wood, it features a beautiful NL design that will brighten up any room.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/320w/products/6647/4768/IMG-0626__21197.1674851301.jpg?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 146,
+  "product_name": "Valentine's Heart Soap",
+  "price": 9.99,
+  "category": "Seasonal",
+  "description": "Indulge in a sweet treat with our Valentine's heart soap. Made from natural ingredients, it's perfect for pampering yourself or giving as a gift.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/6446/4558/download_45__61810.1674058182.png?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 147,
+  "product_name": "Friggin' Nob T-Shirt",
+  "price": 29.99,
+  "category": "Clothing-and-Apparel",
+  "description": "Show your Newfoundland pride with our Friggin' Nob t-shirt. Made from soft cotton, it's perfect for everyday wear.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/320w/products/6402/4510/hlkf__62281.1670435664.PNG?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 148,
+  "product_name": "Good Moms Say Bad Words T-Shirt",
+  "price": 29.99,
+  "category": "Clothing-and-Apparel",
+  "description": "Show off your sense of humor with our Good Moms Say Bad Words t-shirt. Made from soft cotton, it's perfect for everyday wear.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/320w/products/6401/4509/glfk__38190.1670435570.PNG?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 149,
+  "product_name": "Tibbs Eve: Slush Club Sweatshirt",
+  "price": 49.99,
+  "category": "Clothing-and-Apparel",
+  "description": "Celebrate Tibbs Eve in style with our Slush Club sweatshirt. Made from soft cotton, it's perfect for cozy nights by the fire.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/320w/products/6370/4477/tibbs-crew__98993.1669826216.jpg?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 150,
+  "product_name": "Candy Cane Icicle Ornament",
+  "price": 19.99,
+  "category": "Seasonal",
+  "description": "Add a touch of holiday cheer to your tree with our candy cane icicle ornament. Made from glass, it features a playful candy cane design that will brighten up your decor.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/320w/products/6335/5589/s284932595541447707_p243_i1_w2880__72442.1695384938.jpg?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 151,
+  "product_name": "Anna Bea Tree Decoration - A Piece of da rock",
+  "price": 19.99,
+  "category": "Seasonal",
+  "description": "Add a touch of Newfoundland charm to your holiday decor with our Anna Bea tree decoration. Features a beautiful A Piece of da Rock design that will brighten up your tree.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/6205/4245/PXL_20220705_190038449-PORTRAIT__94739.1660224259.jpg?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 152,
+  "product_name": "Sea Salt & Twig: Mineral Salt Soak",
+  "price": 19.99,
+  "category": "Bath-and-Body",
+  "description": "Relax and unwind with our mineral salt soak. Made from natural ingredients, it's perfect for pampering yourself after a long day.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/6076/4067/mineral-salt-soak__48059.1652267890.jpg?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 153,
+  "product_name": "Sea Salt & Twig: Body Scrub",
+  "price": 29.99,
+  "category": "Bath-and-Body",
+  "description": "Exfoliate and moisturize your skin with our body scrub. Made from natural ingredients, it's perfect for pampering yourself and revealing soft, smooth skin.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/6075/4066/body-scrub__07347.1652267889.jpg?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 154,
+  "product_name": "Porcelain Wine Toppers",
+  "price": 19.99,
+  "category": "Home-Decor",
+  "description": "Keep your wine fresh and stylish with our porcelain wine toppers. Made from durable porcelain, they feature a variety of designs to suit your style.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/320w/products/6016/3850/07-whale-tail-sm__31227.1649620089.jpg?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 155,
+  "product_name": "Wooden Row House Ornament - Assorted Colours",
+  "price": 19.99,
+  "category": "Seasonal",
+  "description": "Add a touch of Newfoundland charm to your holiday decor with our wooden row house ornament. Made from durable wood, it features a beautiful row house design in assorted colours.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/320w/products/5698/3261/IMG_9936__15094.1639592236.jpg?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 156,
+  "product_name": "NL ORNAMENTS - Assorted Designs",
+  "price": 19.99,
+  "category": "Seasonal",
+  "description": "Add a touch of Newfoundland charm to your holiday decor with our NL ornaments. Made from durable stainless steel, they feature a variety of designs to suit your style.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/320w/products/5697/3260/242758531_242501981216952_5087323718850824384_n__71237.1639442673.jpg?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 157,
+  "product_name": "Driftwood Art - Assorted Designs",
+  "price": 29.99,
+  "category": "Home-Decor",
+  "description": "Add a touch of coastal charm to your home with our driftwood art. Made from durable driftwood, it features a variety of designs inspired by the beauty of Newfoundland and Labrador.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/320w/products/4840/2103/IMG_9710__24456.1635802075.JPG?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 158,
+  "product_name": "'deed I is in love with you' Mug",
+  "price": 19.99,
+  "category": "Home-Decor",
+  "description": "Show your love with our 'deed I is in love with you' mug. Made from durable ceramic, it's perfect for enjoying your morning coffee or tea.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/320w/products/4512/3492/deed-i-is-in-love-with-you__42043.1706208525.jpg?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 159,
+  "product_name": "NL Hawkins Cheezies Pin",
+  "price": 19.99,
+  "category": "Jewelry",
+  "description": "Show your love for Newfoundland and Labrador with our NL Island mug. Made from durable ceramic, it's perfect for enjoying your morning coffee or tea.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/960w/products/3642/1234/image__80463.1633708887.jpg?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 160,
+  "product_name": "Newbornlander Sherpa Pilot Hat",
+  "price": 39.99,
+  "category": "Clothing-and-Apparel",
+  "description": "Keep your little one cozy and stylish with our newbornlander sherpa pilot hat. Made from soft fabric, it's perfect for keeping your baby warm on chilly days.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/320w/products/3583/1764/Untitleddesign-2021-08-18T075423-614_540x__82624.1635250016.png?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 161,
+  "product_name": "Newbornlander Floppy Sou'wester Hat",
+  "price": 39.99,
+  "category": "Clothing-and-Apparel",
+  "description": "Keep your little one cozy and stylish with our newbornlander floppy sou'wester hat. Made from soft fabric, it's perfect for keeping your baby warm on chilly days.",
+  "image": "https://cdn11.bigcommerce.com/s-rwned3mfvr/images/stencil/320w/products/3574/1761/Untitleddesign-2021-07-07T121702-104_540x__37039.1635249857.png?c=1",
+  "vendor": "Urban Market 1919"
+},
+{
+  "product_id": 162,
+  "product_name": "Glass NL Tartan Earrings",
+  "price": 9.99,
+  "category": "Jewelry",
+  "description": "Add a touch of Newfoundland charm to your outfit with our NL tartan earrings. Made from durable glass, they feature a beautiful NL tartan design that will complement any look.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/files/IMG-7401_1080x.jpg?v=1708451510",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 163,
+  "product_name": "'Some Day on Clothes' Tote Bag",
+  "price": 29.99,
+  "category": "Clothing-and-Apparel",
+  "description": "Carry your essentials in style with our 'Some Day on Clothes' tote bag. Made from durable canvas, it features a playful design that's perfect for everyday use.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/files/IMG-4266_8814e597-266b-4802-8202-3e57d82186df_1080x.jpg?v=1699034399",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 164,
+  "product_name": "Wooden Whale Earrings",
+  "price": 9.99,
+  "category": "Jewelry",
+  "description": "Add a touch of coastal charm to your outfit with our wooden whale earrings. Made from durable wood, they feature a beautiful whale design that will complement any look.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/files/3C6CECB7-3461-49A2-A03E-853515AC83E3_900x.jpg?v=1708452190",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 165,
+  "product_name": "Wooden Puffin Earrings",
+  "price": 9.99,
+  "category": "Jewelry",
+  "description": "Add a touch of coastal charm to your outfit with our wooden puffin earrings. Made from durable wood, they feature a beautiful puffin design that will complement any look.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/files/D39A915B-7980-44F1-A67B-822BB21440B8_900x.jpg?v=1708452154",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 166,
+  "product_name": "Newfie Slush Mason Jar Mug",
+  "price": 19.99,
+  "category": "Home-Decor",
+  "description": "Enjoy your favorite beverage in style with our Newfie Slush mason jar mug. Made from durable glass, it features a playful design that's perfect for sipping on a hot summer day.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/files/IMG-5267_1080x.jpg?v=1699463577",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 167,
+  "product_name": "Got Er' Scald - Sweatshirt",
+  "price": 49.99,
+  "category": "Clothing-and-Apparel",
+  "description": "Stay cozy and stylish with our Got Er' Scald sweatshirt. Made from soft cotton, it's perfect for everyday wear.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/files/goterscald_1296x.png?v=1699037134",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 168,
+  "product_name": "NL Phrases Novelty Signs",
+  "price": 19.99,
+  "category": "Home-Decor",
+  "description": "Add a touch of Newfoundland charm to your home with our NL phrases novelty signs. Made from durable wood, they feature a variety of designs inspired by the local dialect.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/products/image_ee5c477f-d8f1-4b60-b3e9-fc8e6e268872_1296x.jpg?v=1631659590",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 169,
+  "product_name": "SQUISH: Sea Glass Birch Tree Ornaments",
+  "price": 19.99,
+  "category": "Seasonal",
+  "description": "Add a touch of coastal charm to your holiday decor with our sea glass birch tree ornaments. They feature a beautiful birch tree design that will brighten up your tree.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/files/FullSizeRender_545a0b85-c627-4baa-9ee2-a2402944f396_900x.jpg?v=1695490835",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 170,
+  "product_name": "'Lick Dat Luh' Engraved Spatula",
+  "price": 19.99,
+  "category": "Home-Decor",
+  "description": "Add a touch of Newfoundland charm to your kitchen with our 'Lick Dat Luh' engraved spatula. Made from durable wood, it's perfect for cooking up a storm.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/files/FullSizeRender_5ed998c2-c24b-47f1-a772-6d4754caa083_1296x.jpg?v=1695231916",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 171,
+  "product_name": "STREEL - NL Cuffed Knit Beanie Cap",
+  "price": 29.99,
+  "category": "Clothing-and-Apparel",
+  "description": "Stay warm and stylish with our STREEL NL cuffed knit beanie cap. Made from soft fabric, it's perfect for keeping your head cozy on chilly days.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/products/regular_eb32dda8-b12e-4915-9297-911e718a27be_1296x.jpg?v=1602522927",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 172,
+  "product_name": "Silicone NL Map Ice Cube/ Candy Melt Tray",
+  "price": 19.99,
+  "category": "Home-Decor",
+  "description": "Add a touch of Newfoundland charm to your drinks and desserts with our NL map ice cube/ candy melt tray. Made from durable silicone, it features a variety of NL map designs.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/products/image_5a319935-a163-4feb-9016-9021009385e3_1296x.jpg?v=1602595442",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 173,
+  "product_name": "NL Rustic Leather Bracelet",
+  "price": 19.99,
+  "category": "Jewelry",
+  "description": "Add a touch of Newfoundland charm to your outfit with our NL rustic leather bracelet. Made from durable leather, it features a beautiful NL design that will complement any look.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/products/3629F0DE-5A32-4198-BFF9-208F0964F681_900x.png?v=1565548031",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 174,
+  "product_name": "NL Tartan Coffee Sleeve - Newfie Sayings",
+  "price": 9.99,
+  "category": "Home-Decor",
+  "description": "Keep your coffee warm and stylish with our NL tartan coffee sleeve. Made from durable fabric, it features a variety of Newfie sayings to brighten up your day.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/products/image_5dc609ee-db25-4103-9259-9bb3f58ca7e0_1080x.jpg?v=1623513516",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 175,
+  "product_name": "NL Hand painted Rowhouse Shot Glass Set",
+  "price": 29.99,
+  "category": "Home-Decor",
+  "description": "Add a touch of Newfoundland charm to your home bar with our hand painted rowhouse shot glass set. Made from durable glass, it features a variety of rowhouse designs.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/products/image_2bd5a7b7-b8cf-4bcc-8bee-0bbdf19a3795_1296x.jpg?v=1664554121",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 176,
+  "product_name": "NL Sayings Stainless Steel Travel Mug",
+  "price": 29.99,
+  "category": "Home-Decor",
+  "description": "Stay hydrated on the go with our NL sayings stainless steel travel mug. Made from durable stainless steel, it features a variety of Newfie sayings to brighten up your day.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/files/NewfoundlandSayingsCoffeeMugs_1296x.png?v=1698417730",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 177,
+  "product_name": "Handmade Clay Earrings - Assorted Designs",
+  "price": 19.99,
+  "category": "Jewelry",
+  "description": "Add a touch of Newfoundland charm to your outfit with our handmade clay earrings. Made from durable clay, they feature a variety of designs inspired by the local culture.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/files/IMG_5042_1296x.jpg?v=1695312709",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 178,
+  "product_name": "Rock Recipes: Christmas Cookbook",
+  "price": 29.99,
+  "category": "Books",
+  "description": "Get into the holiday spirit with our Rock Recipes Christmas cookbook. Featuring a variety of festive recipes, it's perfect for creating delicious meals and treats.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/products/F21041E5-E53E-4180-A316-97ED7878817B_1080x.jpeg?v=1554575010",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 179,
+  "product_name": "Kiln Fused Glass Bottle Soap Dish",
+  "price": 16.99,
+  "category": "Home-Decor",
+  "description": "Add a touch of elegance to your bathroom with our kiln fused glass bottle soap dish. Made from durable glass, it features a beautiful bottle design that will complement any decor.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/products/image_144d678e-cf94-43cc-89f6-15ca42f523ed_1080x.jpg?v=1602520515",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 180,
+  "product_name": "Sterling Silver NL 1941 Penny Earrings",
+  "price": 39.99,
+  "category": "Jewelry",
+  "description": "Add a touch of Newfoundland charm to your outfit with our sterling silver NL 1941 penny earrings. Made from durable silver, they feature a beautiful NL design that will complement any look.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/files/FullSizeRender_c1af00af-8b3b-4dba-9875-f834afc3407d_1296x.heic?v=1696641412",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 181,
+  "product_name": "Sterling Silver Labradorite Necklace & Earring Set",
+  "price": 69.99,
+  "category": "Jewelry",
+  "description": "Add a touch of elegance to your outfit with our sterling silver labradorite necklace and earrings. Made from durable silver, it features a beautiful labradorite stone that will complement any look.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/files/362265530_711240847682822_6325305749437118051_n_c2449f7d-8cb4-45e4-9c71-cba862347497_1296x.jpg?v=1694815178",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 182,
+  "product_name": "Kiln Fused Handmade Whale Tail Nightlight",
+  "price": 29.99,
+  "category": "Home-Decor",
+  "description": "Add a touch of coastal charm to your home with our kiln fused handmade whale tail nightlight. Made from durable glass, it features a beautiful whale tail design that will brighten up any room.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/files/361599889_710889784384595_7243672971678008733_n_1080x.jpg?v=1694814754",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 183,
+  "product_name": "Driftwood Wall Hanging - Assorted Designs",
+  "price": 59.99,
+  "category": "Home-Decor",
+  "description": "Add a touch of coastal charm to your home with our driftwood wall hanging. Made from durable driftwood, it features a variety of designs inspired by the beauty of Newfoundland and Labrador.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/files/IMG_4943_1296x.jpg?v=1694107522",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 184,
+  "product_name": "NL Island Resin Ornament/Sun Catcher",
+  "price": 29.99,
+  "category": "Home-Decor",
+  "description": "Add a touch of Newfoundland charm to your home with our NL island resin ornament/ sun catcher. Made from durable resin, it features a beautiful NL island design that will brighten up any room.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/files/IMG_4896_900x.jpg?v=1693597955",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 185,
+  "product_name": "Crochet Pie - Pot Holder",
+  "price": 19.99,
+  "category": "Home-Decor",
+  "description": "Add a touch of whimsy to your kitchen with our crochet pie pot holder. Made from durable fabric, it features a playful pie design that's perfect for cooking up a storm.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/files/FullSizeRender_3ed73221-90e1-4282-a684-8747e68b0783_1296x.jpg?v=1694345212",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 186,
+  "product_name": "Kiln-Fused Glass Soap Dish",
+  "price": 29.99,
+  "category": "Home-Decor",
+  "description": "Add a touch of elegance to your bathroom with our kiln-fused glass soap dish. Made from durable glass, it features a beautiful design that will complement any decor.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/files/IMG_2870_1296x.jpg?v=1693578265",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 187,
+  "product_name": "Saucy Face: Lip Balm",
+  "price": 9.99,
+  "category": "Bath-and-Body",
+  "description": "Keep your lips soft and hydrated with our Saucy Face lip balm. Made from natural ingredients, it's perfect for pampering yourself and protecting your lips from the elements.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/files/IMG_2869_1296x.jpg?v=1693575965",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 188,
+  "product_name": "Kiln-Fused Glass Jellyfish Sun Catcher",
+  "price": 69.99,
+  "category": "Home-Decor",
+  "description": "Add a touch of coastal charm to your home with our kiln-fused glass jellyfish sun catcher. Made from durable glass, it features a beautiful jellyfish design that will brighten up any room.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/files/FullSizeRender_1f13010c-46a6-4411-a2f3-618cc033b727_540x.jpg?v=1693574332",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 189,
+  "product_name": "Seal Skin Crossover Bag - Republic of NL",
+  "price": 99.99,
+  "category": "Clothing-and-Apparel",
+  "description": "Carry your essentials in style with our seal skin crossover bag. Made from durable seal skin, it features a beautiful Republic of NL design that's perfect for everyday use.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/products/image_d716af04-cffa-4ca5-9b80-b42b83406fb2_1080x.heic?v=1664925198",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 190,
+  "product_name": "NL Forget Me Not Earrings",
+  "price": 19.99,
+  "category": "Jewelry",
+  "description": "Add a touch of elegance to your outfit with our NL forget me not earrings. Made from durable metal, they feature a beautiful forget me not design that will complement any look.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/products/image_5f0c6fec-2a0f-4ca5-a301-ccfcbb45653f_1080x.jpg?v=1637450251",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 191,
+  "product_name": "NL Inspired Bath Bombs - Assorted Scents",
+  "price": 9.99,
+  "category": "Bath-and-Body",
+  "description": "Relax and unwind with our NL inspired bath bombs. Made from natural ingredients, they feature a variety of scents to suit your mood and pamper yourself after a long day.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/products/image_badec7da-b840-4ea2-a94d-a6fbcc483340_1296x.jpg?v=1637079243",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 192,
+  "product_name": "Saltwater Mittens by Christine LeGrow & Shirley A. Scott",
+  "price": 29.99,
+  "category": "Books",
+  "description": "Stay cozy and stylish with our Saltwater Mittens book. Featuring a variety of mitten patterns inspired by Newfoundland and Labrador, it's perfect for creating your own handmade mittens.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/products/image_dc4558ff-cae1-40ca-a2e0-f7ee39110ed5_1296x.jpg?v=1602546142",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 193,
+  "product_name": "Mt. Scio Farm - Pure Savoury",
+  "price": 9.99,
+  "category": "Food-and-Drink",
+  "description": "Add a touch of Newfoundland flavor to your dishes with our Mt. Scio Farm pure savoury. Made from natural ingredients, it's perfect for seasoning your favorite recipes.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/files/IMG-4598_1080x.jpg?v=1697239293",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 194,
+  "product_name": "Lay's Roast Chicken Chips",
+  "price": 4.99,
+  "category": "Food-and-Drink",
+  "description": "Indulge in a savory snack with our Lay's roast chicken chips. Made from natural ingredients, they're perfect for enjoying on their own or with your favorite dip.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/products/image_9fe5c443-c499-4bf7-83ee-de928dde9557_1296x.jpg?v=1635455984",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 195,
+  "product_name": "Lay's Fries 'n Gravy Chips",
+  "price": 4.99,
+  "category": "Food-and-Drink",
+  "description": "Indulge in a savory snack with our Lay's fries 'n gravy chips. Made from natural ingredients, they're perfect for enjoying on their own or with your favorite dip.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/products/image_e1edb871-c876-4d33-bc01-d35b498d8a8f_1296x.jpg?v=1678151557",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 196,
+  "product_name": "NL HOME Christmas Ornament",
+  "price": 19.99,
+  "category": "Seasonal",
+  "description": "Add a touch of Newfoundland charm to your holiday decor with our NL HOME Christmas ornament. Made from stainless steel, it features a beautiful NL design that will brighten up your tree.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/products/home1_1296x.jpg?v=1538927092",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 197,
+  "product_name": "Newfoundland-Opoly Board Game",
+  "price": 39.99,
+  "category": "Toys-and-Games",
+  "description": "Have fun with the whole family with our Newfoundland-Opoly board game. Featuring a variety of NL themed properties and game pieces, it's perfect for game night.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/files/IMG-3700_1296x.heic?v=1693950023",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 198,
+  "product_name": "Crush Soft Drinks - Assorted Flavors",
+  "price": 4.99,
+  "category": "Food-and-Drink",
+  "description": "Quench your thirst with our Crush soft drinks. Made from natural ingredients, they feature a variety of flavors to suit your taste buds and keep you refreshed.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/files/image_91e493ba-84b2-4f9e-8ef6-13472dc66d6c_1080x.heic?v=1682796511",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 199,
+  "product_name": "NL Map Vehicle Decal/Sticker",
+  "price": 9.99,
+  "category": "Books",
+  "description": "Show your love for Newfoundland and Labrador with our NL map vehicle decal/ sticker. Made from durable vinyl, it's perfect for decorating your car or laptop.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/products/image_4203ce76-0d4c-4d80-b304-394deeb02803_1080x.jpg?v=1634760508",
+  "vendor": "Skipper Joe's Souvenirs"
+},
+{
+  "product_id": 200,
+  "product_name": "NL Knitted Beer / Drink Mitt",
+  "price": 19.99,
+  "category": "Clothing-and-Apparel",
+  "description": "Keep your drink cold and your hands warm with our NL knitted beer/ drink mitt. Made from soft fabric, it's perfect for enjoying a cold beverage on a chilly day.",
+  "image": "https://skipperjoessouvenirs.com/cdn/shop/files/FullSizeRender_09aa3d37-705c-4a18-b9db-8f9809997fa8_1296x.jpg?v=1698848820",
+  "vendor": "Skipper Joe's Souvenirs"
+}
+]
+}
+
+
+
