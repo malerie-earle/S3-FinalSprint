@@ -9,16 +9,19 @@ User Authentication:
 Users can sign up for an account.
 Existing users can log in securely.
 Session management is implemented using cookies.
+
 Customer Management:
 
 Users can view a list of all customers.
 Customers can be searched, added, edited, and deleted.
 Detailed customer information including accounts and addresses is displayed.
+
 Search Functionality:
 
 Users can search for products, customers, or other entities.
 Search queries are executed in both PostgreSQL and MongoDB databases.
 Results are aggregated and displayed to the user.
+
 Password Hashing:
 
 User passwords are securely hashed using bcrypt.
@@ -39,7 +42,7 @@ Includes templates for login, signup, customer management, search results, etc.
 public/: Static assets such as CSS, images, and client-side JavaScript files.
 Setup Instructions:
 
-Clone the repository: git clone <repository-url>
+Clone the repository: git clone <https://github.com/malerie-earle/S3-FinalSprint.git>
 Install dependencies: npm install
 Set up environment variables:
 Define the MDBATLAS environment variable with your MongoDB Atlas connection string.
