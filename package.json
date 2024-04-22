@@ -3,10 +3,7 @@
   "version": "1.0.0",
   "description": "Semester 3 Final sprint",
   "main": "index.js",
-  "scripts": {
-    "test:mocha": "mocha",
-    "test:jest": "jest"
-  },
+  
   "author": "Malerie Earle & Janeil Carroll",
   "license": "ISC",
   "dependencies": {
