@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "Semester 3 Final sprint",
   "main": "index.js",
-  
   "author": "Malerie Earle & Janeil Carroll",
   "license": "ISC",
   "dependencies": {
+    "assert": "^2.1.0",
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
     "colors": "^1.4.0",
